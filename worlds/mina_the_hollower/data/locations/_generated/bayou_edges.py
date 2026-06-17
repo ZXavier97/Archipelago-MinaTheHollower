@@ -10,7 +10,7 @@ from ...rules.ability_rules import (
     HasVialsCount, CanJumpOneTile, CanJumpTiles, HasReachingSideArm,
 )
 from ...rules.state_rules import (
-   HasLadder,
+   HasLadder, HasCompletedBoneGenerator, 
 )
 
 
@@ -140,6 +140,7 @@ connections: dict[str, RegionConnection] = {
     "Nox's Bayou Lily Empty Pump Room_Nox's Bayou Lily Full Pump Room": RegionConnection("Nox's Bayou Lily Empty Pump Room", "Nox's Bayou Lily Full Pump Room", CanBurrow()),
     "Nox's Bayou Lily Full Pump Room Top_Nox's Bayou Lily Full Pump Room": RegionConnection("Nox's Bayou Lily Full Pump Room Top", "Nox's Bayou Lily Full Pump Room", CanSwim() | CanJumpTiles(distance=2)),
     "Nox's Bayou Lily Full Pump Room_Nox's Bayou Lily Full Pump Room Top": RegionConnection("Nox's Bayou Lily Full Pump Room", "Nox's Bayou Lily Full Pump Room Top", CanSwim() | CanJumpTiles(distance=2)),
+    "Nox's Bayou Moonlit Path Lagoon Cliff_Nox's Bayou Moonlit Path": RegionConnection("Nox's Bayou Moonlit Path Lagoon Cliff", "Nox's Bayou Moonlit Path", CanBurrow()),
     "Nox's Bayou Moonlit Path Shortcut_Nox's Bayou Moonlit Path Lagoon Cliff": RegionConnection("Nox's Bayou Moonlit Path Shortcut", "Nox's Bayou Moonlit Path Lagoon Cliff"),
     "Nox's Bayou Moonlit Path Waterfall_Nox's Bayou Moonlit Path": RegionConnection("Nox's Bayou Moonlit Path Waterfall", "Nox's Bayou Moonlit Path", CanBurrow() & (CanSwim() | CanJumpTiles(distance=4))),
     "Nox's Bayou Moonlit Path_Nox's Bayou Moonlit Path End": RegionConnection("Nox's Bayou Moonlit Path", "Nox's Bayou Moonlit Path End", CanClimb()),

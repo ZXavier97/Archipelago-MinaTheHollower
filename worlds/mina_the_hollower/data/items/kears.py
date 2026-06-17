@@ -29,6 +29,9 @@ kears: dict[str, KeyItemData] = {
     "Loner's Landing Belowdecks Left Weapon Kear": KeyItemData(OFFSET_KEAR_ITEMS+19, 21, ItemClassification.progression),
     "Loner's Landing Belowdecks Back Kear": KeyItemData(OFFSET_KEAR_ITEMS+20, 22, ItemClassification.progression),
     " Nox's Bayou Swamp Shack Kear": KeyItemData(OFFSET_KEAR_ITEMS+21, 33, ItemClassification.progression),
+    "Sandfall Cave Kear": KeyItemData(OFFSET_KEAR_ITEMS+22, 320, ItemClassification.progression),
+    "Sandfalls Payload Passage Bottom kear": KeyItemData(OFFSET_KEAR_ITEMS+23, 318, ItemClassification.progression),
+    "Bone Beach Mining Camp Cave Kear": KeyItemData(OFFSET_KEAR_ITEMS+24, 69, ItemClassification.progression),
 
 }
 

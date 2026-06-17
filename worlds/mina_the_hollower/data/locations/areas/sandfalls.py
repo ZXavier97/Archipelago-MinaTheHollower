@@ -5,61 +5,24 @@ from ...rules.ability_rules import CanBurrow, CanJumpOneTile, CanBounce, CanJump
 
 
 collectable_locations: dict[str, LocationData] = {
-    "SF Hobo Holdout Puffer Beak": LocationData(82, "Sandfalls Hobo Holdout",
-                                                Has("Vials", count=2) & CanBurrow() & CanBounce() & Has("Fishing Rod")),
-
-    # Check ID - Imported and guessed
-    "SF Sifted Sands Snake Bomb Chest": LocationData(324, "Sandfalls Sifted Sands",
-                                                     CanBurrow() & CanCarry()),
-
-    # Check ID - Imported and guessed
-    "SF Sifted Sands Kear": LocationData(319, "Sandfalls Sifted Sands"),
-
-    # Check ID - Imported and guessed
-    "SF Guiding Grains Niter Belt": LocationData(330, "Sandfalls Guiding Grains",
-                                                 Has("SF Sifted Sands Kear")),
-
-    # Check ID - Imported and guessed
-    "SF Guiding Grains Bonestone #1": LocationData(328, "Sandfalls Guiding Grains",
-                                                   Has("SF Sifted Sands Kear")),
-
-    # Check ID - Imported and guessed
-    "SF Guiding Grains Bonestone #2": LocationData(329, "Sandfalls Guiding Grains",
-                                                   Has("SF Sifted Sands Kear")),
-
-    # Check ID - Imported and guessed
-    "SF Hidden Cave Vial Pouch": LocationData(323, "Sandfalls Hidden Cave",
-                                              CanBurrow() & Has("SF Sifted Sands Kear")),
-
-    "SF Ring Dive Parlor Tunneler's Codex": LocationData(317, "Sandfalls Ring Dive Parlor",
-                                                         CanBurrow()),
-
-    # Check ID - Imported and guessed
-    "SF Shifty Seclusion Chest": LocationData(322, "Sandfalls Shifty Seclusion",
-                                              CanBurrow() & CanCarry()),
-
-    # Check ID - Imported and guessed
-    "SF Payload Passage Chest": LocationData(328, "Sandfalls Payload Passage",
-                                             CanBurrow() & CanCarry()),
-
-    # Special rules - expression contains custom logic, double check
-    "SF Miner's Den Major Miner": LocationData(0, "Sandfalls Miner's Den",
-                                               Has("Vials", count=3) & CanBurrow() &
-                                               (Has("Spike Spurs") | Has("Carry/Throw"))),
-
-    # No ID available (N/A vanilla item)
-    "SF Shoreline Generator Activated": LocationData(0, "Sandfalls Shoreline Generator",
-                                                     CanBurrow()),
-
-    # Check ID - Imported and guessed
-    "SF Bone Junction Chest": LocationData(329, "Sandfalls Bone Junction",
-                                           CanBurrow() & CanCarry()),
-
-    # Check ID - Imported and guessed
-    "SF Train Vita's Shop": LocationData(327, "Sandfalls Train",
-                                         CanBurrow()),
+    "SF Hobo Holdout Puffer Beak" : LocationData(82, "Sandfalls Mining Outlook"), #needs fishing rod,
+    "SF Sifted Sands Snake Bomb Chest" : LocationData(326, "Sandfalls Sifted Sands"), #needs burrow, carry,
+    "SF Sifted Sands Kear" : LocationData(319, "Sandfalls Sifted Sands"), #needs completesandfallsgenerator,
+    "SF Guiding Grains Niter Belt" : LocationData(330, "Sandfalls Pachinko"),
+    "SF Guiding Grains Bonestone Left" : LocationData(329, "Sandfalls Pachinko"),
+    "SF Guiding Grains Bonestone Right" : LocationData(328, "Sandfalls Pachinko"),
+    "SF Hidden Cave Vial Pouch" : LocationData(323, "Sandfalls Sifted Sands Hidden Cave"), #needs burrow, kear,
+    "SF Ring Dive Parlor Tunneler's Codex" : LocationData(317, "Sandfalls Ring Dive Parlor"), #needs burrow,
+    "SF Shifty Seclusion Chest" : LocationData(327, "Sandfalls Shifty Seclusion"),
+    "SF Payload Passage Chest" : LocationData(332, "Sandfalls Payload Passage Chest"), #needs burrow, carry,
+    "SF Bone Junction Chest" : LocationData(356, "Sandfalls Bone Junction"), #needs burrow, carry,
+    "SF Train Vita's Shop" : LocationData(333, "Sandfalls Sandy Station"), #needs burrow,
+    "BB Sandwater Junction Angler's Raft" : LocationData(325, "Sandfalls Sandwater Junction"), #needs 2 tiles of air movement or swim,
 }
 
 boss_locations: dict[str, LocationData] = {
+    "SF Miner's Den Major Miner": LocationData(None, "Sandfalls Miners Den"),
+    # needs 3 vials && burrow && (spike spurs || carry/throw),
+    "SF Shoreline Generator Activated": LocationData(None, "Bone Beach Worms Back Generator"),  # needs burrow,
 }
 

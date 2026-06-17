@@ -10,7 +10,7 @@ from ...rules.ability_rules import (
     HasVialsCount, CanJumpOneTile, CanJumpTiles, HasReachingSideArm,
 )
 from ...rules.state_rules import (
-   HasLadder,
+   HasLadder, HasCompletedBoneGenerator, 
 )
 
 
@@ -96,7 +96,7 @@ transitions: dict[str, Transition] = {
     "Mourner's Mile Mina's Grave Exit": Transition("Mourner's Mile Mina's Grave", "Mourner's Mile Knight's Guard Bike", DirectionType.SOUTH, TransitionType.DOORS),
     "Mourner's Mile Shallow Tomb Geyser Up": Transition("Mourner's Mile Shallow Tomb", "Mourner's Mile Knight's Gate Main", DirectionType.OVERWORLD, TransitionType.GEYSER_UP, CanBurrow()),
     "Mourner's Mile Spike Hell Mourner North Burrow": Transition("Mourner's Mile Spike Hell Mourner", "Mourner's Mile Stairs", DirectionType.NORTH, TransitionType.SCREENS, CanBurrow()),
-    "Mourner's Mile Spike Hell Sandfall East Sandfalls ???? Bone junction)": Transition("Mourner's Mile Spike Hell Sandfall", 'Sandfalls ???? Bone junction)', DirectionType.EAST, TransitionType.SCREENS),
+    "Mourner's Mile Spike Hell Sandfall East Area Transition": Transition("Mourner's Mile Spike Hell Sandfall", 'Sandfalls Bone Junction Plank', DirectionType.EAST, TransitionType.SCREENS),
     "Mourner's Mile Spike Vault Hidden Room East Transition": Transition("Mourner's Mile Spike Vault Hidden Room", "Mourner's Mile Spike Vault Hidden", DirectionType.EAST, TransitionType.SCREENS),
     "Mourner's Mile Spike Vault Hidden West Transition": Transition("Mourner's Mile Spike Vault Hidden", "Mourner's Mile Spike Vault Hidden Room", DirectionType.WEST, TransitionType.SCREENS),
     "Mourner's Mile Spike Vault Main Exit": Transition("Mourner's Mile Spike Vault Main", "Mourner's Mile Knight's Gate Main", DirectionType.SOUTH, TransitionType.DOORS),

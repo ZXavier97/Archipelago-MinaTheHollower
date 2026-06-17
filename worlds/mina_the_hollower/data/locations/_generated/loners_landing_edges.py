@@ -10,7 +10,7 @@ from ...rules.ability_rules import (
     HasVialsCount, CanJumpOneTile, CanJumpTiles, HasReachingSideArm,
 )
 from ...rules.state_rules import (
-   HasLadder,
+   HasLadder, HasCompletedBoneGenerator, 
 )
 
 
@@ -40,7 +40,9 @@ regions: set[str] = {
     "Loner's Landing Boardwalk Firewalk",
     "Loner's Landing Boardwalk Pipe Landing",
     "Loner's Landing Boardwalk Road",
+    "Loner's Landing Boardwalk Sandfalls Lake",
     "Loner's Landing Boardwalk Sandfalls Ledge",
+    "Loner's Landing Boardwalk Sandfalls Pipe Lake",
     "Loner's Landing Boardwalk Spike Cave",
     "Loner's Landing Boardwalk Spike Gate",
     "Loner's Landing Boardwalk Spike Path",
@@ -110,7 +112,10 @@ transitions: dict[str, Transition] = {
     "Loner's Landing Boardwalk Pipe Landing North Drop": Transition("Loner's Landing Boardwalk Pipe Landing", "Loner's Landing Boardwalk Sandfalls Ledge", DirectionType.NORTH, TransitionType.SCREENS),
     "Loner's Landing Boardwalk Pipe Landing Pipe": Transition("Loner's Landing Boardwalk Pipe Landing", "Loner's Landing Dock", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
     "Loner's Landing Boardwalk Road West Transition": Transition("Loner's Landing Boardwalk Road", "Loner's Landing Blighted Docks Road", DirectionType.WEST, TransitionType.SCREENS),
+    "Loner's Landing Boardwalk Sandfalls Lake North Transition": Transition("Loner's Landing Boardwalk Sandfalls Lake", 'Sandfalls Sandwater Junction', DirectionType.NORTH, TransitionType.SCREENS),
+    "Loner's Landing Boardwalk Sandfalls Lake South Transition": Transition("Loner's Landing Boardwalk Sandfalls Lake", "Loner's Landing Boardwalk Sandfalls Pipe Lake", DirectionType.SOUTH, TransitionType.SCREENS, CanJumpTiles(distance=2)),
     "Loner's Landing Boardwalk Sandfalls Ledge West Transition": Transition("Loner's Landing Boardwalk Sandfalls Ledge", "Loner's Landing Boardwalk Fire Bounce", DirectionType.WEST, TransitionType.SCREENS, CanBounce()),
+    "Loner's Landing Boardwalk Sandfalls Pipe Lake North Transition": Transition("Loner's Landing Boardwalk Sandfalls Pipe Lake", "Loner's Landing Boardwalk Sandfalls Lake", DirectionType.NORTH, TransitionType.SCREENS),
     "Loner's Landing Boardwalk Spike Cave East Burrow": Transition("Loner's Landing Boardwalk Spike Cave", "Loner's Landing Boardwalk Spike Path", DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
     "Loner's Landing Boardwalk Spike Cave South Burrow East": Transition("Loner's Landing Boardwalk Spike Cave", "Loner's Landing Boardwalk Spike Path Upper", DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
     "Loner's Landing Boardwalk Spike Cave South Burrow West": Transition("Loner's Landing Boardwalk Spike Cave", "Loner's Landing Boardwalk Spike Path Upper", DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),

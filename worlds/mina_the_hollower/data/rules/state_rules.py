@@ -15,5 +15,8 @@ class HasCompletedOneSparkGenerator(Rule[MinaTheHollowerBase], game=MINA_THE_HOL
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
         return True_[MinaTheHollowerBase]().resolve(world)
 
+def HasCompletedBoneGenerator():
+    return True_()
+
 def HasLadder():
     return Has("Pinky Kear") & Has("Pinky Back Kear") & (CanSwim() | CanJumpTiles(distance=3)) & CanCarry()

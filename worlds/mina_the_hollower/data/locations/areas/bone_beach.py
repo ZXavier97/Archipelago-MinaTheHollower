@@ -6,91 +6,30 @@ from ...rules.ability_rules import CanBurrow, CanJumpOneTile, CanBounce, CanJump
 
 
 collectable_locations: dict[str, LocationData] = {
-    # Check ID - Imported and guessed
-    "BB Sandwater Junction Goremaw Fang": LocationData(88, "Bone Beach Sandwater Junction",
-                                                       CanBurrow() & CanCarry() & CanClimb() &
-                                                       Has("Fishing Rod") & CanJumpTiles(distance=5)),
-
-    # Check ID - Imported and guessed
-    "BB Sandwater Junction Angler's Raft": LocationData(79, "Bone Beach Sandwater Junction",
-                                                        CanBurrow() & CanCarry() & CanClimb() &
-                                                        CanJumpTiles(distance=5)),
-
-    # Check ID - Imported and guessed
-    "BB Bone Rush Trail Furgus Tunnel Chest": LocationData(70, "Bone Beach Bone Rush Trail",
-                                                           CanBurrow() & CanCarry() & Has("Vials", count=3)),
-
-    # Special rules - Can leave through BB Mirror instead of vials and CanBounce()
-    "BB Gold Grasp Bonestone": LocationData(71, "Bone Beach Gold Grasp",
-                                            (CanBurrow() & CanCarry() & Has("Vials", count=3))),
-
-    # Special rules - Can leave through BB Mirror instead of vials
-    "BB Large Conveyor Bonestone": LocationData(72, "Bone Beach Large Conveyor",
-                                                Has("Vials", count=3) &
-                                                CanBounce() & CanClimb()),
-
-
-    # Check ID - Imported and guessed
-    "BB Split Room Chest": LocationData(73, "Bone Beach Split Room",
-                                        CanJumpTiles(distance=2)),
-
-    # Special rules - Float OR Tunneler's Codex
-    # Check ID - Imported and guessed
-    "BB Aquatic Conveyor Chest": LocationData(78, "Bone Beach Aquatic Conveyor",
-                                              CanBurrow() & CanSwim() &
-                                              (CanBounce() | Has("Tunneler's Codex"))),
-
+    "BB Sandwater Junction Goremaw Fang": LocationData(88, "Sandfalls Sandwater Junction"),
+    # needs burrow, carry, climb, fishing rod, 5 tiles of air movement,
+    "BB Bone Rush Trail Furgus Tunnel Chest": LocationData(354, "Bone Beach Bone Rush Mine"),
+    "BB Gold Grasp Bonestone": LocationData(71, "Bone Beach Bone Rush Drop"),
+    "BB Large Conveyor Bonestone": LocationData(70, "Bone Beach Bone Rush Conveyor Top", CanBounce()),  # needs canbounce(),
+    "BB Split Room Chest": LocationData(78, "Bone Beach Worms Back Split"),  # needs 2 tiles of air movement,
+    "BB Aquatic Conveyor Chest": LocationData(73, "Bone Beach Aquatic Conveyor"),  # needs burrow,
     "BB Brac's Tent Polyp Lamp": LocationData(80, "Bone Beach Brac's Tent"),
-
-    # Check ID - Imported and guessed
     "BB Brac's Tent Kear": LocationData(81, "Bone Beach Brac's Tent"),
+    "BB Secret Shoals Joule Syringe": LocationData(74, "Bone Beach Secret Shoals"),  # needs canswim(),
+    "BB Calcified Caverns Kear": LocationData(79, "Bone Beach Calcified Caves"),
+    "BB Calcified Cage Bonestone": LocationData(76, "Bone Beach Calcified Cage"),
+    "BB Submerged Handles Chest": LocationData(77, "Bone Beach Submerged Handles"),  # needs swim,
+    "BB Pulsing Tract Bonestone": LocationData(86, "Bone Beach Pulsing Tract Moving Top"),  # needs burrow, float,
+    "BB Worm's Back Battery Buster": LocationData(75, "Bone Beach Worms Back Chest"),  # needs canbounce(),
+    "BB Worm's Spine Bonestone": LocationData(72, "Bone Beach Worms Back Right"),  # needs burrow,
+    "BB Stomach Mine Kear": LocationData(84, "Bone Beach Stomach Mine Lower"),  # needs burrow, float,
+    "BB Moving Stairs Bonestone": LocationData(85, "Bone Beach Gut Depths Hidden"),  # needs burrow, float,
+    "BB Gut Passage Chest": LocationData(87, "Bone Beach Gut Depths Dark"),  # needs burrow,
+    "BB Brain Alcove Health Rose": LocationData(83, "Bone Beach Brain Alcove"),  # needs burrow,
 
-    # Check ID - Imported and guessed
-    "BB Secret Shoals Joule Syringe": LocationData(74, "Bone Beach Secret Shoals",
-                                                   CanBurrow() & CanSwim()),
-
-    # Check ID - Imported and guessed
-    "BB Calcified Caverns Kear": LocationData(79, "Bone Beach Calcified Caverns",
-                                              CanClimb()),
-
-    # Check ID - Imported and guessed
-    "BB Calcified Cage Bonestone": LocationData(84, "Bone Beach Calcified Cage",
-                                                CanClimb() & CanBurrow()),
-
-    # Check ID - Imported and guessed
-    "BB Submerged Handles Chest": LocationData(85, "Bone Beach Submerged Handles",
-                                               CanBurrow() & CanSwim() & CanBounce()),
-
-    # Check ID - Imported and guessed
-    "BB Pulsing Tract Bonestone": LocationData(76, "Bone Beach Pulsing Tract",
-                                               CanBurrow() & CanBounce()),
-
-    "BB Worm's Back Battery Buster": LocationData(75, "Bone Beach Worm's Back",
-                                                  CanBounce()),
-
-    # Check ID - Imported and guessed
-    "BB Worm's Spine Bonestone": LocationData(77, "Bone Beach Worm's Spine",
-                                              CanBurrow()),
-
-    # Check ID - Imported and guessed
-    "BB Stomach Mine Kear": LocationData(83, "Bone Beach Stomach Mine",
-                                         CanBurrow() & CanBounce()),
-
-    # Check ID - Imported and guessed
-    "BB Moving Stairs Bonestone": LocationData(85, "Bone Beach Moving Stairs",
-                                               CanBurrow() & CanBounce()),
-
-    # Check ID - Imported and guessed
-    "BB Gut Passage Chest": LocationData(86, "Bone Beach Gut Passage",
-                                         CanBurrow()),
-
-    # Check ID - Imported and guessed
-    "BB Brain Alcove Health Rose": LocationData(83, "Bone Beach Brain Alcove",
-                                                CanBurrow()),
 }
 
 
 boss_locations: dict[str, LocationData] = {
-    "BB Brain Alcove Mined Mind": LocationData(0, "Bone Beach Brain Alcove",
-                                               CanBurrow()),
+    "BB Brain Alcove Mined Mind": LocationData(None, "Bone Beach Brain Alcove"),  # needs burrow,
 }
