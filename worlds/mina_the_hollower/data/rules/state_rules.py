@@ -18,5 +18,8 @@ class HasCompletedOneSparkGenerator(Rule[MinaTheHollowerBase], game=MINA_THE_HOL
 def HasCompletedBoneGenerator():
     return True_()
 
+def HasAccessToTorch():
+    return True_()
+
 def HasLadder():
     return Has("Pinky Kear") & Has("Pinky Back Kear") & (CanSwim() | CanJumpTiles(distance=3)) & CanCarry()
