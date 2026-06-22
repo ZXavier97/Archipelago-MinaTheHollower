@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -60,10 +69,10 @@ regions: set[str] = {
 connections: dict[str, RegionConnection] = {
     "Loner's Landing Bay Cliff_Loner's Landing Bay": RegionConnection("Loner's Landing Bay Cliff", "Loner's Landing Bay"),
     "Loner's Landing Bay_Loner's Landing Bay Cliff": RegionConnection("Loner's Landing Bay", "Loner's Landing Bay Cliff", HasLadder()),
-    "Loner's Landing Belowdecks Chests_Loner's Landing Belowdecks": RegionConnection("Loner's Landing Belowdecks Chests", "Loner's Landing Belowdecks", Has("Loner's Landing Belowdecks Back Kear") & CanJumpTiles(distance=2)),
+    "Loner's Landing Belowdecks Chests_Loner's Landing Belowdecks": RegionConnection("Loner's Landing Belowdecks Chests", "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_BACK_KEAR.value) & CanJumpTiles(distance=2)),
     "Loner's Landing Belowdecks Chests_Loner's Landing Belowdecks Front": RegionConnection("Loner's Landing Belowdecks Chests", "Loner's Landing Belowdecks Front", CanJumpTiles(distance=2)),
     "Loner's Landing Belowdecks Front_Loner's Landing Belowdecks Chests": RegionConnection("Loner's Landing Belowdecks Front", "Loner's Landing Belowdecks Chests", CanJumpTiles(distance=2)),
-    "Loner's Landing Belowdecks_Loner's Landing Belowdecks Chests": RegionConnection("Loner's Landing Belowdecks", "Loner's Landing Belowdecks Chests", Has("Loner's Landing Belowdecks Back Kear") & CanJumpTiles(distance=2)),
+    "Loner's Landing Belowdecks_Loner's Landing Belowdecks Chests": RegionConnection("Loner's Landing Belowdecks", "Loner's Landing Belowdecks Chests", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_BACK_KEAR.value) & CanJumpTiles(distance=2)),
     "Loner's Landing Blighted Docks Bridge Cliff_Loner's Landing Blighted Docks Bridge": RegionConnection("Loner's Landing Blighted Docks Bridge Cliff", "Loner's Landing Blighted Docks Bridge", CanClimb() & CanBounce()),
     "Loner's Landing Blighted Docks Bridge Cliff_Loner's Landing Blighted Docks Lower Bridge": RegionConnection("Loner's Landing Blighted Docks Bridge Cliff", "Loner's Landing Blighted Docks Lower Bridge", CanClimb()),
     "Loner's Landing Blighted Docks Bridge_Loner's Landing Blighted Docks Lower Bridge": RegionConnection("Loner's Landing Blighted Docks Bridge", "Loner's Landing Blighted Docks Lower Bridge"),
@@ -87,7 +96,7 @@ transitions: dict[str, Transition] = {
     "Loner's Landing Bay East Transition": Transition("Loner's Landing Bay", "Loner's Landing Boat Side", DirectionType.EAST, TransitionType.SCREENS),
     "Loner's Landing Bay North Area Transition": Transition("Loner's Landing Bay", 'Backwaters Lower Swamp Station', DirectionType.NORTH, TransitionType.AREA_SCREENS),
     "Loner's Landing Belowdecks East Burrow": Transition("Loner's Landing Belowdecks", "Loner's Landing Waterfall", DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
-    "Loner's Landing Belowdecks Front Stairs": Transition("Loner's Landing Belowdecks Front", "Loner's Landing Shipwreck", DirectionType.NORTH, TransitionType.STAIRS),
+    "Loner's Landing Belowdecks Front Stairs": Transition("Loner's Landing Belowdecks Front", "Loner's Landing Shipwreck", DirectionType.NORTH, TransitionType.STAIRS, PowerLevelThreshold(power=16)),
     "Loner's Landing Blighted Docks Bridge Cliff Door": Transition("Loner's Landing Blighted Docks Bridge Cliff", "Loner's Landing Blighted Docks Residence", DirectionType.NORTH, TransitionType.DOORS),
     "Loner's Landing Blighted Docks Bridge East Transition": Transition("Loner's Landing Blighted Docks Bridge", "Loner's Landing Blighted Docks Road Upper", DirectionType.EAST, TransitionType.SCREENS),
     "Loner's Landing Blighted Docks Bridge Gate North Transition": Transition("Loner's Landing Blighted Docks Bridge Gate", "Loner's Landing Blighted Docks Lower Bridge", DirectionType.NORTH, TransitionType.SCREENS),
@@ -131,6 +140,6 @@ transitions: dict[str, Transition] = {
     "Loner's Landing Cliff West Transition": Transition("Loner's Landing Cliff", "Loner's Landing Bay Cliff", DirectionType.WEST, TransitionType.SCREENS),
     "Loner's Landing Dock East Transition": Transition("Loner's Landing Dock", "Loner's Landing Blighted Docks Gangplank", DirectionType.EAST, TransitionType.SCREENS),
     "Loner's Landing Dock Pipe": Transition("Loner's Landing Dock", "Loner's Landing Boardwalk Pipe Landing", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
-    "Loner's Landing Shipwreck Stairs": Transition("Loner's Landing Shipwreck", "Loner's Landing Belowdecks Chests", DirectionType.NORTH, TransitionType.STAIRS),
+    "Loner's Landing Shipwreck Stairs": Transition("Loner's Landing Shipwreck", "Loner's Landing Belowdecks Front", DirectionType.NORTH, TransitionType.STAIRS, PowerLevelThreshold(power=16)),
     "Loner's Landing Waterfall West Burrow": Transition("Loner's Landing Waterfall", "Loner's Landing Belowdecks", DirectionType.WEST, TransitionType.BURROW, CanSwim()),
 }

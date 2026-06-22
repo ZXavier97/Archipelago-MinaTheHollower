@@ -1,33 +1,134 @@
-from collections import ChainMap
+from .abilities import Abilities
+from .blockers import AstralPlatforms
+from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller
+from .kears import Kear, AreaKears, SingleKears
+from .progressives import Weapons, BoneUps, GenericBoneUp
+from .. import ItemData, ItemTypeEnum, ItemFiller, ItemMovement, ItemPower
 
-from . import incrementals, key_items, abilities, kears
-from .. import AnyItemData
+all_items: list[ItemTypeEnum] = [
+    *Abilities,
+    *AstralPlatforms,
+    *Sidearms,
+    *PermanentUpgrades,
+    *PlayerUpgrades,
+    *Trinkets,
+    *BoneFiller,
+    *JunkFiller,
+    *Kear,
+    *AreaKears,
+    *SingleKears,
+    *Weapons,
+    *BoneUps,
+    *GenericBoneUp
+]
 
-all_filler_items: ChainMap[str, AnyItemData] = ChainMap(
-    incrementals.junk,
-    incrementals.BoneStone
-)
+all_filler_items: list[ItemFiller] = [
+    ItemFiller(BoneFiller.BONE_DUST, 64),
+    ItemFiller(BoneFiller.BONE_STONE, 32),
+    ItemFiller(BoneFiller.BONE_STONE_1, 16),
+    ItemFiller(BoneFiller.BONE_STONE_2, 8),
+    ItemFiller(BoneFiller.BONE_STONE_3, 4),
+    ItemFiller(BoneFiller.BONE_STONE_4, 2),
+    ItemFiller(BoneFiller.BONE_STONE_5, 1),
 
-all_key_items: ChainMap[str, AnyItemData] = ChainMap(
-    key_items.weapons,
-    key_items.key_items,
-    abilities.astral_platforms,
-    key_items.underlab_upgrades,
-)
+    ItemFiller(JunkFiller.HEALING_VIAL_PICKUP, 8),
+    ItemFiller(JunkFiller.HEALING_VIAL_PACK_PICKUP, 4),
+    ItemFiller(JunkFiller.RED_FLOWER, 8),
+    ItemFiller(JunkFiller.YELLOW_FLOWER, 32),
+    ItemFiller(JunkFiller.MAGIC_LARGE, 4),
+    ItemFiller(JunkFiller.MAGIC_MEDIUM, 8),
+    ItemFiller(JunkFiller.MAGIC_SMALL, 16),
+]
 
-all_items: ChainMap[str, AnyItemData] = ChainMap(
-    all_filler_items,
-    key_items.weapons,
-    key_items.side_arms,
+base_items: list[ItemData] = [
+    ItemData(PlayerUpgrades.HEALTH_ROSE, 8),
+    ItemData(PlayerUpgrades.TRINKET_BAG, 1),
+    ItemData(PlayerUpgrades.JOULE_BOX,2),
+    ItemData(PlayerUpgrades.HEALING_VIAL, 3),
+    ItemData(PlayerUpgrades.SPARK_CONTAINER, 1),
+    ItemData(Weapons.NIGHTSTAR, 1),
+    # ItemData(PlayerUpgrades.HEALING_VIAL_POUCH, 1), NEED TO STOP THE GIVING OF
+]
 
-    key_items.base_items,
-    key_items.key_items,
-    abilities.abilities,
-    abilities.astral_platforms,
-    kears.area_kears,
-    kears.unique_kears,
-    kears.single_kear,
-)
+upgrade_items: list[ItemData] = [
+    ItemData(PlayerUpgrades.HEALTH_ROSE, 10),
+    ItemData(PlayerUpgrades.TRINKET_BAG, 5),
+    ItemData(PlayerUpgrades.JOULE_BOX, 8),
+    ItemData(PlayerUpgrades.HEALING_VIAL, 7),
+    ItemData(PlayerUpgrades.SPARK_CONTAINER, 3),
+    ItemData(Weapons.NIGHTSTAR, 3),
+    ItemData(Weapons.BATTERY_BUSTER, 3),
+    ItemData(Weapons.GUARDIAN_CASKET, 3),
+    ItemData(Weapons.BLASTSTRIKE_MAUL, 3),
+    ItemData(Weapons.WHISPER_AND_VESPER, 3),
 
-all_traps: ChainMap[str, AnyItemData] = ChainMap(
-)
+]
+
+additive_movement_items: list[ItemMovement] = [
+    ItemMovement(Trinkets.KERI_THE_WISP, 1),
+    ItemMovement(Trinkets.PIT_PRESERVER, 1),
+    ItemMovement(Trinkets.BELLOWS_BUSTLE, 1),
+
+
+]
+base_movement_items: list[ItemMovement] = [
+    ItemMovement(Trinkets.SPRING_HEELS, 3),
+    ItemMovement(Abilities.BURROW, 2),
+    ItemMovement(Trinkets.BRIDGE_WEAVER, 2),
+    ItemMovement(Sidearms.DEFLECTOR_PARASOL, 3),
+    ItemMovement(Sidearms.IRON_STEED, 5),
+]
+
+all_movement_items: list[ItemMovement] = [
+    *additive_movement_items,
+    *base_movement_items,
+]
+
+item_powers_dependencies: list[ItemPower] = [
+    ItemPower(PlayerUpgrades.TRINKET_BAG, 0),
+]
+
+trinket_powers: list[ItemPower] = [
+    ItemPower(Trinkets.LACE_GLOVE, 1),
+    ItemPower(Trinkets.INTRAVENOUS_VIAL, 1, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(Trinkets.URANIUM_BRACELET, 2),
+    ItemPower(Trinkets.BUBBLE_RING, 4),
+    ItemPower(Trinkets.COUNTER_VIAL, 2),
+    ItemPower(Trinkets.VALOR_MEDALION, 4, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(Trinkets.SMELLING_SALTS, 1),
+    ItemPower(Trinkets.WILLOW_THE_WISP, 2),
+    ItemPower(Trinkets.HELIO_THE_WISP, 3),
+    ItemPower(Trinkets.CHAIN_CAPACITOR, 2),
+    ItemPower(Trinkets.PROTO_SPARK, 8),
+    ItemPower(Trinkets.PRIMED_VIAL_POUCH, 6, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(Trinkets.NITER_BELT, 1),
+    ItemPower(Trinkets.JOULE_SYRINGE, 2),
+    ItemPower(Trinkets.TUNNELING_CODEX, 1),
+    ItemPower(Trinkets.EVASION_POWER, 2),
+    ItemPower(Trinkets.PLASMA_JUG, 2, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(Trinkets.VASCULAR_SYRUP, 1),
+    ItemPower(Trinkets.TWILL_WEAVE, 1),
+    ItemPower(Trinkets.PNEUMATIC_ARMLET, 2),
+    ItemPower(Trinkets.BLINKING_GLASS, 2),
+    ItemPower(Trinkets.DODGING_PENDULUM, 6),
+    ItemPower(Trinkets.RECKLESS_BEASTIUM, 2),
+    ItemPower(Trinkets.VIAL_SALVO, 2, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(Trinkets.RECKLESS_BEASTIUM, 2),
+]
+
+upgrade_powers: list[ItemPower] = [
+    ItemPower(PlayerUpgrades.HEALING_VIAL_POUCH, 3, PlayerUpgrades.HEALING_VIAL),
+    ItemPower(PlayerUpgrades.HEALTH_ROSE, 1),
+    ItemPower(PlayerUpgrades.JOULE_BOX, 1),
+    ItemPower(PlayerUpgrades.HEALING_VIAL, 2, PlayerUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(BoneUps.ATTACK_BONE_UP_CAP, 1),
+    ItemPower(BoneUps.DEFENSE_BONE_UP_CAP, 1),
+    ItemPower(BoneUps.SIDEARM_BONE_UP_CAP, 1),
+    ItemPower(GenericBoneUp.ALL_BONE_UP_CAP, 3),
+]
+
+all_power_items: list[ItemPower] = [
+    *upgrade_powers,
+    *trinket_powers,
+    *item_powers_dependencies
+]

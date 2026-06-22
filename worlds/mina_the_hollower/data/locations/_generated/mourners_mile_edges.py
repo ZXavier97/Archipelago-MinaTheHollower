@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -51,11 +60,11 @@ connections: dict[str, RegionConnection] = {
     "Mourner's Mile Knight's Guard Generator_Mourner's Mile Knight's Guard Hill": RegionConnection("Mourner's Mile Knight's Guard Generator", "Mourner's Mile Knight's Guard Hill", CanBurrow()),
     "Mourner's Mile Knight's Guard Generator_Mourner's Mile Knight's Guard Main": RegionConnection("Mourner's Mile Knight's Guard Generator", "Mourner's Mile Knight's Guard Main"),
     "Mourner's Mile Knight's Guard Hill_Mourner's Mile Knight's Guard Generator": RegionConnection("Mourner's Mile Knight's Guard Hill", "Mourner's Mile Knight's Guard Generator", CanBurrow()),
-    "Mourner's Mile Knight's Guard Ledge_Mourner's Mile Knight's Guard Main": RegionConnection("Mourner's Mile Knight's Guard Ledge", "Mourner's Mile Knight's Guard Main", Has("Mourners miles bike Kear")),  # TODO UNDEFINED KEAR - placeholder item name, fix later
-    "Mourner's Mile Knight's Guard Main_Mourner's Mile Knight's Guard Bike": RegionConnection("Mourner's Mile Knight's Guard Main", "Mourner's Mile Knight's Guard Bike", Has("Mourners miles bike Kear")),  # TODO UNDEFINED KEAR - placeholder item name, fix later
+    "Mourner's Mile Knight's Guard Ledge_Mourner's Mile Knight's Guard Main": RegionConnection("Mourner's Mile Knight's Guard Ledge", "Mourner's Mile Knight's Guard Main", HasKear(kear=SingleKears.MOURNERS_MILES_BIKE_KEAR.value)),
+    "Mourner's Mile Knight's Guard Main_Mourner's Mile Knight's Guard Bike": RegionConnection("Mourner's Mile Knight's Guard Main", "Mourner's Mile Knight's Guard Bike", HasKear(kear=SingleKears.MOURNERS_MILES_BIKE_KEAR.value)),
     "Mourner's Mile Knight's Rest Chest_Mourner's Mile Knight's Rest Main": RegionConnection("Mourner's Mile Knight's Rest Chest", "Mourner's Mile Knight's Rest Main", CanClimb()),
     "Mourner's Mile Knight's Rest Main_Mourner's Mile Knight's Rest Chest": RegionConnection("Mourner's Mile Knight's Rest Main", "Mourner's Mile Knight's Rest Chest", CanJumpTiles(distance=2)),
-    "Mourner's Mile Spike Hell Mourner_Mourner's Mile Spike Hell Sandfall": RegionConnection("Mourner's Mile Spike Hell Mourner", "Mourner's Mile Spike Hell Sandfall", Has("TractionTreads")),
+    "Mourner's Mile Spike Hell Mourner_Mourner's Mile Spike Hell Sandfall": RegionConnection("Mourner's Mile Spike Hell Mourner", "Mourner's Mile Spike Hell Sandfall", Has(Trinkets.SPIKE_SPURS.value)),
     "Mourner's Mile Spike Hell Sandfall_Mourner's Mile Spike Hell Mourner": RegionConnection("Mourner's Mile Spike Hell Sandfall", "Mourner's Mile Spike Hell Mourner"),
     "Mourner's Mile Spike Vault Hidden_Mourner's Mile Spike Vault Main": RegionConnection("Mourner's Mile Spike Vault Hidden", "Mourner's Mile Spike Vault Main"),
     "Mourner's Mile Spike Vault Upper_Mourner's Mile Spike Vault Hidden": RegionConnection("Mourner's Mile Spike Vault Upper", "Mourner's Mile Spike Vault Hidden"),
@@ -84,7 +93,7 @@ transitions: dict[str, Transition] = {
     "Mourner's Mile Knight's Gate Main North Transition": Transition("Mourner's Mile Knight's Gate Main", "Mourner's Mile Knight's Guard Main", DirectionType.NORTH, TransitionType.SCREENS),
     "Mourner's Mile Knight's Gate Main South Burrow Transition": Transition("Mourner's Mile Knight's Gate Main", "Mourner's Mile Knight's Rest Chest", DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
     "Mourner's Mile Knight's Gate Main South Transition": Transition("Mourner's Mile Knight's Gate Main", "Mourner's Mile Knight's Rest Main", DirectionType.SOUTH, TransitionType.SCREENS),
-    "Mourner's Mile Knight's Guard Bike Mina's Grave Door": Transition("Mourner's Mile Knight's Guard Bike", "Mourner's Mile Mina's Grave", DirectionType.NORTH, TransitionType.DOORS, CanJumpTiles(distance=2) & Has("Spark Container", count=3)),
+    "Mourner's Mile Knight's Guard Bike Mina's Grave Door": Transition("Mourner's Mile Knight's Guard Bike", "Mourner's Mile Mina's Grave", DirectionType.NORTH, TransitionType.DOORS, CanJumpTiles(distance=2) & Has(PlayerUpgrades.SPARK_CONTAINER.value, count=3)),
     "Mourner's Mile Knight's Guard Generator Outside Door": Transition("Mourner's Mile Knight's Guard Generator", "Mourner's Mile Tower Tunnel Main", DirectionType.NORTH, TransitionType.STAIRS),
     "Mourner's Mile Knight's Guard Ledge East Transition": Transition("Mourner's Mile Knight's Guard Ledge", "Mourner's Mile Graveyard ledge", DirectionType.EAST, TransitionType.SCREENS),
     "Mourner's Mile Knight's Guard Ledge West Burrow": Transition("Mourner's Mile Knight's Guard Ledge", "Mourner's Mile Tower Tunnel Dark", DirectionType.WEST, TransitionType.BURROW, CanBurrow()),

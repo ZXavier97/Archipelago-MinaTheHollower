@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -83,15 +92,15 @@ connections: dict[str, RegionConnection] = {
     'Ossex City Center Exchange_Ossex City Center Main': RegionConnection('Ossex City Center Exchange', 'Ossex City Center Main'),
     'Ossex City Center Upper_Ossex City Center Main': RegionConnection('Ossex City Center Upper', 'Ossex City Center Main'),
     'Ossex Courtyard East Gap_Ossex Courtyard East': RegionConnection('Ossex Courtyard East Gap', 'Ossex Courtyard East', CanJumpTiles(distance=8) | CanBurrow()),
-    'Ossex Courtyard East Manor Side Garden_Ossex Courtyard East Manor Side': RegionConnection('Ossex Courtyard East Manor Side Garden', 'Ossex Courtyard East Manor Side', HasVialsCount(count=3) & Has("Ossex East Garden Kear")),
-    'Ossex Courtyard East Manor Side_Ossex Courtyard East Manor Side Garden': RegionConnection('Ossex Courtyard East Manor Side', 'Ossex Courtyard East Manor Side Garden', HasVialsCount(count=3) & Has("Ossex East Garden Kear")),
-    'Ossex Courtyard East_Ossex Courtyard East Gap': RegionConnection('Ossex Courtyard East', 'Ossex Courtyard East Gap', CanJumpTiles(distance=8) | (Has("WallowersGauntlets") & CanJumpTiles(distance=4) ) ),
+    'Ossex Courtyard East Manor Side Garden_Ossex Courtyard East Manor Side': RegionConnection('Ossex Courtyard East Manor Side Garden', 'Ossex Courtyard East Manor Side', HasVialsCount(count=3) & HasKear(kear=SingleKears.OSSEX_EAST_GARDEN_KEAR.value)),
+    'Ossex Courtyard East Manor Side_Ossex Courtyard East Manor Side Garden': RegionConnection('Ossex Courtyard East Manor Side', 'Ossex Courtyard East Manor Side Garden', HasVialsCount(count=3) & HasKear(kear=SingleKears.OSSEX_EAST_GARDEN_KEAR.value)),
+    'Ossex Courtyard East_Ossex Courtyard East Gap': RegionConnection('Ossex Courtyard East', 'Ossex Courtyard East Gap', CanJumpTiles(distance=8)),
     'Ossex Courtyard West Chest Breakable': RegionConnection('Ossex Courtyard West Chest', 'Ossex Courtyard West'),
-    'Ossex High Street Balcony_Ossex High Street Main': RegionConnection('Ossex High Street Balcony', 'Ossex High Street Main', Has("Ossex Highstreet Balcony Kear")),
-    'Ossex High Street Main_Ossex High Street Balcony': RegionConnection('Ossex High Street Main', 'Ossex High Street Balcony', Has("Ossex Highstreet Balcony Kear")),
-    'Ossex High Street Main_Ossex High Street SE Garden': RegionConnection('Ossex High Street Main', 'Ossex High Street SE Garden', Has("Ossex High Street SE Garden Kear")),
+    'Ossex High Street Balcony_Ossex High Street Main': RegionConnection('Ossex High Street Balcony', 'Ossex High Street Main', HasKear(kear=SingleKears.OSSEX_HIGHSTREET_BALCONY_KEAR.value)),
+    'Ossex High Street Main_Ossex High Street Balcony': RegionConnection('Ossex High Street Main', 'Ossex High Street Balcony', HasKear(kear=SingleKears.OSSEX_HIGHSTREET_BALCONY_KEAR.value)),
+    'Ossex High Street Main_Ossex High Street SE Garden': RegionConnection('Ossex High Street Main', 'Ossex High Street SE Garden', HasKear(kear=SingleKears.OSSEX_HIGH_STREET_SE_GARDEN_KEAR.value)),
     'Ossex High Street Residence Mirror_Ossex High Street Residence': RegionConnection('Ossex High Street Residence Mirror', 'Ossex High Street Residence', CanClimb()),
-    'Ossex High Street SE Garden_Ossex High Street Main': RegionConnection('Ossex High Street SE Garden', 'Ossex High Street Main', Has("Ossex High Street SE Garden Kear")),
+    'Ossex High Street SE Garden_Ossex High Street Main': RegionConnection('Ossex High Street SE Garden', 'Ossex High Street Main', HasKear(kear=SingleKears.OSSEX_HIGH_STREET_SE_GARDEN_KEAR.value)),
     'Ossex High Street SE Garden_Ossex High Street SE Garden Sewer': RegionConnection('Ossex High Street SE Garden', 'Ossex High Street SE Garden Sewer', CanSwim()),
     'Ossex Station Underside Burrow_Ossex Station Underside Main': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Main', CanClimb()),
     'Ossex Station Underside Burrow_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Upper', CanClimb() & HasVialsCount(count=4)),
@@ -133,7 +142,7 @@ transitions: dict[str, Transition] = {
     'Ossex Bowery Upper Tall Residence Upper Stairs': Transition('Ossex Bowery Upper', 'Ossex Bowery Tall Residence Upper Top Entrance', DirectionType.NORTH, TransitionType.STAIRS),
     'Ossex City Center Bike Geyser Drop': Transition('Ossex City Center Bike', 'Ossex Gutterways', DirectionType.OVERWORLD, TransitionType.GEYSER_DOWN, CanBurrow()),
     'Ossex City Center Bike Residence Burrow': Transition('Ossex City Center Bike', 'Ossex Bike Residence', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
-    'Ossex City Center Main Bike Residence Door': Transition('Ossex City Center Main', 'Ossex Bike Residence', DirectionType.NORTH, TransitionType.DOORS, Has("Spark Container", count=2)),
+    'Ossex City Center Main Bike Residence Door': Transition('Ossex City Center Main', 'Ossex Bike Residence', DirectionType.NORTH, TransitionType.DOORS, Has(PlayerUpgrades.SPARK_CONTAINER.value, count=2)),
     "Ossex City Center Main Couple's Quarter Door": Transition('Ossex City Center Main', "Ossex Couple's Quarter", DirectionType.NORTH, TransitionType.DOORS),
     'Ossex City Center Main Emporium Door': Transition('Ossex City Center Main', 'Ossex Emporium', DirectionType.NORTH, TransitionType.DOORS),
     'Ossex City Center Main Guild Hall Door': Transition('Ossex City Center Main', 'Ossex Guild Hall', DirectionType.NORTH, TransitionType.DOORS),
@@ -155,13 +164,13 @@ transitions: dict[str, Transition] = {
     'Ossex Courtyard West East Transition': Transition('Ossex Courtyard West', 'Ossex Courtyard', DirectionType.EAST, TransitionType.SCREENS),
     'Ossex Courtyard West Transition': Transition('Ossex Courtyard', 'Ossex Courtyard West', DirectionType.WEST, TransitionType.SCREENS),
     'Ossex Emporium Exit': Transition('Ossex Emporium', 'Ossex City Center Main', DirectionType.SOUTH, TransitionType.DOORS),
-    "Ossex Goddred's Grave Arena North Transition": Transition("Ossex Goddred's Grave Arena", "Ossex Goddred's Grave End", DirectionType.NORTH, TransitionType.SCREENS),
-    "Ossex Goddred's Grave Arena South Transition": Transition("Ossex Goddred's Grave Arena", "Ossex Goddred's Grave Hall", DirectionType.SOUTH, TransitionType.SCREENS),
+    "Ossex Goddred's Grave Arena North Transition": Transition("Ossex Goddred's Grave Arena", "Ossex Goddred's Grave End", DirectionType.NORTH, TransitionType.SCREENS, PowerLevelThreshold(power=40)),
+    "Ossex Goddred's Grave Arena South Transition": Transition("Ossex Goddred's Grave Arena", "Ossex Goddred's Grave Hall", DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=40)),
     "Ossex Goddred's Grave East Transition": Transition("Ossex Goddred's Grave", "Ossex Goddred's Grave Hall", DirectionType.EAST, TransitionType.SCREENS),
     "Ossex Goddred's Grave End South Transition": Transition("Ossex Goddred's Grave End", "Ossex Goddred's Grave Arena", DirectionType.SOUTH, TransitionType.SCREENS),
     "Ossex Goddred's Grave End Tube": Transition("Ossex Goddred's Grave End", "Ossex Goddred's Grave Hall", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
     "Ossex Goddred's Grave Geyser Exit": Transition("Ossex Goddred's Grave", 'Ossex Courtyard East Manor Side Garden', DirectionType.OVERWORLD, TransitionType.GEYSER_UP, CanBurrow()),
-    "Ossex Goddred's Grave Hall North Transition": Transition("Ossex Goddred's Grave Hall", "Ossex Goddred's Grave Arena", DirectionType.NORTH, TransitionType.SCREENS),
+    "Ossex Goddred's Grave Hall North Transition": Transition("Ossex Goddred's Grave Hall", "Ossex Goddred's Grave Arena", DirectionType.NORTH, TransitionType.SCREENS, PowerLevelThreshold(power=40)),
     "Ossex Goddred's Grave Hall West Transition": Transition("Ossex Goddred's Grave Hall", "Ossex Goddred's Grave", DirectionType.WEST, TransitionType.SCREENS),
     'Ossex Guild Back Room North Burrow': Transition('Ossex Guild Back Room', 'Ossex City Center Main', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
     'Ossex Guild Back Room South Burrow': Transition('Ossex Guild Back Room', 'Ossex Guild Hall', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
@@ -170,9 +179,9 @@ transitions: dict[str, Transition] = {
     'Ossex Gutterways Geyser Up': Transition('Ossex Gutterways', 'Ossex City Center Bike', DirectionType.NORTH, TransitionType.GEYSER_UP, CanBurrow()),
     'Ossex High Street Balcony North Ossex Balcony East': Transition('Ossex High Street Balcony', 'Ossex Balcony East', DirectionType.NORTH, TransitionType.SCREENS),
     'Ossex High Street Main  Residence Door': Transition('Ossex High Street Main', 'Ossex High Street Residence', DirectionType.NORTH, TransitionType.DOORS),
-    'Ossex High Street Main Atelier Door': Transition('Ossex High Street Main', 'Ossex Atelier', DirectionType.NORTH, TransitionType.DOORS, Has("Spark Container", count=2)),
+    'Ossex High Street Main Atelier Door': Transition('Ossex High Street Main', 'Ossex Atelier', DirectionType.NORTH, TransitionType.DOORS, Has(PlayerUpgrades.SPARK_CONTAINER.value, count=2)),
     'Ossex High Street Main East Area Transition': Transition('Ossex High Street Main', 'Eastern Hearth Grassland', DirectionType.EAST, TransitionType.AREA_SCREENS),
-    'Ossex High Street Main Strategy Center Door': Transition('Ossex High Street Main', 'Ossex Strategy Center', DirectionType.NORTH, TransitionType.DOORS, Has("Spark Container", count=1)),
+    'Ossex High Street Main Strategy Center Door': Transition('Ossex High Street Main', 'Ossex Strategy Center', DirectionType.NORTH, TransitionType.DOORS, Has(PlayerUpgrades.SPARK_CONTAINER.value, count=1)),
     'Ossex High Street Residence Balcony East Stairs': Transition('Ossex High Street Residence Balcony East', 'Ossex High Street Residence Upper Puzzle', DirectionType.NORTH, TransitionType.STAIRS),
     'Ossex High Street Residence Balcony East West Transition': Transition('Ossex High Street Residence Balcony East', 'Ossex High Street Residence Balcony West', DirectionType.WEST, TransitionType.SCREENS),
     'Ossex High Street Residence Balcony West Drop': Transition('Ossex High Street Residence Balcony West', 'Ossex City Center Main', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
@@ -197,7 +206,7 @@ transitions: dict[str, Transition] = {
     'Ossex Station South Burrow': Transition('Ossex Station', 'Ossex Station Underside Burrow', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
     'Ossex Station Underside Exit': Transition('Ossex Station Underside Main', 'Ossex Bowery Main', DirectionType.SOUTH, TransitionType.DOORS),
     'Ossex Station Underside Upper North Burrow': Transition('Ossex Station Underside Upper', 'Ossex Courtyard West Chest', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
-    'Ossex Station_Ossex Train Caboose': Transition('Ossex Station', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has("TrainPass") & Has("HUBTicket")),
+    'Ossex Station_Ossex Train Caboose': Transition('Ossex Station', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has(PermanentUpgrades.TRAIN_PASS.value) & Has(PermanentUpgrades.OSSEX_TICKET.value)),
     'Ossex Strategy Center Exit': Transition('Ossex Strategy Center', 'Ossex High Street Main', DirectionType.SOUTH, TransitionType.DOORS),
     'Ossex Trinket Bazaar Door': Transition('Ossex Trinket Bazaar', 'Ossex City Center Upper', DirectionType.SOUTH, TransitionType.DOORS),
 }

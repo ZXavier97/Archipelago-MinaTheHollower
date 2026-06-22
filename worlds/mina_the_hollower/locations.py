@@ -25,6 +25,8 @@ def create_regions(world, regions: set[str]):
     for region in regions:
         create_region(world, region)
 
+
+
 def get_regions(world) ->  set[str]:
     #TODO: logic to handle which regions are being created based on yaml
     return all_regions

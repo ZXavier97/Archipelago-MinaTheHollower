@@ -14,7 +14,7 @@ class Goal(Choice):
 
 class BoneUpCap(Choice):
     """
-    How do you want your Bone Up Cap Items
+    How do you want your Bone Up Cap Items. A progressive each for attack, defense and Sidearms OR One progressive item for all
     """
     display_name = "Goal"
     option_perUpgrade = 0
@@ -30,11 +30,17 @@ class NumberOfGenerators(Range):
     range_end = 6
     default = 6
 
-class OssexStart(Toggle):
+class OssexStart(DefaultOnToggle):
     """
     Start In Ossex
     """
     display_name = "Ossex Start"
+
+class RandomizeStartingItems(Toggle):
+    """
+    Take all starting health, spark, vials, Magic and randomize them
+    """
+    display_name = "Randomize Starting Items"
 
 class AbilityRando(Toggle):
     """
@@ -101,6 +107,7 @@ mina_the_hollower_option_groups= [
         OssexStart,
         KearRandomization,
         ExcludedAreas,
+        RandomizeStartingItems,
         # RandomizeEntrances,
         AbilityRando,
         DeathLink,
@@ -114,11 +121,12 @@ class MinaTheHollowerOptions(PerGameCommonOptions):
     kear_rando: KearRandomization
     excluded_areas : ExcludedAreas
     bone_up_cap: BoneUpCap
+    random_starting_items: RandomizeStartingItems
     # entrance_rando: RandomizeEntrances
     ability_rando: AbilityRando
     death_link: DeathLink
     # shuffled_sidearms: ShuffledSidearms
     # shuffle_enemy_level: ShuffleEnemyLevel
-    # shuffled_items: ShuffledItems
+
 
 

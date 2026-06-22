@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -68,14 +77,14 @@ connections: dict[str, RegionConnection] = {
 
 transitions: dict[str, Transition] = {
     "Eastern Hearth Buckler's Bluff Bucklers West Transition": Transition("Eastern Hearth Buckler's Bluff Bucklers", 'Eastern Hearth Grassland Waterfall Second Level', DirectionType.WEST, TransitionType.SCREENS, CanJumpTiles(distance=2)),
-    "Eastern Hearth Buckler's Bluff Start South Kear Burrow": Transition("Eastern Hearth Buckler's Bluff Start", 'Eastern Hearth Mourners Gate', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow() & Has("Eastern Hearth Bucklers Bluff Kear")),
+    "Eastern Hearth Buckler's Bluff Start South Kear Burrow": Transition("Eastern Hearth Buckler's Bluff Start", 'Eastern Hearth Mourners Gate', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow() & HasKear(kear=SingleKears.EASTERN_HEARTH_BUCKLERS_BLUFF_KEAR.value)),
     "Eastern Hearth Buckler's Bluff Start South Transition": Transition("Eastern Hearth Buckler's Bluff Start", 'Eastern Hearth Mourners Gate', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth Bush Room North Transition': Transition('Eastern Hearth Bush Room', 'Eastern Hearth I Screen', DirectionType.NORTH, TransitionType.SCREENS),
     'Eastern Hearth Bush Room South Area Transition': Transition('Eastern Hearth Bush Room', 'Southern Outskirts Moonbath', DirectionType.SOUTH, TransitionType.AREA_SCREENS),
-    'Eastern Hearth Choppe Shoppe Entry Cliff East Transition': Transition('Eastern Hearth Choppe Shoppe Entry Cliff', 'Eastern Hearth Grassland Waterfall First Level', DirectionType.EAST, TransitionType.SCREENS, Has("Eastern Hearth Waterfall Kear")),
+    'Eastern Hearth Choppe Shoppe Entry Cliff East Transition': Transition('Eastern Hearth Choppe Shoppe Entry Cliff', 'Eastern Hearth Grassland Waterfall First Level', DirectionType.EAST, TransitionType.SCREENS, HasKear(kear=SingleKears.EASTERN_HEARTH_WATERFALL_KEAR.value)),
     'Eastern Hearth Choppe Shoppe Entry Cliff Geyser Drop': Transition('Eastern Hearth Choppe Shoppe Entry Cliff', 'Eastern Hearth Hidden Grotto', DirectionType.OVERWORLD, TransitionType.GEYSER_DOWN, CanBurrow()),
-    'Eastern Hearth Choppe Shoppe Entry Door': Transition('Eastern Hearth Choppe Shoppe Entry', 'Eastern Hearth Choppe Shoppe', DirectionType.NORTH, TransitionType.DOORS, Has("Choppe Shoppe Kear")),
-    'Eastern Hearth Choppe Shoppe Exit': Transition('Eastern Hearth Choppe Shoppe', 'Eastern Hearth Choppe Shoppe Entry', DirectionType.SOUTH, TransitionType.DOORS, Has("Choppe Shoppe Kear")),
+    'Eastern Hearth Choppe Shoppe Entry Door': Transition('Eastern Hearth Choppe Shoppe Entry', 'Eastern Hearth Choppe Shoppe', DirectionType.NORTH, TransitionType.DOORS, HasKear(kear=SingleKears.CHOPPE_SHOPPE_KEAR.value)),
+    'Eastern Hearth Choppe Shoppe Exit': Transition('Eastern Hearth Choppe Shoppe', 'Eastern Hearth Choppe Shoppe Entry', DirectionType.SOUTH, TransitionType.DOORS, HasKear(kear=SingleKears.CHOPPE_SHOPPE_KEAR.value)),
     'Eastern Hearth East Corner North Transition': Transition('Eastern Hearth East Corner', 'Eastern Hearth Mourners Gate', DirectionType.NORTH, TransitionType.SCREENS),
     'Eastern Hearth East Corner South Transition': Transition('Eastern Hearth East Corner', 'Eastern Hearth Poppet Entry', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth East Corner West Transition': Transition('Eastern Hearth East Corner', 'Eastern Hearth Grassland Bridge Right', DirectionType.WEST, TransitionType.SCREENS),
@@ -119,7 +128,7 @@ transitions: dict[str, Transition] = {
     'Eastern Hearth I Screen North Transition': Transition('Eastern Hearth I Screen', 'Eastern Hearth Grassland', DirectionType.NORTH, TransitionType.SCREENS),
     'Eastern Hearth I Screen South Transition': Transition('Eastern Hearth I Screen', 'Eastern Hearth Bush Room', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth Mourners Gate East Area Transition': Transition('Eastern Hearth Mourners Gate', "Mourner's Mile Knight's Rest Main", DirectionType.EAST, TransitionType.AREA_SCREENS),
-    'Eastern Hearth Mourners Gate North Kear Burrow': Transition('Eastern Hearth Mourners Gate', "Eastern Hearth Buckler's Bluff Start", DirectionType.NORTH, TransitionType.BURROW, CanBurrow() & Has("Eastern Hearth Bucklers Bluff Kear")),
+    'Eastern Hearth Mourners Gate North Kear Burrow': Transition('Eastern Hearth Mourners Gate', "Eastern Hearth Buckler's Bluff Start", DirectionType.NORTH, TransitionType.BURROW, CanBurrow() & HasKear(kear=SingleKears.EASTERN_HEARTH_BUCKLERS_BLUFF_KEAR.value)),
     'Eastern Hearth Mourners Gate South Transition': Transition('Eastern Hearth Mourners Gate', 'Eastern Hearth East Corner', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth Poppet Entry North Transition': Transition('Eastern Hearth Poppet Entry', 'Eastern Hearth East Corner', DirectionType.NORTH, TransitionType.SCREENS),
     'Eastern Hearth Poppet Entry South Burrow': Transition('Eastern Hearth Poppet Entry', 'Eastern Hearth Grassland Poppit Cave', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),

@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -103,7 +112,7 @@ connections: dict[str, RegionConnection] = {
     'Septemburg Crow Town Pit_Septemburg Crow Town Tunnel Top': RegionConnection('Septemburg Crow Town Pit', 'Septemburg Crow Town Tunnel Top', CanBurrow()),
     'Septemburg Crow Town Tunnel Top_Septemburg Crow Town Bridge West': RegionConnection('Septemburg Crow Town Tunnel Top', 'Septemburg Crow Town Bridge West', CanBounce()),
     'Septemburg Crow Town Tunnel Top_Septemburg Crow Town Pit': RegionConnection('Septemburg Crow Town Tunnel Top', 'Septemburg Crow Town Pit', CanBurrow()),
-    'Septemburg Crow Town Tunnel Top_Septemburg Crow Town Tunnel': RegionConnection('Septemburg Crow Town Tunnel Top', 'Septemburg Crow Town Tunnel', Has("Septemburg Crow Town Tunnel Kear")),
+    'Septemburg Crow Town Tunnel Top_Septemburg Crow Town Tunnel': RegionConnection('Septemburg Crow Town Tunnel Top', 'Septemburg Crow Town Tunnel', HasKear(kear=SingleKears.SEPTEMBURG_CROW_TOWN_TUNNEL_KEAR.value)),
     'Septemburg Crow Town Upper Bridge_Septemburg Crow Town Bridge': RegionConnection('Septemburg Crow Town Upper Bridge', 'Septemburg Crow Town Bridge', CanBounce()),
     'Septemburg Crow Town Upper Bridge_Septemburg Crow Town Lower Bridge': RegionConnection('Septemburg Crow Town Upper Bridge', 'Septemburg Crow Town Lower Bridge', CanBurrow()),
     'Septemburg Crow Town logs Bottom_Septemburg Crow Town logs Top': RegionConnection('Septemburg Crow Town logs Bottom', 'Septemburg Crow Town logs Top', CanBurrow()),
@@ -148,8 +157,8 @@ connections: dict[str, RegionConnection] = {
 }
 
 transitions: dict[str, Transition] = {
-    'Septemburg Carving Shack Arena North Transition': Transition('Septemburg Carving Shack Arena', 'Septemburg Windy Pipe Bottom', DirectionType.NORTH, TransitionType.SCREENS),
-    'Septemburg Carving Shack Arena South Transition': Transition('Septemburg Carving Shack Arena', 'Septemburg Stormwatch Pumpkin', DirectionType.SOUTH, TransitionType.SCREENS),
+    'Septemburg Carving Shack Arena North Transition': Transition('Septemburg Carving Shack Arena', 'Septemburg Windy Pipe Bottom', DirectionType.NORTH, TransitionType.SCREENS, PowerLevelThreshold(power=30)),
+    'Septemburg Carving Shack Arena South Transition': Transition('Septemburg Carving Shack Arena', 'Septemburg Stormwatch Pumpkin', DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=30)),
     'Septemburg Crow Town Bridge North Transition': Transition('Septemburg Crow Town Bridge', 'Septemburg Crow Town', DirectionType.NORTH, TransitionType.SCREENS),
     'Septemburg Crow Town Bridge West Burrow': Transition('Septemburg Crow Town Bridge', 'Septemburg Crow Town Bridge West', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Septemburg Crow Town Bridge West East Burrow': Transition('Septemburg Crow Town Bridge West', 'Septemburg Crow Town Bridge', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
@@ -201,7 +210,7 @@ transitions: dict[str, Transition] = {
     'Septemburg Wastewater Canal Boxes North Transition': Transition('Septemburg Wastewater Canal Boxes', 'Septemburg Wastewater Canal Hog Secret', DirectionType.NORTH, TransitionType.SCREENS),
     'Septemburg Wastewater Canal Boxes Pipes South Transition': Transition('Septemburg Wastewater Canal Boxes Pipes', 'Septemburg Wastewater Canal Well Rope', DirectionType.SOUTH, TransitionType.SCREENS),
     'Septemburg Wastewater Canal Hog North Transition': Transition('Septemburg Wastewater Canal Hog', 'Septemburg Wastewater Canal Pumps Bottom', DirectionType.NORTH, TransitionType.SCREENS),
-    'Septemburg Wastewater Canal Hog Secret Doors': Transition('Septemburg Wastewater Canal Hog Secret', 'Septemburg Wastewater Luxy Pipe', DirectionType.NORTH, TransitionType.DOORS, Has("Spark Container", count=2)),
+    'Septemburg Wastewater Canal Hog Secret Doors': Transition('Septemburg Wastewater Canal Hog Secret', 'Septemburg Wastewater Luxy Pipe', DirectionType.NORTH, TransitionType.DOORS, Has(PlayerUpgrades.SPARK_CONTAINER.value, count=2)),
     'Septemburg Wastewater Canal Hog Secret South Transition': Transition('Septemburg Wastewater Canal Hog Secret', 'Septemburg Wastewater Canal Boxes', DirectionType.SOUTH, TransitionType.SCREENS),
     'Septemburg Wastewater Canal Pipe South Transition': Transition('Septemburg Wastewater Canal Pipe', 'Septemburg Wastewater Canal Pumps Top', DirectionType.SOUTH, TransitionType.SCREENS),
     'Septemburg Wastewater Canal Pipe Stairs': Transition('Septemburg Wastewater Canal Pipe', 'Septemburg Windy Pipe', DirectionType.NORTH, TransitionType.STAIRS),

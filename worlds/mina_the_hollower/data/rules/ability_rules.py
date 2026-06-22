@@ -5,6 +5,8 @@ from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Rule, Has, True_
+from ..items import Abilities, PlayerUpgrades, additive_movement_items, base_movement_items, all_movement_items, \
+    all_power_items, upgrade_powers, trinket_powers
 
 from ...constants import MINA_THE_HOLLOWER
 from ...options import AbilityRando
@@ -23,7 +25,7 @@ class CanBurrow(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return Has("Burrow", options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
+        return Has(Abilities.BURROW.value, options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
 
 @dataclasses.dataclass(kw_only=True)
 class CanCarry(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -31,7 +33,7 @@ class CanCarry(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return Has("Carry", options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
+        return Has(Abilities.CARRY.value, options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
 
 @dataclasses.dataclass(kw_only=True)
 class CanClimb(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -39,7 +41,7 @@ class CanClimb(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return Has("Climb", options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
+        return Has(Abilities.CLIMB.value, options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
 
 @dataclasses.dataclass(kw_only=True)
 class CanSwim(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -47,7 +49,7 @@ class CanSwim(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return Has("Swim", options=[OptionFilter(AbilityRando, AbilityRando.option_true)], filtered_resolution=True).resolve(world)
+        return Has(Abilities.SWIM.value, options=[OptionFilter(AbilityRando, AbilityRando.option_true)], filtered_resolution=True).resolve(world)
 
 @dataclasses.dataclass(kw_only=True)
 class CanBounce(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -55,7 +57,7 @@ class CanBounce(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return Has("Bounce", options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
+        return Has(Abilities.BOUNCE.value, options=[OptionFilter(AbilityRando, AbilityRando.option_true) ], filtered_resolution=True).resolve(world)
 
 @dataclasses.dataclass(kw_only=True)
 class HasVialsCount(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -63,29 +65,11 @@ class HasVialsCount(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return (Has("HealingVialFirst") & Has("Vial Pouch", count=self.count)).resolve(world)
+        return (Has(PlayerUpgrades.HEALING_VIAL_POUCH.value) & Has(PlayerUpgrades.HEALING_VIAL.value, count=self.count)).resolve(world)
 
-@dataclasses.dataclass
-class MovementItem:
-    distance: int
-    additive: bool
 
-simple_movement_items: dict[str, MovementItem] = {
-    "FWisp" : MovementItem(1, True),
-    "DoubleJump": MovementItem(1, True),
-    "CrashPad": MovementItem(1, True),
-}
 
-base_movements: dict[str, MovementItem] = {
-    "Bicycle": MovementItem(5, True),
-    "SpiderB": MovementItem(3, True),
-    "Burrow" : MovementItem(2, True),
-}
 
-all_movement_items = {
-    **simple_movement_items,
-    **base_movements,
-}
 def HasFishingRod():
     return True_()
 
@@ -105,25 +89,27 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
         def _evaluate(self, state: CollectionState) -> bool:
             # Always have basic jump
             best_distance = 1
-
             # Total additive bonuses
             additive_bonus = sum(
-                item.distance
-                for name, item in simple_movement_items.items()
-                if state.has(name, self.player)
+                movement_item.distance
+                for movement_item in additive_movement_items
+                if state.has(movement_item.type.value, self.player)
             )
             # Check each owned base movement type
-            for name, movement in base_movements.items():
-                if state.has(name, self.player):
+            for movement_item in base_movement_items:
+                if state.has(movement_item.type.value, self.player):
                     best_distance = max(
                         best_distance,
-                        movement.distance + additive_bonus
+                        movement_item.distance + additive_bonus
                     )
+
+            if self.distance == 8:
+                print(f"test {best_distance} >= {self.distance}")
             return best_distance >= self.distance
 
         @override
         def item_dependencies(self) -> dict[str, set[int]]:
-            return  {key : {id(self)} for key in all_movement_items.keys()}
+            return  {item.type.value : {item.type.item_id} for item in all_movement_items}
 
         @override
         def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
@@ -135,19 +121,11 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
         def __str__(self) -> str:
             return "Jump x tiles"
 
-all_power_items = {
-    "Health Rose":2,
-    "Joule Box": 1,
-    "HealingVialFirst": 4,
-    "Burrow":1,
-    "Attack Bone Up Cap":1,
-    "Defense Bone Up Cap":1,
-    "Sidearm Bone Up Cap":1,
-}
 
 @dataclasses.dataclass(kw_only=True)
 class PowerLevelThreshold(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     power: int
+
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
@@ -159,29 +137,28 @@ class PowerLevelThreshold(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
 
         @override
         def _evaluate(self, state: CollectionState) -> bool:
-            # Always have basic jump
+            total_power = 0
 
-            best_distance = 1 if self.ability_rando else 2
+            for item in upgrade_powers:
 
-            # Total additive bonuses
-            additive_bonus = sum(
-                item.distance
-                for name, item in simple_movement_items.items()
-                if state.has(name, self.player)
-            )
-            print(f"Target Distance: {self.distance }, Starting distance: {best_distance}, total: {best_distance+additive_bonus}")
-            # Check each owned base movement type
-            for name, movement in base_movements.items():
-                if state.has(name, self.player):
-                    best_distance = max(
-                        best_distance,
-                        movement.distance + additive_bonus
-                    )
-            return best_distance >= self.distance
+                if item.requiredType is None or state.has(item.requiredType.value, self.player):
+                    total_power += state.count(item.type.value, self.player) * item.power
+
+            trinket_slots = state.count(PlayerUpgrades.TRINKET_BAG.value, self.player)
+
+            valid_trinket_powers = [
+                item.power
+                for item in trinket_powers
+                if item.requiredType is None or state.has(item.requiredType.value, self.player)
+            ]
+            best_trinkets = sorted(valid_trinket_powers, reverse=True)[:trinket_slots]
+            total_power += sum(best_trinkets)
+
+            return total_power >= self.power
 
         @override
         def item_dependencies(self) -> dict[str, set[int]]:
-            return  {key : {id(self)} for key in all_movement_items.keys()}
+            return {item.type.value: {id(self)} for item in all_power_items}
 
         @override
         def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
@@ -191,4 +168,4 @@ class PowerLevelThreshold(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
             ]
         @override
         def __str__(self) -> str:
-            return "Power Level X Required"
+            return f"Power Level of {self.power} Required"

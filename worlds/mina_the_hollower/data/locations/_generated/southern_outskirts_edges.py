@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -83,10 +92,10 @@ connections: dict[str, RegionConnection] = {
     'Ossex Western Wall_Western Wilds Overgrown Path': RegionConnection('Ossex Western Wall', 'Western Wilds Overgrown Path'),
     'Southern Outskirts Cave Deep Arena_Southern Outskirts Cave Deep Exit': RegionConnection('Southern Outskirts Cave Deep Arena', 'Southern Outskirts Cave Deep Exit', CanBurrow() & CanBounce()),
     'Southern Outskirts Cave Deep Entrance_Southern Outskirts Cave Deep Arena': RegionConnection('Southern Outskirts Cave Deep Entrance', 'Southern Outskirts Cave Deep Arena', CanBurrow() & CanBounce()),
-    'Southern Outskirts Cave Network Deep Exit_Southern Outskirts Cave Network Deep': RegionConnection('Southern Outskirts Cave Network Deep Exit', 'Southern Outskirts Cave Network Deep', Has("Southern Outskirts Cave Network Kear") & CanBounce()),
-    'Southern Outskirts Cave Network Deep_Southern Outskirts Cave Network Main': RegionConnection('Southern Outskirts Cave Network Deep', 'Southern Outskirts Cave Network Main', Has("Southern Outskirts Cave Network Kear") & CanBounce()),
+    'Southern Outskirts Cave Network Deep Exit_Southern Outskirts Cave Network Deep': RegionConnection('Southern Outskirts Cave Network Deep Exit', 'Southern Outskirts Cave Network Deep', HasKear(kear=SingleKears.SOUTHERN_OUTSKIRTS_CAVE_NETWORK_KEAR.value) & CanBounce()),
+    'Southern Outskirts Cave Network Deep_Southern Outskirts Cave Network Main': RegionConnection('Southern Outskirts Cave Network Deep', 'Southern Outskirts Cave Network Main', HasKear(kear=SingleKears.SOUTHERN_OUTSKIRTS_CAVE_NETWORK_KEAR.value) & CanBounce()),
     'Southern Outskirts Cave Network End_Southern Outskirts Cave Network Main': RegionConnection('Southern Outskirts Cave Network End', 'Southern Outskirts Cave Network Main'),
-    'Southern Outskirts Cave Network Main_Southern Outskirts Cave Network Deep': RegionConnection('Southern Outskirts Cave Network Main', 'Southern Outskirts Cave Network Deep', Has("Southern Outskirts Cave Network Kear") & CanBounce() & CanBurrow()),
+    'Southern Outskirts Cave Network Main_Southern Outskirts Cave Network Deep': RegionConnection('Southern Outskirts Cave Network Main', 'Southern Outskirts Cave Network Deep', HasKear(kear=SingleKears.SOUTHERN_OUTSKIRTS_CAVE_NETWORK_KEAR.value) & CanBounce() & CanBurrow()),
     'Southern Outskirts Cave Network Main_Southern Outskirts Cave Network End': RegionConnection('Southern Outskirts Cave Network Main', 'Southern Outskirts Cave Network End', CanBounce()),
     'Southern Outskirts Commons Burned_Southern Outskirts Commons Cliff': RegionConnection('Southern Outskirts Commons Burned', 'Southern Outskirts Commons Cliff', CanBurrow() & CanBounce()),
     'Southern Outskirts Commons Burned_Southern Outskirts Commons Main': RegionConnection('Southern Outskirts Commons Burned', 'Southern Outskirts Commons Main'),
@@ -94,7 +103,7 @@ connections: dict[str, RegionConnection] = {
     'Southern Outskirts Commons Cliff_Southern Outskirts Commons Main': RegionConnection('Southern Outskirts Commons Cliff', 'Southern Outskirts Commons Main', CanClimb()),
     'Southern Outskirts Commons Main_Southern Outskirts Commons Burned': RegionConnection('Southern Outskirts Commons Main', 'Southern Outskirts Commons Burned', CanJumpTiles(distance=4)),
     'Southern Outskirts Commons Main_Southern Outskirts Commons Cave Entrance': RegionConnection('Southern Outskirts Commons Main', 'Southern Outskirts Commons Cave Entrance', CanBounce()),
-    'Southern Outskirts Commons Main_Southern Outskirts Rebel Rooftop': RegionConnection('Southern Outskirts Commons Main', 'Southern Outskirts Rebel Rooftop', Has("Southern Outskirts Rooftop Kear")),
+    'Southern Outskirts Commons Main_Southern Outskirts Rebel Rooftop': RegionConnection('Southern Outskirts Commons Main', 'Southern Outskirts Rebel Rooftop', HasKear(kear=SingleKears.SOUTHERN_OUTSKIRTS_ROOFTOP_KEAR.value)),
     'Southern Outskirts Commons Rebel Exit_Southern Outskirts Rebel Rooftop': RegionConnection('Southern Outskirts Commons Rebel Exit', 'Southern Outskirts Rebel Rooftop', CanClimb()),
     'Southern Outskirts Commons Upper_Southern Outskirts Commons Burned': RegionConnection('Southern Outskirts Commons Upper', 'Southern Outskirts Commons Burned'),
     'Southern Outskirts Commons Western Pit Room Main_Southern Outskirts Commons Western Pit Room Pit': RegionConnection('Southern Outskirts Commons Western Pit Room Main', 'Southern Outskirts Commons Western Pit Room Pit', CanJumpTiles(distance=4) | CanBurrow()),

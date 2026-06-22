@@ -20,6 +20,7 @@ collectable_locations: dict[str, LocationData] = {
     "LL Belowdecks Unchosen Weapon #1": LocationData(17, "Loner's Landing Belowdecks"),  # needs kear x4, burrow,
     "LL Belowdecks Unchosen Weapon #2": LocationData(18, "Loner's Landing Belowdecks"),  # needs kear x4, burrow,
     "LL Belowdecks Chest": LocationData(30, "Loner's Landing Belowdecks"),  # needs canjumptiles(distance=2),
+    "LL Captain's Gift" : LocationData(24, "Loner's Landing Shipwreck"),
 }
 
 

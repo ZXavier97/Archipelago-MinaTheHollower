@@ -1,60 +1,88 @@
 from BaseClasses import Item, Location, ItemClassification
-from .data import AnyItemData
-from .data.items import all_key_items, all_filler_items,kears
 from .constants import MINA_THE_HOLLOWER
-from .data.items.key_items import base_items
-from .data.items.abilities import abilities, bone_ups, universal_bone_ups
+from .data import ItemData, ItemTypeEnum, ItemFiller
+from .data.items import Kear, SingleKears, AreaKears, base_items, Abilities, BoneUps, GenericBoneUp, all_filler_items, \
+    PermanentUpgrades, Sidearms, PlayerUpgrades, AstralPlatforms, upgrade_items, Trinkets
 
 
 class MinaTheHollowerItem(Item):
     game: str = MINA_THE_HOLLOWER
 
-def create_item(world, name: str, item: AnyItemData):
-    print(f"count: {item.amount} name: {name} class: {item.classification}")
+def create_item(world, item: ItemData):
     for i in range(item.amount):
-        world.itempool.append(Item(name, item.classification, item.item_id, world.player))
+        world.itempool.append(Item(item.type.value, item.type.classification, item.type.item_id, world.player))
 
+def create_single_item(world, item_type: ItemTypeEnum):
+    world.itempool.append(Item(item_type.value, item_type.classification, item_type.item_id, world.player))
 
 def create_items(world):
-    #TODO: create logic for what items are in the world
-    for item, data in all_key_items.items():
-        create_item(world, item, data)
+    starting_items = []
+    #starting items
+    for item in base_items:
+        if world.options.random_starting_items:
+            create_item(world, item)
+        else:
+            for i in range(item.amount):
+                starting_items.append(Item(item.type.value, item.type.classification, item.type.item_id, world.player))
+    for item_type in Abilities:
+        if world.options.random_starting_items:
+            create_single_item(world, item_type)
+        else:
+            starting_items.append(Item(item_type.value, item_type.classification, item_type.item_id, world.player))
+    #for logic reasons, start with the sidearms
+    for item_type in Sidearms:
+        starting_items.append(Item(item_type.value, item_type.classification, item_type.item_id, world.player))
+
+    for item_type in PermanentUpgrades:
+        create_single_item(world, item_type)
+
+    for item in upgrade_items:
+        create_item(world, item)
+
+    for item_type in Trinkets:
+        create_single_item(world, item_type)
+
     if world.options.kear_rando.value == 0:
-        create_item(world,"Kear",kears.single_kear["Kear"])
+        create_item(world,ItemData(Kear.UNIVERSAL_KEAR, 50))
     elif world.options.kear_rando.value == 1:
-        for item, data in kears.unique_kears.items():
-            create_item(world, item, data)
+        for item_type in SingleKears:
+            create_single_item(world, item_type)
     elif world.options.kear_rando.value == 2:
-        for item, data in kears.area_kears.items():
-            create_item(world, item, data)
+        for item_type in AreaKears:
+            create_single_item(world, item_type)
 
     if world.options.bone_up_cap.value == 0:
-        for item, data in bone_ups.items():
-            create_item(world, item, data)
+        for item_type in BoneUps:
+            create_item(world, ItemData(item_type, 9))
     else:
-        for item, data in universal_bone_ups.items():
-            create_item(world, item, data)
+        create_item(world, ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 9))
+
 
     total_location_count = len(world.multiworld.get_unfilled_locations(world.player))
     print(f"total locs at start {total_location_count}")
     print(f"total Itempool at start {len(world.itempool)}")
     remaining = total_location_count - len(world.itempool)
-    for x in range(remaining):
-        name, data = world.random.choice(list(all_filler_items.items()))
-        create_item(world, name, data)
+
+    filler: list[ItemFiller] = world.random.choices(
+        all_filler_items,
+        weights=[item.weight for item in all_filler_items],
+        k=remaining
+    )
+    for item_filler in filler:
+        create_single_item(world, item_filler.type)
+
     world.multiworld.itempool += world.itempool
-    starting_items = []
-    for item, data in abilities.items():
-        for i in range(data.amount):
-            starting_items.append(Item(item, data.classification, data.item_id, world.player))
-    for item, data in base_items.items():
-        for i in range(data.amount):
-            starting_items.append(Item(item, data.classification, data.item_id, world.player))
+
+
     return starting_items
 
 
 
 def create_events(world):
+    loc = world.get_location("LL Captain's Gift")
+    loc.place_locked_item(MinaTheHollowerItem(PlayerUpgrades.HEALING_VIAL_POUCH.value, ItemClassification.progression, PlayerUpgrades.HEALING_VIAL_POUCH.item_id,
+    world.player))
+
     region_gen = {
         "Astral Orrery" : "Starry",
         "Queensbury Crypt" : "Solemn",
@@ -75,3 +103,38 @@ def create_events(world):
         event_loc = Location(world.player, "Repair" + area + "Generator", None, region)
         event_loc.place_locked_item(MinaTheHollowerItem("Repair " + name + " Generator", ItemClassification.progression, None, world.player))
         region.locations.append(event_loc)
+
+    blue_region = world.get_region("Astral Orrery Queensbury Mirror")
+    event_loc_blue = Location(world.player, "Blue Switch", None, blue_region)
+    event_loc_blue.place_locked_item(
+        MinaTheHollowerItem(AstralPlatforms.BLUE_ASTRAL_PLATFORMS.value, ItemClassification.progression, None, world.player))
+    blue_region.locations.append(event_loc_blue)
+
+    green_region = world.get_region("Astral Orrery Bayou Mirror")
+    event_loc_green = Location(world.player, "Green Switch", None, green_region)
+    event_loc_green.place_locked_item(
+        MinaTheHollowerItem(AstralPlatforms.GREEN_ASTRAL_PLATFORMS.value, ItemClassification.progression, None,
+                            world.player))
+    green_region.locations.append(event_loc_green)
+
+    red_region = world.get_region("Astral Orrery Bone Beach Mirror")
+    event_loc_red = Location(world.player, "Red Switch", None, red_region)
+    event_loc_red.place_locked_item(
+        MinaTheHollowerItem(AstralPlatforms.RED_ASTRAL_PLATFORMS.value, ItemClassification.progression, None,
+                            world.player))
+    red_region.locations.append(event_loc_red)
+
+    yellow_region = world.get_region("Astral Orrery Septemburg Mirror")
+    event_loc_yellow = Location(world.player, "Yellow Switch", None, yellow_region)
+    event_loc_yellow.place_locked_item(
+        MinaTheHollowerItem(AstralPlatforms.YELLOW_ASTRAL_PLATFORMS.value, ItemClassification.progression, None,
+                            world.player))
+    yellow_region.locations.append(event_loc_yellow)
+
+    purple_region = world.get_region("Astral Orrery Coltrane Peak Mirror")
+    event_loc_purple = Location(world.player, "Purple Switch", None, purple_region)
+    event_loc_purple.place_locked_item(
+        MinaTheHollowerItem(AstralPlatforms.PURPLE_ASTRAL_PLATFORMS.value, ItemClassification.progression, None,
+                            world.player))
+    purple_region.locations.append(event_loc_purple)
+

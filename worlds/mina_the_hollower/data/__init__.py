@@ -1,5 +1,6 @@
+from dataclasses import dataclass
 from enum import Enum, IntEnum
-from typing import NamedTuple, Any, Union
+from typing import NamedTuple, Any, Union, Optional
 
 from BaseClasses import ItemClassification, LocationProgressType, CollectionState, CollectionRule
 from rule_builder.rules import Rule, True_
@@ -86,16 +87,34 @@ matching_transition_types = {
 def get_target_groups(group: int) -> list[int]:
     return matching_transition_types[group]
 
-class ItemData(NamedTuple):
-    item_id: int
-    classification: ItemClassification
+class ItemTypeEnum(Enum):
+    def __init__(self, value: str, item_id: int, classification: ItemClassification):
+        # self._value_ must be set to the first element to support lookup by value
+        self._value_ = value
+        self.item_id = item_id
+        self.classification = classification
+
+
+@dataclass
+class ItemData:
+    type: ItemTypeEnum
     amount: int = 1
 
-class KeyItemData(NamedTuple):
-    item_id: int
-    key_id: int
-    classification: ItemClassification
-    amount: int = 1
+@dataclass
+class ItemFiller:
+    type: ItemTypeEnum
+    weight: int = 1
+
+@dataclass
+class ItemMovement:
+    type: ItemTypeEnum
+    distance: int
+
+@dataclass
+class ItemPower:
+    type: ItemTypeEnum
+    power: int
+    requiredType: Optional[ItemTypeEnum] = None
 
 class RegionConnection(NamedTuple):
     exiting_region: str
@@ -114,5 +133,3 @@ class LocationData(NamedTuple):
     region: str
     rule: CollectionRule | Rule[MinaTheHollowerBase] = True_()
     progress_type: LocationProgressType = LocationProgressType.DEFAULT
-
-AnyItemData: type = Union[ItemData, KeyItemData]

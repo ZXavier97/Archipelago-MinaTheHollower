@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -144,8 +153,8 @@ transitions: dict[str, Transition] = {
     'Bone Beach Calcified Cavern Exit': Transition('Bone Beach Calcified Cavern', 'Bone Beach Mining Camp Ledge', DirectionType.SOUTH, TransitionType.DOORS),
     'Bone Beach Calcified Caves Bottom Exit': Transition('Bone Beach Calcified Caves Bottom', 'Bone Beach Mining Camp', DirectionType.SOUTH, TransitionType.DOORS),
     'Bone Beach Calcified Caves Exit': Transition('Bone Beach Calcified Caves', 'Bone Beach Mining Camp Ledge', DirectionType.SOUTH, TransitionType.DOORS),
-    'Bone Beach Dreadworms Arena East Door': Transition('Bone Beach Brain Alcove', 'Bone Beach Brain Alcove End', DirectionType.NORTH, TransitionType.DOORS),
-    'Bone Beach Dreadworms Arena West Door': Transition('Bone Beach Brain Alcove', 'Bone Beach Brain Alcove End', DirectionType.NORTH, TransitionType.DOORS),
+    'Bone Beach Dreadworms Arena East Door': Transition('Bone Beach Brain Alcove', 'Bone Beach Brain Alcove End', DirectionType.NORTH, TransitionType.DOORS, PowerLevelThreshold(power=30)),
+    'Bone Beach Dreadworms Arena West Door': Transition('Bone Beach Brain Alcove', 'Bone Beach Brain Alcove End', DirectionType.NORTH, TransitionType.DOORS, PowerLevelThreshold(power=30)),
     'Bone Beach Dreadworms Maw Back North Transition': Transition('Bone Beach Dreadworms Maw Back', 'Bone Beach Pulsing Tract', DirectionType.NORTH, TransitionType.SCREENS),
     'Bone Beach Dreadworms Maw Exit': Transition('Bone Beach Dreadworms Maw', 'Bone Beach Beached Creature Mouth', DirectionType.SOUTH, TransitionType.DOORS),
     'Bone Beach Dreadworms Maw Top Geyser Down': Transition('Bone Beach Dreadworms Maw Top', 'Bone Beach Gut Depths', DirectionType.OVERWORLD, TransitionType.GEYSER_DOWN, CanBurrow()),

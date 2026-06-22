@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -220,9 +229,9 @@ transitions: dict[str, Transition] = {
     "Nox's Bayou Guard Room South Transition": Transition("Nox's Bayou Guard Room", "Nox's Bayou Boat Station Path", DirectionType.SOUTH, TransitionType.SCREENS),
     "Nox's Bayou Lily Empty Pump Room Top North Transition": Transition("Nox's Bayou Lily Empty Pump Room Top", "Nox's Bayou Dual Lilys Empty Left", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
     "Nox's Bayou Lily Full Pump Room Top North Transition": Transition("Nox's Bayou Lily Full Pump Room Top", "Nox's Bayou Dual Lilys Full Left", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
-    "Nox's Bayou Moonlit Arena North Transition": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Mirror", DirectionType.NORTH, TransitionType.SCREENS),
-    "Nox's Bayou Moonlit Arena South East Exit": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Path Shortcut", DirectionType.SOUTH, TransitionType.SCREENS),
-    "Nox's Bayou Moonlit Arena South West Exit": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Path Waterfall", DirectionType.SOUTH, TransitionType.SCREENS),
+    "Nox's Bayou Moonlit Arena North Transition": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Mirror", DirectionType.NORTH, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
+    "Nox's Bayou Moonlit Arena South East Exit": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Path Shortcut", DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
+    "Nox's Bayou Moonlit Arena South West Exit": Transition("Nox's Bayou Moonlit Arena", "Nox's Bayou Moonlit Path Waterfall", DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
     "Nox's Bayou Moonlit Mirror Mirror": Transition("Nox's Bayou Moonlit Mirror", 'Astral Orrery Bayou Mirror', DirectionType.OVERWORLD, TransitionType.MIRRORS),
     "Nox's Bayou Moonlit Mirror South Transition": Transition("Nox's Bayou Moonlit Mirror", "Nox's Bayou Moonlit Arena", DirectionType.SOUTH, TransitionType.SCREENS),
     "Nox's Bayou Moonlit Path End East Transition": Transition("Nox's Bayou Moonlit Path End", "Nox's Bayou FireBomb Grates", DirectionType.EAST, TransitionType.SCREENS),
@@ -237,8 +246,8 @@ transitions: dict[str, Transition] = {
     "Nox's Bayou Tainted Ambush Full South": Transition("Nox's Bayou Tainted Ambush Full", "Nox's Bayou Tainted Lair Full Right", DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
     "Nox's Bayou Tainted Ambush Medium_Nox's Bayou Tainted Tunnel": Transition("Nox's Bayou Tainted Ambush Medium", "Nox's Bayou Tainted Tunnel", DirectionType.NORTH, TransitionType.BURROW, CanSwim()),
     "Nox's Bayou Tainted Lair Ambush Low South Transition": Transition("Nox's Bayou Tainted Ambush Low", "Nox's Bayou Tainted Lair Right Pump", DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
-    "Nox's Bayou Tainted Lair Arena East Transition": Transition("Nox's Bayou Tainted Lair Arena", "Nox's Bayou Swampy Generator", DirectionType.EAST, TransitionType.SCREENS),
-    "Nox's Bayou Tainted Lair Arena West Transition": Transition("Nox's Bayou Tainted Lair Arena", "Nox's Bayou Tainted Lair Boats", DirectionType.WEST, TransitionType.SCREENS),
+    "Nox's Bayou Tainted Lair Arena East Transition": Transition("Nox's Bayou Tainted Lair Arena", "Nox's Bayou Swampy Generator", DirectionType.EAST, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
+    "Nox's Bayou Tainted Lair Arena West Transition": Transition("Nox's Bayou Tainted Lair Arena", "Nox's Bayou Tainted Lair Boats", DirectionType.WEST, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
     "Nox's Bayou Tainted Lair Boats Cliff West Transition": Transition("Nox's Bayou Tainted Lair Boats Cliff", "Nox's Bayou Tainted Lair Grate Bridge", DirectionType.WEST, TransitionType.SCREENS),
     "Nox's Bayou Tainted Lair Boats East Transition": Transition("Nox's Bayou Tainted Lair Boats", "Nox's Bayou Tainted Lair Arena", DirectionType.EAST, TransitionType.SCREENS),
     "Nox's Bayou Tainted Lair Cliff West Transition": Transition("Nox's Bayou Tainted Lair Cliff", "Nox's Bayou Thick Pond Cliff", DirectionType.WEST, TransitionType.SCREENS),

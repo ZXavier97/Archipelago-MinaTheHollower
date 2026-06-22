@@ -15,6 +15,16 @@ class HasCompletedOneSparkGenerator(Rule[MinaTheHollowerBase], game=MINA_THE_HOL
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
         return True_[MinaTheHollowerBase]().resolve(world)
 
+
+@dataclasses.dataclass(kw_only=True)
+class HasKear(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
+    kear: str
+    @override
+    def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
+        if world.options.kear_rando.value == 0:
+            return Has()
+        return True_[MinaTheHollowerBase]().resolve(world)
+
 def HasRepairedSolemnGenerator():
     return Has("Repair Solemn Generator")
 def HasRepairedSwampyGenerator():

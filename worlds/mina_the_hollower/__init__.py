@@ -4,9 +4,9 @@ from typing import Any, ClassVar, Dict, Optional
 
 from BaseClasses import ItemClassification, Location, Tutorial
 from entrance_rando import bake_target_group_lookup, randomize_entrances
-from Options import OptionError
-from rule_builder.rules import Has
+
 from Utils import visualize_regions
+from .data.rules.state_rules import HasRepairedAllGenerators
 
 from ..AutoWorld import WebWorld
 from . import items, locations, tracker
@@ -47,7 +47,7 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
     web = MinaTheHollowerWeb()
 
     item_name_to_id: ClassVar[Dict[str, int]] = {
-        item_name: item_data.item_id for item_name, item_data in all_items.items()
+        item.value: item.item_id for item in all_items
     }
     location_name_to_id: ClassVar[Dict[str, int]] = {
         loc_name: loc_data.location_id for loc_name, loc_data in all_locations.items()
@@ -111,7 +111,7 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
             self.push_precollected(item)
 
     def set_rules(self):
-        self.set_completion_rule(Has("TrainPass"))
+        self.set_completion_rule(HasRepairedAllGenerators())
 
     def generate_output(self, output_directory: str):
         print("Generating Output")
@@ -129,7 +129,7 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
         return {
             "sem_ver": self.manifest["mod_version"],
             "goal": self.options.goal.value,
-            "essex_start": self.options.ossex_start.value,
+            "ossex_start": self.options.ossex_start.value,
             "kear_rando": self.options.kear_rando.value,
             # "entrance_rando" : self.options.entrance_rando.value,
             "death_link": self.options.death_link.value,
@@ -156,7 +156,7 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
         self.options.goal.value = slot_data["goal"]
         self.options.death_link.value = slot_data["death_link"]
         self.options.kear_rando.value = slot_data["kear_rando"]
-        self.options.ossex_start.value = slot_data["essex_start"]
+        self.options.ossex_start.value = slot_data["ossex_start"]
         # self.options.entrance_rando.value = slot_data["entrance_rando"]
         # self.options.shuffled_sidearms.value = slot_data["shuffled_sidearms"]
         # self.options.shuffle_enemy_level.value = slot_data["shuffle_enemy_level"]

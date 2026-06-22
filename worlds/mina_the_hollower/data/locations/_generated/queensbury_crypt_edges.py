@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -116,7 +125,7 @@ transitions: dict[str, Transition] = {
     'Queensbury Crypt Ancestral Chamber foyer West West Transition': Transition('Queensbury Crypt Ancestral Chamber foyer West', 'Queensbury Crypt Ancestral Chamber Ropes East', DirectionType.WEST, TransitionType.SCREENS),
     'Queensbury Crypt Bonnet Tomb Inner South Burrow': Transition('Queensbury Crypt Bonnet Tomb Inner', 'Queensbury Crypt Bonnet Tomb', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
     'Queensbury Crypt Bonnet Tomb North Burrow': Transition('Queensbury Crypt Bonnet Tomb', 'Queensbury Crypt Bonnet Tomb Inner', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
-    'Queensbury Crypt Bonnet Tomb South Transition': Transition('Queensbury Crypt Bonnet Tomb', 'Queensbury Crypt Old Graveyard Main', DirectionType.SOUTH, TransitionType.SCREENS, Has("Queensbury Crypt Bonnet Tomb Kear")),
+    'Queensbury Crypt Bonnet Tomb South Transition': Transition('Queensbury Crypt Bonnet Tomb', 'Queensbury Crypt Old Graveyard Main', DirectionType.SOUTH, TransitionType.SCREENS, HasKear(kear=SingleKears.QUEENSBURY_CRYPT_BONNET_TOMB_KEAR.value)),
     'Queensbury Crypt Broken Bridge North Transition': Transition('Queensbury Crypt Broken Bridge', 'Queensbury Crypt Castle Outside Main', DirectionType.NORTH, TransitionType.SCREENS),
     'Queensbury Crypt Broken Bridge South Transition': Transition('Queensbury Crypt Broken Bridge', 'Queensbury Crypt Old Graveyard Main', DirectionType.SOUTH, TransitionType.SCREENS),
     'Queensbury Crypt Castle Broken Hall Main East Hidden Burrow': Transition('Queensbury Crypt Castle Broken Hall Main', 'Queensbury Crypt Hidden Tunnel', DirectionType.EAST, TransitionType.BURROW),
@@ -156,7 +165,7 @@ transitions: dict[str, Transition] = {
     'Queensbury Crypt Old Entrance East Transition': Transition('Queensbury Crypt Old Entrance', 'Queensbury Crypt Old Button', DirectionType.EAST, TransitionType.SCREENS),
     'Queensbury Crypt Old Entrance West Area Transitions': Transition('Queensbury Crypt Old Entrance', "Mourner's Mile Stairs", DirectionType.WEST, TransitionType.AREA_SCREENS),
     'Queensbury Crypt Old Graveyard Main East Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Old Chamber', DirectionType.EAST, TransitionType.SCREENS),
-    'Queensbury Crypt Old Graveyard Main Hidden North Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Bonnet Tomb', DirectionType.NORTH, TransitionType.SCREENS, Has("Queensbury Crypt Bonnet Tomb Kear")),
+    'Queensbury Crypt Old Graveyard Main Hidden North Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Bonnet Tomb', DirectionType.NORTH, TransitionType.SCREENS, HasKear(kear=SingleKears.QUEENSBURY_CRYPT_BONNET_TOMB_KEAR.value)),
     'Queensbury Crypt Old Graveyard Main North Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Broken Bridge', DirectionType.NORTH, TransitionType.SCREENS),
     'Queensbury Crypt Old Graveyard Main South Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Old Button', DirectionType.SOUTH, TransitionType.SCREENS),
     'Queensbury Crypt Ophidio Stair Left Stairs': Transition('Queensbury Crypt Ophidio Stair', 'Queensbury Crypt Statue Gate Stair', DirectionType.NORTH, TransitionType.STAIRS),

@@ -1,0 +1,203 @@
+from BaseClasses import ItemClassification
+from .. import ItemTypeEnum
+
+
+
+class Sidearms(ItemTypeEnum):
+    VOLT_HATCHET = ("Volt Hatchet", 21, ItemClassification.progression)
+    GYRO_DAGGER = ("Gyro Dagger", 22, ItemClassification.progression)
+    RECALL_DISC = ("Recall Disc",23, ItemClassification.progression)
+    DYNAMO_LANTURN = ("Dynamo Lanturn", 24, ItemClassification.progression)
+    DRIVER_DRILL = ("ShieldBash", 25, ItemClassification.progression)
+    BOUNDING_BOMBS =("Bounding Bombs", 26, ItemClassification.progression)
+    IRON_STEED = ("Iron Steed", 27, ItemClassification.progression)
+    HOLLOWERS_ROCKS = ("Hollowers Rocks",28, ItemClassification.progression)
+    FOG_THROWER = ("FogThrower",29, ItemClassification.progression)
+    BECKONING_COLLAR = ("Beckoning Collar",30, ItemClassification.progression)
+    MIST_JAR = ("Mist Jar", 31, ItemClassification.progression)
+    GNAWING_GHOSTS = ("Gnawing Ghosts",32, ItemClassification.progression)
+    DEFLECTOR_PARASOL = ("BarrierParasol",33, ItemClassification.progression)
+    FISHING_ROD = ("Fishing Rod",34, ItemClassification.progression) #103 is gold
+    ANGLERS_RAFT = ("Angler's Raft", 102, ItemClassification.progression)
+    # "FishingGoldPickup": ItemData(103, ItemClassification.progression),
+
+
+
+class PermanentUpgrades(ItemTypeEnum):
+    CANDLE_VISION = ("Candle Vision",74, ItemClassification.progression)
+    WORLD_MAP = ("World Map",75, ItemClassification.progression)
+    ENHANCED_MAP = ("EnhancedMap",76, ItemClassification.progression)
+    RADAR_MAP = ("RadarMap",77, ItemClassification.progression)
+    DOUBLE_SIDEARM_PERMIT = ("Double Side Arm Permit",78, ItemClassification.progression)
+    VITALITY_VEST = ("Vitality Vest",79, ItemClassification.progression)
+    SAFETY_SHROUD = ("Safety Shroud",80, ItemClassification.progression)
+    ARMOR_CUSTOM = ("Armor Custom",81, ItemClassification.progression)
+    # "ArmorDefault" : ItemData(92, ItemClassification.progression),
+    # "ArmorUpgradeAll" : ItemData(93, ItemClassification.progression),
+    JOULE_ALMEMBIC = ("Joule Alembic",82, ItemClassification.progression)
+    SIDEARM_SAVER = ("Sidearm Saver",83, ItemClassification.progression)
+    SIDEARM_KEEPER = ("SidearmKeeper",84, ItemClassification.progression)
+    TRAINING_DUMMY =("TrainingDummy",85, ItemClassification.progression)
+    PHONOGRAPH = ("Phonograph",86, ItemClassification.progression)
+    UNDERLAB_DEFAULT =("Underlab Default" ,120, ItemClassification.progression)
+    UNDERLAB_CRYPT = ("Underlab Crypt" ,121, ItemClassification.progression)
+    UNDERLAB_BAYOU = ("Underlab Bayou" ,122, ItemClassification.progression)
+    UNDERLAB_SEPTEMBURG = ("Underlab Septemburg" ,123, ItemClassification.progression)
+    UNDERLAB_TRAINYARD = ("Underlab Trainyard" ,124, ItemClassification.progression)
+    UNDERLAB_BONE_BEACH = ("Underlab BoneBeach" ,125, ItemClassification.progression)
+    UNDERLAB_ASTRAL = ("Underlab Astral" ,126, ItemClassification.progression)
+    UNDERLAB_MANSION = ("Underlab Mansion" ,127, ItemClassification.progression)
+    UNDERLAB_HUB = ("Underlab HUB" ,128, ItemClassification.progression)
+    UNDERLAB_EAST = ("Underlab East" ,129, ItemClassification.progression)
+    UNDERLAB_WEST = ("Underlab West" ,130, ItemClassification.progression)
+    UNDERLAB_SOUTH = ("Underlab South" ,131, ItemClassification.progression)
+    UNDERLAB_SEWER = ("Underlab Sewer" ,132, ItemClassification.progression)
+    UNDERLAB_GUILD = ("Underlab Guild" ,133, ItemClassification.progression)
+    WIERD_DANCE = ("Weird Dance",90, ItemClassification.useful)
+    TRAIN_PASS = ("Train Pass",94, ItemClassification.progression)
+    OSSEX_TICKET = ("Ossex Ticket", 95, ItemClassification.progression)
+    BAYOU_TICKET = ("Bayou Ticket",96, ItemClassification.progression)
+    SEPTEMBURG_TICKET = ("Septemburg Ticket",97, ItemClassification.progression)
+    BONE_BEACH_TICKET = ("Bone Beach Ticket",98, ItemClassification.progression)
+    COLTRANE_PEAK_TICKET = ("Coltrane Peak Ticket",99, ItemClassification.progression)
+
+
+ # "Lock" : ItemData(64, ItemClassification.progression),
+    # "EarlyBuy" : ItemData(65, ItemClassification.progression),
+    # "Note" : ItemData(66, ItemClassification.progression),
+    # "Trinket" : ItemData(67, ItemClassification.progression),
+# "Spark" : ItemData(73, ItemClassification.progression),
+# "Upgrade_FishingRod" : ItemData(87, ItemClassification.progression),
+    # "FishingUpgrade1" : ItemData(88, ItemClassification.progression),
+    # "FishingRodGold" : ItemData(89, ItemClassification.progression),
+
+    # "TwoSidearmHUD" : ItemData(91, ItemClassification.progression),
+
+
+    # "ExitTicket" : ItemData(100, ItemClassification.progression),
+    # "UnavailableTicket" : ItemData(101, ItemClassification.progression),
+
+    # "FishGhost" : ItemData(104, ItemClassification.progression),
+    # "FishPuffer" : ItemData(105, ItemClassification.progression),
+    # "FishFlag" : ItemData(106, ItemClassification.progression),
+    # "FishCrumble" : ItemData(107, ItemClassification.progression),
+    # "FishSpincer" : ItemData(108, ItemClassification.progression),
+    # "FishIce" : ItemData(109, ItemClassification.progression),
+    # "FishTrigger" : ItemData(110, ItemClassification.progression),
+    # "FishGlomp" : ItemData(111, ItemClassification.progression),
+    # "FishGoremaw" : ItemData(112, ItemClassification.progression),
+    # "FishDork" : ItemData(113, ItemClassification.progression),
+    # "FishEel" : ItemData(114, ItemClassification.progression),
+    # "FishGazeworm" : ItemData(115, ItemClassification.progression),
+    # "FishCuddlepus" : ItemData(116, ItemClassification.progression),
+    # "FishTrunkstar" : ItemData(117, ItemClassification.progression),
+    # "FishShrimpster" : ItemData(118, ItemClassification.progression),
+    # "FishBoss" : ItemData(119, ItemClassification.progression),
+
+class PlayerUpgrades(ItemTypeEnum):
+    HEALING_VIAL_POUCH = ("Healing Vial Pouch",18, ItemClassification.progression)
+    JOULE_BOX = ("Joule Box",68, ItemClassification.progression) #magic_upgrade
+    HEALTH_ROSE = ("Health Rose",69, ItemClassification.progression) #health_upgrade
+    SPARK_CONTAINER = ("Spark Container",70, ItemClassification.progression) #spark_upgrade
+    HEALING_VIAL = ("Healing Vial",71, ItemClassification.progression) #vial_upgrade
+    TRINKET_BAG = ("Trinket Bag",72, ItemClassification.progression) #trinket_upgrade
+
+class Trinkets(ItemTypeEnum):
+    LACE_GLOVE = ("Lace Glove", 134, ItemClassification.progression)
+    TWILL_WEAVE = ("Twill Weave", 135, ItemClassification.progression)
+    SMELLING_SALTS = ("Smelling Salts", 136, ItemClassification.progression)
+    BRISK_BREW = ("Brisk Brew", 137, ItemClassification.progression)
+    SEISMIC_BELT = ("Seismic Belt", 138, ItemClassification.progression)
+    PLASMA_FUNNEL = ("Plasma Funnel", 139, ItemClassification.progression)
+    DEBONING_WAD = ("Deboning Wad", 140, ItemClassification.progression)
+    STEADY_SOLES = ("Steady Soles", 141, ItemClassification.progression)
+    VALOR_MEDALION = ("Valor Medallion", 142, ItemClassification.progression)
+    BELL_OF_GRACE = ("Bell Of Grace", 143, ItemClassification.progression)
+    WILLOW_THE_WISP = ("Willow The Wisp", 144, ItemClassification.progression)
+    HELIO_THE_WISP = ("Helio The Wisp", 145, ItemClassification.progression)
+    KERI_THE_WISP = ("Keri The Wisp", 146, ItemClassification.progression)
+    WINDFALL_CHARM = ("Windfall Charm", 147, ItemClassification.progression)
+    CHAIN_CAPACITOR = ("Chain Capacitor", 148, ItemClassification.progression)
+    SPIKE_SPURS = ("Spike Spurs", 149, ItemClassification.progression)
+    DESPERATION_BONNET = ("Desperation Bonnet", 150, ItemClassification.progression)
+    STOLENOID = ("Stolenoid", 151, ItemClassification.progression)
+    FLY_BAIT = ("Fly Bait", 152, ItemClassification.progression)
+    PROTO_SPARK = ("Proto Spark", 153, ItemClassification.progression)
+    PRIMED_VIAL_POUCH = ("Primed Vial Pouch", 154, ItemClassification.progression)
+    FLAME_GUARD = ("Flame Guard", 155, ItemClassification.progression)
+    SPARK_CATCHER = ("Spark Catcher", 156, ItemClassification.progression)
+    EVASION_POWER = ("Evasion Power", 157, ItemClassification.progression)
+    VASCULAR_SYRUP = ("Vascular Syrup", 158, ItemClassification.progression)
+    PIT_PRESERVER = ("Pit Preserver", 159, ItemClassification.progression)
+    IRON_LUNG = ("Iron Lung", 160, ItemClassification.progression)
+    TUMBLING_TUTU = ("Tumbling Tutu", 161, ItemClassification.progression)
+    EMPTY_JUG = ("Plasma Jug", 162, ItemClassification.progression)
+    URANIUM_BRACELET = ("Uranium Bracelet", 163, ItemClassification.progression)
+    BUBBLE_RING = ("Bubble Ring", 164, ItemClassification.progression)
+    SHOCK_FLINT = ("Shock Flint", 165, ItemClassification.progression)
+    INTRAVENOUS_VIAL = ("Intravenous Vial", 166, ItemClassification.progression)
+    PNEUMATIC_ARMLET = ("Pneumatic Armlet", 167, ItemClassification.progression)
+    STARVING_BEASTIUM = ("Starving Beastium", 168, ItemClassification.progression)
+    DRAINING_BEASTIUM = ("Draining Beastium", 169, ItemClassification.progression)
+    RECKLESS_BEASTIUM = ("Reckless Beastium", 170, ItemClassification.progression)
+    VOLATILE_BEASTIUM = ("Volatile Beastium", 171, ItemClassification.progression)
+    BURNING_BEASTIUM = ("Burning Beastium", 172, ItemClassification.progression)
+    WARDING_BEASTIUM = ("Warding Beastium", 173, ItemClassification.progression)
+    DUMMY_CACHE = ("Dummy Cache", 174, ItemClassification.progression)
+    BLINKING_GLASS = ("Blinking Glass", 175, ItemClassification.progression)
+    WATCHFUL_EYE = ("Watchful Eye", 176, ItemClassification.progression)
+    BRIDGE_WEAVER = ("Bridge Weaver", 177, ItemClassification.progression)
+    VIAL_SALVO = ("Vial Salvo", 178, ItemClassification.progression)
+    DODGING_PENDULUM = ("Dodging Pendulum", 179, ItemClassification.progression)
+    SPRING_HEELS = ("Spring Heels", 180, ItemClassification.progression)
+    WALLOWERS_GAUNTLETS = ("Wallowers Gauntlets", 181, ItemClassification.progression)
+    OOZING_ORGAN = ("Oozing Organ", 182, ItemClassification.progression)
+    VOLTAIC_GUARD = ("Voltaic Guard", 183, ItemClassification.progression)
+    REPULSING_ROOT = ("Repulsing Root", 184, ItemClassification.progression)
+    LIGHTNING_GRIP = ("Lightning Grip", 185, ItemClassification.progression)
+    DEAD_LEAF = ("Dead Leaf", 186, ItemClassification.progression)
+    NITER_BELT = ("Niter Belt", 187, ItemClassification.progression)
+    BELLOWS_BUSTLE = ("Bellows Bustle", 188, ItemClassification.progression)
+    TUNNELING_CODEX = ("Tunneling Codex", 189, ItemClassification.progression)
+    JOULE_SYRINGE = ("Joule Syringe", 190, ItemClassification.progression)
+    POLYP_LAMP = ("Polyp Lamp", 191, ItemClassification.progression)
+    THERMAL_PACK = ("Thermal Pack", 192, ItemClassification.progression)
+    COUNTER_VIAL = ("Counter Vial", 193, ItemClassification.progression)
+    PLASMA_JUG = ("Plasma Jug", 194, ItemClassification.progression)
+
+
+class BoneFiller(ItemTypeEnum):
+    BONE_DUST = ("BoneDust",50, ItemClassification.filler)
+    BONE_STONE = ("Bonestone",51, ItemClassification.filler)
+    BONE_STONE_1 = ("Bonestone01", 52, ItemClassification.filler)
+    BONE_STONE_2 = ("Bonestone02",53, ItemClassification.filler)
+    BONE_STONE_3 = ("Bonestone03",54, ItemClassification.filler)
+    BONE_STONE_4 = ("Bonestone04",55, ItemClassification.filler)
+    BONE_STONE_5 = ("Bonestone05",56, ItemClassification.filler)
+    BONE_STONE_6 = ("Bonestone06",57, ItemClassification.filler)
+    BONE_STONE_7 = ("Bonestone07",58, ItemClassification.filler)
+    BONE_STONE_8 = ("Bonestone08",59, ItemClassification.filler)
+    BONE_STONE_9 = ("Bonestone09",60, ItemClassification.filler)
+    BONE_STONE_10 = ("Bonestone10",61, ItemClassification.filler)
+    TREASURE_SMALLEST = ("TreasureSmallest", 40, ItemClassification.progression)
+    TREASURE_SMALL = ("TreasureSmall", 41, ItemClassification.progression)
+    TREASURE_MEDIUM = ("TreasureMedium", 42, ItemClassification.progression)
+    TREASURE_LARGE = ("TreasureLarge", 43, ItemClassification.progression)
+    TREASURE_LARGEST = ("TreasureLargest", 44, ItemClassification.progression)
+    TREASURE_BOSS = ("TreasureBoss", 45, ItemClassification.progression)
+    TREASURE_GOLD_LARGE = ("TreasureGoldLarge", 46, ItemClassification.progression)
+    TREASURE_GOLD_LARGEST = ("TreasureGoldLargest", 47, ItemClassification.progression)
+    TREASURE_JEWEL_LARGE = ("TreasureJewelLarge", 48, ItemClassification.progression)
+    TREASURE_JEWEL_LARGEST = ("TreasureJewelLargest", 49, ItemClassification.progression)
+    # "BonestoneTower" : ItemData(62, ItemClassification.progression),
+
+
+class JunkFiller(ItemTypeEnum):
+    # "HealingVial" : 17
+    HEALING_VIAL_PICKUP = ("Healing Vial Pickup",19, ItemClassification.progression)
+    HEALING_VIAL_PACK_PICKUP = ("HealingVialPackPickup",20, ItemClassification.progression)
+    YELLOW_FLOWER = ("Yellow Flower",35, ItemClassification.progression)
+    RED_FLOWER = ("FishHealthRecovery",36, ItemClassification.progression)
+    MAGIC_SMALL = ("MagicSmall",37, ItemClassification.progression)
+    MAGIC_MEDIUM = ("MagicMedium", 38, ItemClassification.progression)
+    MAGIC_LARGE = ("MagicLarge", 39, ItemClassification.progression)

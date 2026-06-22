@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -85,7 +94,7 @@ transitions: dict[str, Transition] = {
     'Sandfalls Sandwater Junction Top Burrow East': Transition('Sandfalls Sandwater Junction Top', 'Sandfalls Payload Passage Bottom', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
     'Sandfalls Sandwater Junction Top South Rope': Transition('Sandfalls Sandwater Junction Top', 'Sandfalls Sandwater Junction', DirectionType.SOUTH, TransitionType.SCREENS, CanClimb()),
     'Sandfalls Sandy Station North Transition': Transition('Sandfalls Sandy Station', 'Sandfalls Sifted Sands', DirectionType.NORTH, TransitionType.SCREENS),
-    'Sandfalls Sandy Station Train': Transition('Sandfalls Sandy Station', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has("TrainPass") & Has("BoneBeachTicket")),
+    'Sandfalls Sandy Station Train': Transition('Sandfalls Sandy Station', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has(PermanentUpgrades.TRAIN_PASS.value) & Has(PermanentUpgrades.BONE_BEACH_TICKET.value)),
     'Sandfalls Shifty Seclusion Exit': Transition('Sandfalls Shifty Seclusion', 'Sandfalls Sifted Sands', DirectionType.SOUTH, TransitionType.DOORS),
     'Sandfalls Sifted Sands Burrow West': Transition('Sandfalls Sifted Sands', 'Sandfalls Payload Passage Chest', DirectionType.WEST, TransitionType.BURROW, CanBurrow() & CanCarry()),
     'Sandfalls Sifted Sands Den Door': Transition('Sandfalls Sifted Sands', 'Sandfalls Miners Den Entrance', DirectionType.NORTH, TransitionType.STAIRS, HasVialsCount(count=3) & CanBurrow() & CanCarry()),
@@ -93,7 +102,7 @@ transitions: dict[str, Transition] = {
     'Sandfalls Sifted Sands Funnel Geyser Down': Transition('Sandfalls Sifted Sands Funnel', 'Sandfalls Ring Dive Parlor', DirectionType.OVERWORLD, TransitionType.GEYSER_DOWN, CanBurrow()),
     'Sandfalls Sifted Sands Hidden Left Bomb South Transition': Transition('Sandfalls Sifted Sands Hidden Left Bomb', 'Sandfalls Spike Squares', DirectionType.SOUTH, TransitionType.SCREENS),
     'Sandfalls Sifted Sands North Transition': Transition('Sandfalls Sifted Sands', 'Sandfalls Mining Outlook', DirectionType.NORTH, TransitionType.SCREENS),
-    'Sandfalls Sifted Sands Pachinko Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Pachinko', DirectionType.NORTH, TransitionType.DOORS, CanBurrow() & CanCarry() & Has("Sandfall Cave Kear")),
+    'Sandfalls Sifted Sands Pachinko Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Pachinko', DirectionType.NORTH, TransitionType.DOORS, CanBurrow() & CanCarry() & HasKear(kear=SingleKears.SANDFALL_CAVE_KEAR.value)),
     'Sandfalls Sifted Sands Payload West Burrow 1': Transition('Sandfalls Sifted Sands', 'Sandfalls Payload Passage', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Sandfalls Sifted Sands Payload West Burrow 2': Transition('Sandfalls Sifted Sands', 'Sandfalls Payload Passage', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Sandfalls Sifted Sands Shifty Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Shifty Seclusion', DirectionType.NORTH, TransitionType.DOORS, CanBurrow() & CanCarry()),

@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -57,17 +66,17 @@ regions: set[str] = {
 }
 
 connections: dict[str, RegionConnection] = {
-    "Astral Orrery Bayou Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Bayou Mirror', "Astral Orrery Mirror's End", Has("Green Astral Platforms")),
-    "Astral Orrery Bone Beach Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Bone Beach Mirror', "Astral Orrery Mirror's End", Has("Red Astral Platforms")),
-    "Astral Orrery Coltrane Peak Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Coltrane Peak Mirror', "Astral Orrery Mirror's End", Has("Purple Astral Platforms")),
-    "Astral Orrery Mirror's End Blue Stairs_Astral Orrery Mirror's End": RegionConnection("Astral Orrery Mirror's End Blue Stairs", "Astral Orrery Mirror's End", Has("Blue Astral Platforms") | CanJumpTiles(distance=5)),
+    "Astral Orrery Bayou Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Bayou Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.GREEN_ASTRAL_PLATFORMS.value)),
+    "Astral Orrery Bone Beach Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Bone Beach Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value)),
+    "Astral Orrery Coltrane Peak Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Coltrane Peak Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.PURPLE_ASTRAL_PLATFORMS.value)),
+    "Astral Orrery Mirror's End Blue Stairs_Astral Orrery Mirror's End": RegionConnection("Astral Orrery Mirror's End Blue Stairs", "Astral Orrery Mirror's End", Has(AstralPlatforms.BLUE_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
     "Astral Orrery Mirror's End Moving Platforms_Astral Orrery Mirror's End Moving Stairs": RegionConnection("Astral Orrery Mirror's End Moving Platforms", "Astral Orrery Mirror's End Moving Stairs", CanBurrow() | CanJumpTiles(distance=2)),
     "Astral Orrery Mirror's End Moving Stairs_Astral Orrery Mirror's End Moving Platforms": RegionConnection("Astral Orrery Mirror's End Moving Stairs", "Astral Orrery Mirror's End Moving Platforms", CanClimb() | CanBurrow() | CanJumpTiles(distance=2)),
     "Astral Orrery Mirror's End Top_Astral Orrery Mirror's End": RegionConnection("Astral Orrery Mirror's End Top", "Astral Orrery Mirror's End", CanBurrow() & AnyThreeAstralPlatforms()),
-    "Astral Orrery Mirror's End_Astral Orrery Mirror's End Blue Stairs": RegionConnection("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Blue Stairs", Has("Blue Astral Platforms") | CanJumpTiles(distance=5)),
+    "Astral Orrery Mirror's End_Astral Orrery Mirror's End Blue Stairs": RegionConnection("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Blue Stairs", Has(AstralPlatforms.BLUE_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
     "Astral Orrery Mirror's End_Astral Orrery Mirror's End Top": RegionConnection("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Top", CanBurrow() & AnyThreeAstralPlatforms()),
-    "Astral Orrery Queensbury Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Queensbury Mirror', "Astral Orrery Mirror's End", Has("Blue Astral Platforms")),
-    "Astral Orrery Septemburg Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Septemburg Mirror', "Astral Orrery Mirror's End", Has("Yellow Astral Platforms")),
+    "Astral Orrery Queensbury Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Queensbury Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.BLUE_ASTRAL_PLATFORMS.value)),
+    "Astral Orrery Septemburg Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Septemburg Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.YELLOW_ASTRAL_PLATFORMS.value)),
     'Astral Orrery Stellarium Cog Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Cog Switch', 'Astral Orrery Stellarium'),
     'Astral Orrery Stellarium Gravity Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Gravity Switch', 'Astral Orrery Stellarium'),
     'Astral Orrery Stellarium Mutant Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Stellarium'),
@@ -89,15 +98,15 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Hall Of Scholars Fight': Transition('Astral Orrery Hall Of Scholars', 'Astral Orrery Hall Of Scholars End', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
     "Astral Orrery Mirror's End Blue Chest South Transition": Transition("Astral Orrery Mirror's End Blue Chest", "Astral Orrery Mirror's End Blue Stairs", DirectionType.SOUTH, TransitionType.SCREENS),
     "Astral Orrery Mirror's End Blue Stairs North Transition": Transition("Astral Orrery Mirror's End Blue Stairs", "Astral Orrery Mirror's End Blue Chest", DirectionType.NORTH, TransitionType.SCREENS),
-    "Astral Orrery Mirror's End East Purple Burrow": Transition("Astral Orrery Mirror's End", 'Astral Orrery Under Coltrane Peak Mirror', DirectionType.EAST, TransitionType.BURROW, Has("Purple Astral Platforms") | CanJumpTiles(distance=5)),
-    "Astral Orrery Mirror's End East Red Burrow": Transition("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Under Red Switch", DirectionType.EAST, TransitionType.BURROW, Has("Red Astral Platforms") & CanBurrow()),
+    "Astral Orrery Mirror's End East Purple Burrow": Transition("Astral Orrery Mirror's End", 'Astral Orrery Under Coltrane Peak Mirror', DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
+    "Astral Orrery Mirror's End East Red Burrow": Transition("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Under Red Switch", DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
     "Astral Orrery Mirror's End Large Mirror": Transition("Astral Orrery Mirror's End", 'Radiant Manor Foyer', DirectionType.ASTRAL, TransitionType.MIRRORS),
     "Astral Orrery Mirror's End Moving Platforms South Burrow": Transition("Astral Orrery Mirror's End Moving Platforms", "Astral Orrery Mirror's End Top", DirectionType.SOUTH, TransitionType.BURROW),
     "Astral Orrery Mirror's End Moving Stairs Stairs": Transition("Astral Orrery Mirror's End Moving Stairs", 'Astral Orrery Stellarium', DirectionType.NORTH, TransitionType.STAIRS),
-    "Astral Orrery Mirror's End Red Chest West Burrow": Transition("Astral Orrery Mirror's End Red Chest", "Astral Orrery Mirror's End Under Red Switch", DirectionType.WEST, TransitionType.BURROW, Has("Red Astral Platforms") & CanBurrow()),
+    "Astral Orrery Mirror's End Red Chest West Burrow": Transition("Astral Orrery Mirror's End Red Chest", "Astral Orrery Mirror's End Under Red Switch", DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
     "Astral Orrery Mirror's End Top North Burrow": Transition("Astral Orrery Mirror's End Top", "Astral Orrery Mirror's End Moving Platforms", DirectionType.NORTH, TransitionType.BURROW),
-    "Astral Orrery Mirror's End Under Red Switch Burrow West": Transition("Astral Orrery Mirror's End Under Red Switch", "Astral Orrery Mirror's End", DirectionType.WEST, TransitionType.BURROW, Has("Red Astral Platforms") & CanBurrow()),
-    "Astral Orrery Mirror's End Under Red Switch East Burrow": Transition("Astral Orrery Mirror's End Under Red Switch", "Astral Orrery Mirror's End Red Chest", DirectionType.EAST, TransitionType.BURROW, Has("Red Astral Platforms") & CanBurrow()),
+    "Astral Orrery Mirror's End Under Red Switch Burrow West": Transition("Astral Orrery Mirror's End Under Red Switch", "Astral Orrery Mirror's End", DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
+    "Astral Orrery Mirror's End Under Red Switch East Burrow": Transition("Astral Orrery Mirror's End Under Red Switch", "Astral Orrery Mirror's End Red Chest", DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
     'Astral Orrery Mutant Lab Dungeon': Transition('Astral Orrery Mutant Lab', 'Astral Orrery Mutant Lab End', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanCarry() & CanBurrow()),
     'Astral Orrery Mutant Lab End Mirror': Transition('Astral Orrery Mutant Lab End', 'Astral Orrery Stellarium Mutant Switch', DirectionType.ASTRAL, TransitionType.MIRRORS),
     'Astral Orrery Mutant Lab Pipe': Transition('Astral Orrery Mutant Lab', 'Astral Orrery Stellarium', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
@@ -130,5 +139,5 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Stellarium Scholars Pipe': Transition('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Hall Of Scholars', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanClimb()),
     'Astral Orrery Stellarium Scholars Switch Mirror': Transition('Astral Orrery Stellarium Scholars Switch', 'Astral Orrery Hall Of Scholars End', DirectionType.ASTRAL, TransitionType.MIRRORS),
     'Astral Orrery Stellarium Stairs': Transition('Astral Orrery Stellarium', "Astral Orrery Mirror's End Moving Stairs", DirectionType.NORTH, TransitionType.STAIRS),
-    'Astral Orrery Under Coltrane Peak Mirror West Burrow': Transition('Astral Orrery Under Coltrane Peak Mirror', 'Astral Orrery Coltrane Peak Mirror', DirectionType.WEST, TransitionType.BURROW, Has("Purple Astral Platforms") | CanJumpTiles(distance=5)),
+    'Astral Orrery Under Coltrane Peak Mirror West Burrow': Transition('Astral Orrery Under Coltrane Peak Mirror', 'Astral Orrery Coltrane Peak Mirror', DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
 }

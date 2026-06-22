@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -190,11 +199,11 @@ transitions: dict[str, Transition] = {
     'Radiant Manor Rooftop Panels Bush West West Transition': Transition('Radiant Manor Rooftop Panels Bush West', 'Radiant Manor Rooftop Greenhouse', DirectionType.WEST, TransitionType.SCREENS),
     'Radiant Manor Rooftop Panels East Transition': Transition('Radiant Manor Rooftop Panels East', 'Radiant Manor Rooftop East Gap', DirectionType.EAST, TransitionType.SCREENS, CanJumpTiles(distance=2)),
     'Radiant Manor Rooftop Panels West West Transition': Transition('Radiant Manor Rooftop Panels West', 'Radiant Manor Rooftop Panels Bush East', DirectionType.WEST, TransitionType.SCREENS),
-    "Radiant Manor Servant's Arena South Transition": Transition("Radiant Manor Servant's Arena", "Radiant Manor Servant's Quarters", DirectionType.SOUTH, TransitionType.SCREENS),
-    "Radiant Manor Servant's Arena Stairs": Transition("Radiant Manor Servant's Arena", 'Radiant Manor Rooftop Ledge', DirectionType.NORTH, TransitionType.STAIRS),
+    "Radiant Manor Servant's Arena South Transition": Transition("Radiant Manor Servant's Arena", "Radiant Manor Servant's Quarters", DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=40)),
+    "Radiant Manor Servant's Arena Stairs": Transition("Radiant Manor Servant's Arena", 'Radiant Manor Rooftop Ledge', DirectionType.NORTH, TransitionType.STAIRS, PowerLevelThreshold(power=40)),
     "Radiant Manor Servant's Quarters North Transition": Transition("Radiant Manor Servant's Quarters", "Radiant Manor Servant's Arena", DirectionType.NORTH, TransitionType.SCREENS),
     "Radiant Manor Servant's Quarters West Transition": Transition("Radiant Manor Servant's Quarters", 'Radiant Manor Gallery Right', DirectionType.WEST, TransitionType.SCREENS),
-    'Radiant Manor Study North': Transition('Radiant Manor Study', 'Radiant Manor Prime Generator', DirectionType.NORTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
-    'Radiant Manor Study South': Transition('Radiant Manor Study', 'Radiant Manor Generator Core Underlab', DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE),
+    'Radiant Manor Study North': Transition('Radiant Manor Study', 'Radiant Manor Prime Generator', DirectionType.NORTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, PowerLevelThreshold(power=50)),
+    'Radiant Manor Study South': Transition('Radiant Manor Study', 'Radiant Manor Generator Core Underlab', DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, PowerLevelThreshold(power=50)),
     'Radiant Manor West Chamber Burrow South': Transition('Radiant Manor West Chamber', 'Radiant Manor Ballroom', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
 }

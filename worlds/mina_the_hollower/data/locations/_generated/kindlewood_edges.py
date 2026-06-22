@@ -6,14 +6,23 @@
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
-    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce,
+    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
     HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch,
-   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale,
+   AnyThreeAstralPlatforms, HasRepairedAllGenerators, InFinale, HasKear, 
    HasRepairedSolemnGenerator, HasRepairedSwampyGenerator, HasRepairedWindyGenerator,
    HasRepairedShorelineGenerator, HasRepairedFrozenGenerator, HasRepairedStarryGenerator,
+)
+from ...items.game_items import (
+   PermanentUpgrades, PlayerUpgrades, Trinkets
+)
+from ...items.kears import (
+   SingleKears,
+)
+from ...items.blockers import (
+   AstralPlatforms,
 )
 
 
@@ -55,9 +64,9 @@ connections: dict[str, RegionConnection] = {
     'Kindlewood Farm Crossing Entrance_Kindlewood Farm Crossing': RegionConnection('Kindlewood Farm Crossing Entrance', 'Kindlewood Farm Crossing', CanBurrow()),
     'Kindlewood Farm Crossing Entrance_Kindlewood Farm Crossing Pumpkin Patch': RegionConnection('Kindlewood Farm Crossing Entrance', 'Kindlewood Farm Crossing Pumpkin Patch', CanBurrow()),
     'Kindlewood Farm Crossing Pumpkin Patch_Kindlewood Farm Crossing Entrance': RegionConnection('Kindlewood Farm Crossing Pumpkin Patch', 'Kindlewood Farm Crossing Entrance', CanBurrow()),
-    'Kindlewood Farm Crossing Shack Outside_Kindlewood Farm Tomato': RegionConnection('Kindlewood Farm Crossing Shack Outside', 'Kindlewood Farm Tomato', Has("Kindlewood Tomato Patch Kear")),
+    'Kindlewood Farm Crossing Shack Outside_Kindlewood Farm Tomato': RegionConnection('Kindlewood Farm Crossing Shack Outside', 'Kindlewood Farm Tomato', HasKear(kear=SingleKears.KINDLEWOOD_TOMATO_PATCH_KEAR.value)),
     'Kindlewood Farm Crossing_Kindlewood Farm Crossing Entrance': RegionConnection('Kindlewood Farm Crossing', 'Kindlewood Farm Crossing Entrance', CanBurrow()),
-    'Kindlewood Farm Tomato_Kindlewood Farm Crossing Shack Outside': RegionConnection('Kindlewood Farm Tomato', 'Kindlewood Farm Crossing Shack Outside', Has("Kindlewood Tomato Patch Kear")),
+    'Kindlewood Farm Tomato_Kindlewood Farm Crossing Shack Outside': RegionConnection('Kindlewood Farm Tomato', 'Kindlewood Farm Crossing Shack Outside', HasKear(kear=SingleKears.KINDLEWOOD_TOMATO_PATCH_KEAR.value)),
     'Kindlewood Farm Tomato_Kindlewood Train Tracks': RegionConnection('Kindlewood Farm Tomato', 'Kindlewood Train Tracks', CanBurrow()),
     'Kindlewood Overgrowth Behind Residence Lawn_Kindlewood Overgrowth Behind Residence': RegionConnection('Kindlewood Overgrowth Behind Residence Lawn', 'Kindlewood Overgrowth Behind Residence', CanCarry()),
     'Kindlewood Overgrowth Behind Residence_Kindlewood Overgrowth Behind Residence Lawn': RegionConnection('Kindlewood Overgrowth Behind Residence', 'Kindlewood Overgrowth Behind Residence Lawn'),
@@ -71,13 +80,13 @@ connections: dict[str, RegionConnection] = {
     'Kindlewood Rail Tunnel_Kindlewood Rail Tunnel Tracks': RegionConnection('Kindlewood Rail Tunnel', 'Kindlewood Rail Tunnel Tracks', CanBurrow() & CanClimb()),
     'Kindlewood Wallowers Path End_Kindlewood Wallowers Path': RegionConnection('Kindlewood Wallowers Path End', 'Kindlewood Wallowers Path', CanBurrow()),
     "Kindlewood Wallowers Path_Kindlewood Wallower's Path Cliff Bush": RegionConnection('Kindlewood Wallowers Path', "Kindlewood Wallower's Path Cliff Bush", CanBurrow()),
-    'Kindlewood Wallowers Path_Kindlewood Wallowers Path End': RegionConnection('Kindlewood Wallowers Path', 'Kindlewood Wallowers Path End', Has("WallowersGauntlets") | CanJumpTiles(distance=7)),
+    'Kindlewood Wallowers Path_Kindlewood Wallowers Path End': RegionConnection('Kindlewood Wallowers Path', 'Kindlewood Wallowers Path End', Has(Trinkets.WALLOWERS_GAUNTLETS.value) | CanJumpTiles(distance=7)),
 }
 
 transitions: dict[str, Transition] = {
-    'Kindlewood Behind Madd House South Burrow': Transition('Kindlewood Behind Madd House', 'Kindlewood Overgrowth Madd Arena', DirectionType.SOUTH, TransitionType.BURROW),
+    'Kindlewood Behind Madd House South Burrow': Transition('Kindlewood Behind Madd House', 'Kindlewood Overgrowth Madd Arena', DirectionType.SOUTH, TransitionType.BURROW, PowerLevelThreshold(power=25)),
     'Kindlewood Farm Crossing Above School East Burrow': Transition('Kindlewood Farm Crossing Above School', 'Kindlewood Farm Crossing Pumpkin Patch', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
-    'Kindlewood Farm Crossing Do_Not_Randomize_Entrance': Transition('Kindlewood Farm Crossing', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has("TrainPass") & Has("SeptemburgTicket")),
+    'Kindlewood Farm Crossing Do_Not_Randomize_Entrance': Transition('Kindlewood Farm Crossing', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has(PermanentUpgrades.TRAIN_PASS.value) & Has(PermanentUpgrades.SEPTEMBURG_TICKET.value)),
     'Kindlewood Farm Crossing Pumpkin Patch North Burrow': Transition('Kindlewood Farm Crossing Pumpkin Patch', 'Kindlewood Farm Crossing Shack', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
     'Kindlewood Farm Crossing Pumpkin Patch West Burrow': Transition('Kindlewood Farm Crossing Pumpkin Patch', 'Kindlewood Farm Crossing Above School', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Kindlewood Farm Crossing Shack East Burrow': Transition('Kindlewood Farm Crossing Shack', 'Kindlewood Farm Crossing Shack Outside', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
@@ -95,11 +104,11 @@ transitions: dict[str, Transition] = {
     'Kindlewood Overgrowth Bonfire Top North Transition': Transition('Kindlewood Overgrowth Bonfire Top', 'Kindlewood Overgrowth Madd Arena', DirectionType.NORTH, TransitionType.SCREENS),
     'Kindlewood Overgrowth Entry Main East Area Transition': Transition('Kindlewood Overgrowth Entry Main', 'Western Wilds Brutes', DirectionType.EAST, TransitionType.AREA_SCREENS, CanBurrow()),
     'Kindlewood Overgrowth Entry Upper Left North Burrow': Transition('Kindlewood Overgrowth Entry Upper Left', 'Kindlewood Overgrowth Bonfire Left', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
-    'Kindlewood Overgrowth Madd Arena Bottom West Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Farm Crossing Entrance', DirectionType.WEST, TransitionType.SCREENS),
-    'Kindlewood Overgrowth Madd Arena Doors': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Overgrowth Madd House', DirectionType.NORTH, TransitionType.DOORS),
-    'Kindlewood Overgrowth Madd Arena North Burrow': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Behind Madd House', DirectionType.NORTH, TransitionType.BURROW, CanCarry() & CanBurrow() & HasAccessToTorch()),
-    'Kindlewood Overgrowth Madd Arena South Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Overgrowth Bonfire Top', DirectionType.SOUTH, TransitionType.SCREENS),
-    'Kindlewood Overgrowth Madd Arena Top West Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Farm Crossing Entrance', DirectionType.WEST, TransitionType.SCREENS),
+    'Kindlewood Overgrowth Madd Arena Bottom West Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Farm Crossing Entrance', DirectionType.WEST, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
+    'Kindlewood Overgrowth Madd Arena Doors': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Overgrowth Madd House', DirectionType.NORTH, TransitionType.DOORS, PowerLevelThreshold(power=25)),
+    'Kindlewood Overgrowth Madd Arena North Burrow': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Behind Madd House', DirectionType.NORTH, TransitionType.BURROW, CanCarry() & CanBurrow() & HasAccessToTorch() & PowerLevelThreshold(power=25)),
+    'Kindlewood Overgrowth Madd Arena South Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Overgrowth Bonfire Top', DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
+    'Kindlewood Overgrowth Madd Arena Top West Transition': Transition('Kindlewood Overgrowth Madd Arena', 'Kindlewood Farm Crossing Entrance', DirectionType.WEST, TransitionType.SCREENS, PowerLevelThreshold(power=25)),
     'Kindlewood Overgrowth Madd House Doors': Transition('Kindlewood Overgrowth Madd House', 'Kindlewood Overgrowth Madd Arena', DirectionType.SOUTH, TransitionType.DOORS),
     'Kindlewood Overgrowth Residence Barn Burrow North Burrow': Transition('Kindlewood Overgrowth Residence Barn Burrow', 'Kindlewood Overgrowth Behind Residence Lawn', DirectionType.NORTH, TransitionType.BURROW, CanBurrow()),
     'Kindlewood Overgrowth Residence Barn Doors': Transition('Kindlewood Overgrowth Residence Barn', 'Kindlewood Overgrowth Residence Yard', DirectionType.SOUTH, TransitionType.DOORS),
