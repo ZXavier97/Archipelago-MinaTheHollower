@@ -46,7 +46,7 @@ base_items: list[ItemData] = [
     ItemData(PlayerUpgrades.JOULE_BOX,2),
     ItemData(PlayerUpgrades.HEALING_VIAL, 3),
     ItemData(PlayerUpgrades.SPARK_CONTAINER, 1),
-    ItemData(Weapons.NIGHTSTAR, 1),
+    # ItemData(Weapons.NIGHTSTAR, 1),
     # ItemData(PlayerUpgrades.HEALING_VIAL_POUCH, 1), NEED TO STOP THE GIVING OF
 ]
 
