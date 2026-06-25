@@ -1,5 +1,57 @@
 [
     {
+        "name": "Pay Back Loan",
+        "sections": [
+            {"name": "OS Courtyard East Deboning Wand"}
+        ],
+        "map_locations": [
+            {
+                "map": "Ossex Courtyard",
+                "x": 1653,
+                "y": 222
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "OS Courtyard West Weapon Upgrade"}
+        ],
+        "map_locations": [
+            {
+                "map": "Ossex Courtyard",
+                "x": 1653,
+                "y": 222
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "OS Courtyard Garden Warding Beastium"}
+        ],
+        "map_locations": [
+            {
+                "map": "Ossex Courtyard",
+                "x": 2256,
+                "y": 77
+            }
+        ]
+    },,
+    {
+        "name": "Defeat Evra",
+        "sections": [
+            {"name": "OS Evra's Rest Health Rose"}
+        ],
+        "map_locations": [
+            {
+                "map": "Ossex Goddred's Tomb",
+                "x": 446,
+                "y": 414
+            }
+        ]
+    },
+    {
         "name": "On East House Balcony",
         "sections": [
             {"name": "OS City Center Steady Soles"}
@@ -12,19 +64,7 @@
             }
         ]
     },
-    {
-        "name": "East Courtyard",
-        "sections": [
-            {"name": "OS Courtyard East Deboning Wand"}
-        ],
-        "map_locations": [
-            {
-                "map": "Ossex",
-                "x": 1700,
-                "y": 235
-            }
-        ]
-    },
+
     {
         "name": "Legovich's Arms",
         "sections": [

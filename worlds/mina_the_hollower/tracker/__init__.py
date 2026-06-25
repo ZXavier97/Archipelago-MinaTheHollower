@@ -88,6 +88,30 @@ under_eastern_hearth: dict[int, int] = {
     21:0
 }
 
+courtyard: dict[int, int] = {
+    10:0,
+    11:0,
+    12:0,
+    20:0,
+    4:1,
+    5:1,
+    6:1
+}
+balcony: dict[int, int] = {
+    10:0,
+    15:0,
+}
+goddred_tomb: dict[int, int] = {
+    0:0,
+    1:0,
+    2:0,
+    3:0,
+}
+
+high_street_r_bottom: dict[int, int] = {
+    35:0,
+}
+
 @dataclasses.dataclass
 class MapData():
     lookup: dict[int, int]
@@ -101,6 +125,10 @@ area_id_to_map: dict[int, MapData] = {
     54: MapData(eastern_hearth, 13),
     53: MapData(under_eastern_hearth, 16),
     52: MapData(cave_eastern_hearth, 16),
+    144: MapData(balcony, 17),
+    153: MapData(courtyard, 17),
+    147: MapData(goddred_tomb, 18),
+    161: MapData(high_street_r_bottom, 19),
 
 }
 
