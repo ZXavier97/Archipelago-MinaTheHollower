@@ -51,19 +51,21 @@ class AbilityRando(OptionSet):
     - **Swim** - The ability to swim (burrow in deep water).
     - **Climb** - The ability to climb ropes.
     - **Bounce** - The ability to bounce on bounce plants and springboards.
+    - **Spring** - The ability to be launched by springboards.
     - **Carry** - The ability to carry objects.
     """
     display_name = "Abilty Rando"
-    default = ["Burrow", "Swim", "Climb", "Bounce", "Carry"]
-    valid_keys = ["Burrow", "Swim", "Climb", "Bounce", "Carry"]
+    default = ["Burrow", "Swim", "Climb", "Bounce", "Carry", "Spring"]
+    valid_keys = ["Burrow", "Swim", "Climb", "Bounce", "Carry", "Spring"]
 
 
 ABILITY_RANDO_SLOT_KEYS = {
     "Burrow": ["burrow_rando"],
     "Swim": ["swim_rando"],
     "Climb": ["rope_rando"],
-    "Bounce": ["puff_rando", "spring_rando"],
+    "Bounce": ["puff_rando"],
     "Carry": ["carry_rando"],
+    "Spring": ["spring_rando"]
 }
 
 class RandomizeEntrances(OptionSet):

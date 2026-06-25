@@ -25,10 +25,6 @@ def create_items(world):
             for i in range(item.amount):
                 starting_items.append(Item(item.type.value, item.type.classification, item.type.item_id, world.player))
     for item_type in Abilities:
-        # Spring is folded into Bounce for now
-        # TODO: Add Spring as a seperate ability and account for it in logic
-        if item_type is Abilities.SPRING:
-            continue
         if item_type.value in world.options.ability_rando.value:
             create_single_item(world, item_type)
         else:

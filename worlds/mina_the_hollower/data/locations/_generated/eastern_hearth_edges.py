@@ -7,7 +7,7 @@ from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
     CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
-    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, 
+    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, 
@@ -38,6 +38,7 @@ regions: set[str] = {
     'Eastern Hearth East Corner',
     'Eastern Hearth East Corner Cliff',
     'Eastern Hearth Frozen Pass',
+    'Eastern Hearth Frozen Pass Top',
     'Eastern Hearth Grassland',
     'Eastern Hearth Grassland Bridge Left',
     'Eastern Hearth Grassland Bridge Right',
@@ -71,6 +72,7 @@ connections: dict[str, RegionConnection] = {
     "Eastern Hearth Buckler's Bluff Start_Eastern Hearth Buckler's Bluff Cliff": RegionConnection("Eastern Hearth Buckler's Bluff Start", "Eastern Hearth Buckler's Bluff Cliff", CanJumpTiles(distance=4)),
     'Eastern Hearth Choppe Shoppe Entry_Eastern Hearth Choppe Shoppe Entry Cliff': RegionConnection('Eastern Hearth Choppe Shoppe Entry', 'Eastern Hearth Choppe Shoppe Entry Cliff'),
     'Eastern Hearth East Corner Cliff_Eastern Hearth East Corner': RegionConnection('Eastern Hearth East Corner Cliff', 'Eastern Hearth East Corner'),
+    'Eastern Hearth Frozen Pass Top_Eastern Hearth Frozen Pass': RegionConnection('Eastern Hearth Frozen Pass Top', 'Eastern Hearth Frozen Pass'),
     'Eastern Hearth Grassland Bridge Right_Eastern Hearth Grassland Bridge Left': RegionConnection('Eastern Hearth Grassland Bridge Right', 'Eastern Hearth Grassland Bridge Left'),
     'Eastern Hearth Grassland Waterfall Bottom_Eastern Hearth Grassland Waterfall Mountain': RegionConnection('Eastern Hearth Grassland Waterfall Bottom', 'Eastern Hearth Grassland Waterfall Mountain', CanSwim()),
     'Eastern Hearth Grassland Waterfall Mountain_Eastern Hearth Grassland Waterfall Second Level': RegionConnection('Eastern Hearth Grassland Waterfall Mountain', 'Eastern Hearth Grassland Waterfall Second Level'),
@@ -90,6 +92,7 @@ transitions: dict[str, Transition] = {
     'Eastern Hearth East Corner South Transition': Transition('Eastern Hearth East Corner', 'Eastern Hearth Poppet Entry', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth East Corner West Transition': Transition('Eastern Hearth East Corner', 'Eastern Hearth Grassland Bridge Right', DirectionType.WEST, TransitionType.SCREENS),
     'Eastern Hearth Frozen Pass South Transition': Transition('Eastern Hearth Frozen Pass', 'Eastern Hearth Grassland Waterfall Second Level', DirectionType.SOUTH, TransitionType.SCREENS),
+    'Eastern Hearth Frozen Pass Top North Area Transition': Transition('Eastern Hearth Frozen Pass Top', 'Coltrane Peak Frozen Pass', DirectionType.NORTH, TransitionType.AREA_SCREENS),
     'Eastern Hearth Grassland Bridge Left North Transition': Transition('Eastern Hearth Grassland Bridge Left', 'Eastern Hearth Grassland Waterfall Bottom', DirectionType.NORTH, TransitionType.SCREENS),
     'Eastern Hearth Grassland Bridge Left South Transition': Transition('Eastern Hearth Grassland Bridge Left', 'Eastern Hearth Grassland Riverbed Top', DirectionType.SOUTH, TransitionType.SCREENS),
     'Eastern Hearth Grassland Bridge Left West Transition': Transition('Eastern Hearth Grassland Bridge Left', 'Eastern Hearth Grassland', DirectionType.WEST, TransitionType.SCREENS),

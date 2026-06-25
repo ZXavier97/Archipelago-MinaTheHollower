@@ -26,7 +26,7 @@ IMPORTS = (
     "from ... import RegionConnection, Transition, DirectionType, TransitionType\n"
     "from ...rules.ability_rules import (\n"
     "    CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,\n"
-    "    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, \n"
+    "    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, \n"
     ")\n"
     "from ...rules.state_rules import (\n"
     "   HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, \n"

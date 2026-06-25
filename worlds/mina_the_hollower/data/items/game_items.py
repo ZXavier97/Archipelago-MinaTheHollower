@@ -25,35 +25,35 @@ class Sidearms(ItemTypeEnum):
 
 class PermanentUpgrades(ItemTypeEnum):
     HEALING_VIAL_POUCH = ("Healing Vial Pouch", 18, ItemClassification.progression)
-    CANDLE_VISION = ("Candle Vision",74, ItemClassification.progression)
-    WORLD_MAP = ("World Map",75, ItemClassification.progression)
-    ENHANCED_MAP = ("EnhancedMap",76, ItemClassification.progression)
-    RADAR_MAP = ("RadarMap",77, ItemClassification.progression)
+    CANDLE_VISION = ("Candle Vision",74, ItemClassification.useful)
+    WORLD_MAP = ("World Map",75, ItemClassification.useful)
+    ENHANCED_MAP = ("EnhancedMap",76, ItemClassification.useful)
+    RADAR_MAP = ("RadarMap",77, ItemClassification.useful)
     DOUBLE_SIDEARM_PERMIT = ("Double Side Arm Permit",78, ItemClassification.progression)
     VITALITY_VEST = ("Vitality Vest",79, ItemClassification.progression)
     SAFETY_SHROUD = ("Safety Shroud",80, ItemClassification.progression)
-    ARMOR_CUSTOM = ("Armor Custom",81, ItemClassification.progression)
+    ARMOR_CUSTOM = ("Custom Fitting",81, ItemClassification.useful)
     # "ArmorDefault" : ItemData(92, ItemClassification.progression),
     # "ArmorUpgradeAll" : ItemData(93, ItemClassification.progression),
     JOULE_ALMEMBIC = ("Joule Alembic",82, ItemClassification.progression)
     SIDEARM_SAVER = ("Sidearm Saver",83, ItemClassification.progression)
     SIDEARM_KEEPER = ("SidearmKeeper",84, ItemClassification.progression)
-    TRAINING_DUMMY =("TrainingDummy",85, ItemClassification.progression)
-    PHONOGRAPH = ("Phonograph",86, ItemClassification.progression)
-    UNDERLAB_DEFAULT =("Underlab Default" ,120, ItemClassification.progression)
-    UNDERLAB_CRYPT = ("Underlab Crypt" ,121, ItemClassification.progression)
-    UNDERLAB_BAYOU = ("Underlab Bayou" ,122, ItemClassification.progression)
-    UNDERLAB_SEPTEMBURG = ("Underlab Septemburg" ,123, ItemClassification.progression)
-    UNDERLAB_TRAINYARD = ("Underlab Trainyard" ,124, ItemClassification.progression)
-    UNDERLAB_BONE_BEACH = ("Underlab BoneBeach" ,125, ItemClassification.progression)
-    UNDERLAB_ASTRAL = ("Underlab Astral" ,126, ItemClassification.progression)
-    UNDERLAB_MANSION = ("Underlab Mansion" ,127, ItemClassification.progression)
-    UNDERLAB_HUB = ("Underlab HUB" ,128, ItemClassification.progression)
-    UNDERLAB_EAST = ("Underlab East" ,129, ItemClassification.progression)
-    UNDERLAB_WEST = ("Underlab West" ,130, ItemClassification.progression)
-    UNDERLAB_SOUTH = ("Underlab South" ,131, ItemClassification.progression)
-    UNDERLAB_SEWER = ("Underlab Sewer" ,132, ItemClassification.progression)
-    UNDERLAB_GUILD = ("Underlab Guild" ,133, ItemClassification.progression)
+    TRAINING_DUMMY =("TrainingDummy",85, ItemClassification.useful)
+    PHONOGRAPH = ("Phonograph",86, ItemClassification.useful)
+    # UNDERLAB_DEFAULT =("Underlab Default" ,120, ItemClassification.filler)
+    UNDERLAB_CRYPT = ("Underlab Crypt" ,121, ItemClassification.filler)
+    UNDERLAB_BAYOU = ("Underlab Bayou" ,122, ItemClassification.filler)
+    UNDERLAB_SEPTEMBURG = ("Underlab Septemburg" ,123, ItemClassification.filler)
+    UNDERLAB_TRAINYARD = ("Underlab Trainyard" ,124, ItemClassification.filler)
+    UNDERLAB_BONE_BEACH = ("Underlab BoneBeach" ,125, ItemClassification.filler)
+    UNDERLAB_ASTRAL = ("Underlab Astral" ,126, ItemClassification.filler)
+    UNDERLAB_MANSION = ("Underlab Mansion" ,127, ItemClassification.filler)
+    UNDERLAB_HUB = ("Underlab HUB" ,128, ItemClassification.filler)
+    UNDERLAB_EAST = ("Underlab East" ,129, ItemClassification.filler)
+    UNDERLAB_WEST = ("Underlab West" ,130, ItemClassification.filler)
+    UNDERLAB_SOUTH = ("Underlab South" ,131, ItemClassification.filler)
+    UNDERLAB_SEWER = ("Underlab Sewer" ,132, ItemClassification.filler)
+    UNDERLAB_GUILD = ("Underlab Guild" ,133, ItemClassification.filler)
     WIERD_DANCE = ("Weird Dance",90, ItemClassification.useful)
     TRAIN_PASS = ("Train Pass",94, ItemClassification.progression)
     OSSEX_TICKET = ("Ossex Ticket", 95, ItemClassification.progression)
@@ -67,7 +67,7 @@ class PermanentUpgrades(ItemTypeEnum):
     # "EarlyBuy" : ItemData(65, ItemClassification.progression),
     # "Note" : ItemData(66, ItemClassification.progression),
     # "Trinket" : ItemData(67, ItemClassification.progression),
-# "Spark" : ItemData(73, ItemClassification.progression),
+
 # "Upgrade_FishingRod" : ItemData(87, ItemClassification.progression),
     # "FishingUpgrade1" : ItemData(88, ItemClassification.progression),
     # "FishingRodGold" : ItemData(89, ItemClassification.progression),
@@ -169,35 +169,35 @@ class Trinkets(ItemTypeEnum):
 class BoneFiller(ItemTypeEnum):
     # BONE_DUST = ("BoneDust",50, ItemClassification.filler)
     # BONE_STONE = ("Bonestone",51, ItemClassification.filler)
-    BONE_STONE_1 = ("Bonestone01", 52, ItemClassification.filler)
-    BONE_STONE_2 = ("Bonestone02",53, ItemClassification.filler)
-    BONE_STONE_3 = ("Bonestone03",54, ItemClassification.filler)
-    BONE_STONE_4 = ("Bonestone04",55, ItemClassification.filler)
-    BONE_STONE_5 = ("Bonestone05",56, ItemClassification.filler)
-    BONE_STONE_6 = ("Bonestone06",57, ItemClassification.filler)
-    BONE_STONE_7 = ("Bonestone07",58, ItemClassification.filler)
-    BONE_STONE_8 = ("Bonestone08",59, ItemClassification.filler)
-    BONE_STONE_9 = ("Bonestone09",60, ItemClassification.filler)
-    BONE_STONE_10 = ("Bonestone10",61, ItemClassification.filler)
-    TREASURE_SMALLEST = ("TreasureSmallest", 40, ItemClassification.progression)
-    TREASURE_SMALL = ("TreasureSmall", 41, ItemClassification.progression)
-    TREASURE_MEDIUM = ("TreasureMedium", 42, ItemClassification.progression)
-    TREASURE_LARGE = ("TreasureLarge", 43, ItemClassification.progression)
-    TREASURE_LARGEST = ("TreasureLargest", 44, ItemClassification.progression)
-    TREASURE_BOSS = ("TreasureBoss", 45, ItemClassification.progression)
-    TREASURE_GOLD_LARGE = ("TreasureGoldLarge", 46, ItemClassification.progression)
-    TREASURE_GOLD_LARGEST = ("TreasureGoldLargest", 47, ItemClassification.progression)
-    TREASURE_JEWEL_LARGE = ("TreasureJewelLarge", 48, ItemClassification.progression)
-    TREASURE_JEWEL_LARGEST = ("TreasureJewelLargest", 49, ItemClassification.progression)
+    BONE_STONE_1 = ("Bonestone01", 52, ItemClassification.filler) #100
+    BONE_STONE_2 = ("Bonestone02",53, ItemClassification.filler) #200
+    BONE_STONE_3 = ("Bonestone03",54, ItemClassification.filler) #500
+    BONE_STONE_4 = ("Bonestone04",55, ItemClassification.filler) #800
+    BONE_STONE_5 = ("Bonestone05",56, ItemClassification.filler) #1000
+    BONE_STONE_6 = ("Bonestone06",57, ItemClassification.filler) #2000
+    BONE_STONE_7 = ("Bonestone07",58, ItemClassification.filler) #3000
+    BONE_STONE_8 = ("Bonestone08",59, ItemClassification.filler) #4000
+    BONE_STONE_9 = ("Bonestone09",60, ItemClassification.filler) #5000
+    BONE_STONE_10 = ("Bonestone10",61, ItemClassification.filler) #6000
+    TREASURE_SMALLEST = ("TreasureSmallest", 40, ItemClassification.filler) #1
+    TREASURE_SMALL = ("TreasureSmall", 41, ItemClassification.filler) #5
+    TREASURE_MEDIUM = ("TreasureMedium", 42, ItemClassification.filler) #20
+    TREASURE_LARGE = ("TreasureLarge", 43, ItemClassification.filler) #50
+    TREASURE_LARGEST = ("TreasureLargest", 44, ItemClassification.filler) #100
+    TREASURE_BOSS = ("TreasureBoss", 45, ItemClassification.filler) #200
+    TREASURE_GOLD_LARGE = ("TreasureGoldLarge", 46, ItemClassification.filler) #200
+    TREASURE_GOLD_LARGEST = ("TreasureGoldLargest", 47, ItemClassification.filler) #500
+    TREASURE_JEWEL_LARGE = ("TreasureJewelLarge", 48, ItemClassification.filler) #1000
+    TREASURE_JEWEL_LARGEST = ("TreasureJewelLargest", 49, ItemClassification.filler) #2000
     # "BonestoneTower" : ItemData(62, ItemClassification.progression),
-
 
 class JunkFiller(ItemTypeEnum):
     # "HealingVial" : 17
-    HEALING_VIAL_PICKUP = ("Healing Vial Pickup",19, ItemClassification.progression)
-    HEALING_VIAL_PACK_PICKUP = ("HealingVialPackPickup",20, ItemClassification.progression)
-    YELLOW_FLOWER = ("Yellow Flower",35, ItemClassification.progression)
-    RED_FLOWER = ("FishHealthRecovery",36, ItemClassification.progression)
-    MAGIC_SMALL = ("MagicSmall",37, ItemClassification.progression)
-    MAGIC_MEDIUM = ("MagicMedium", 38, ItemClassification.progression)
-    MAGIC_LARGE = ("MagicLarge", 39, ItemClassification.progression)
+    SPARK = ("Spark",73, ItemClassification.filler)
+    HEALING_VIAL_PICKUP = ("Healing Vial Pickup",19, ItemClassification.filler)
+    HEALING_VIAL_PACK_PICKUP = ("HealingVialPackPickup",20, ItemClassification.filler)
+    YELLOW_FLOWER = ("Yellow Flower Heal",35, ItemClassification.filler)
+    RED_FLOWER = ("Red Flower Heal",36, ItemClassification.filler)
+    MAGIC_SMALL = ("MagicSmall",37, ItemClassification.filler)
+    MAGIC_MEDIUM = ("MagicMedium", 38, ItemClassification.filler)
+    MAGIC_LARGE = ("MagicLarge", 39, ItemClassification.filler)
