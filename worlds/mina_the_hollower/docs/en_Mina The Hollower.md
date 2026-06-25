@@ -30,7 +30,7 @@ Find more detailed setup instructions for the mod in the [Mod Readme](https://gi
 
 - [Latest Mod Release](https://github.com/Axertin/mth-apclient/releases/latest)
 
-- [Latest AP Morld release](https://github.com/FyreDay/Archipelago-MinaTheHollower/releases/latest)
+- [Latest AP World release](https://github.com/FyreDay/Archipelago-MinaTheHollower/releases/latest)
 
 1. Download the latest version of the mod. it will be a version.dll for windows, or a libmthap.so for linux
 2. copy the file into the games install folder in steam apps next to the application
