@@ -89,7 +89,7 @@ collectable_locations: dict[str, LocationData] = {
         "OS Trinket Bazaar Lightning Grip" : LocationData(334, "Ossex Trinket Bazaar", HasRepairedWindyGenerator()), #needs save """4""" students,
         "OS Train Private Cabin Chest" : LocationData(360, "Ossex Train Private Cabin Left", CanBurrow() & HasKear(kear=SingleKears.OSSEX_TRAIN_KEAR_1.value)), #needs burrow, 1 kear,
         "OS Train Private Cabin Safety Shroud" : LocationData(357, "Ossex Train Private Cabin Left", CanBurrow() & HasKear(kear=SingleKears.OSSEX_TRAIN_KEAR_1.value) & HasKear(kear=SingleKears.OSSEX_TRAIN_KEAR_2.value) ),
-    "OS Forgotten Cave Disturbing Dance" : LocationData(351, "Ossex City Center Main", CanBurrow() & CanBounce() & CanClimb()),
+    # "OS Forgotten Cave Disturbing Dance" : LocationData(351, "Ossex City Center Main", CanBurrow() & CanBounce() & CanClimb()),
 }
 
 boss_locations: dict[str, LocationData] = {
