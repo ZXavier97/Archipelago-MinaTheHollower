@@ -103,7 +103,7 @@ transitions: dict[str, Transition] = {
     'Sandfalls Sifted Sands Funnel Geyser Down': Transition('Sandfalls Sifted Sands Funnel', 'Sandfalls Ring Dive Parlor', DirectionType.OVERWORLD, TransitionType.GEYSER_DOWN, True_()),
     'Sandfalls Sifted Sands Hidden Left Bomb South Transition': Transition('Sandfalls Sifted Sands Hidden Left Bomb', 'Sandfalls Spike Squares', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Sandfalls Sifted Sands North Transition': Transition('Sandfalls Sifted Sands', 'Sandfalls Mining Outlook', DirectionType.NORTH, TransitionType.SCREENS, True_()),
-    'Sandfalls Sifted Sands Pachinko Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Pachinko', DirectionType.NORTH, TransitionType.DOORS, CanBurrow() & CanCarry() & HasKear(kear=SingleKears.SANDFALL_CAVE_KEAR.value)),
+    'Sandfalls Sifted Sands Pachinko Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Pachinko', DirectionType.NORTH, TransitionType.DOORS, HasKear(kear=SingleKears.SANDFALL_CAVE_KEAR.value)),
     'Sandfalls Sifted Sands Payload West Burrow 1': Transition('Sandfalls Sifted Sands', 'Sandfalls Payload Passage', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Sandfalls Sifted Sands Payload West Burrow 2': Transition('Sandfalls Sifted Sands', 'Sandfalls Payload Passage', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
     'Sandfalls Sifted Sands Shifty Cave': Transition('Sandfalls Sifted Sands', 'Sandfalls Shifty Seclusion', DirectionType.NORTH, TransitionType.DOORS, CanBurrow() & CanCarry()),
