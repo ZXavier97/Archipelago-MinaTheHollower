@@ -176,26 +176,26 @@ class Trinkets(ItemTypeEnum):
 class BoneFiller(ItemTypeEnum):
     # BONE_DUST = ("BoneDust",50, ItemClassification.filler)
     # BONE_STONE = ("Bonestone",51, ItemClassification.filler)
-    BONE_STONE_1 = ("Bonestone01", 52, ItemClassification.filler) #100
-    BONE_STONE_2 = ("Bonestone02",53, ItemClassification.filler) #200
-    BONE_STONE_3 = ("Bonestone03",54, ItemClassification.filler) #500
-    BONE_STONE_4 = ("Bonestone04",55, ItemClassification.filler) #800
-    BONE_STONE_5 = ("Bonestone05",56, ItemClassification.filler) #1000
-    BONE_STONE_6 = ("Bonestone06",57, ItemClassification.filler) #2000
-    BONE_STONE_7 = ("Bonestone07",58, ItemClassification.filler) #3000
-    BONE_STONE_8 = ("Bonestone08",59, ItemClassification.filler) #4000
-    BONE_STONE_9 = ("Bonestone09",60, ItemClassification.filler) #5000
-    BONE_STONE_10 = ("Bonestone10",61, ItemClassification.filler) #6000
-    TREASURE_SMALLEST = ("TreasureSmallest", 40, ItemClassification.filler) #1
-    TREASURE_SMALL = ("TreasureSmall", 41, ItemClassification.filler) #5
-    TREASURE_MEDIUM = ("TreasureMedium", 42, ItemClassification.filler) #20
-    TREASURE_LARGE = ("TreasureLarge", 43, ItemClassification.filler) #50
-    TREASURE_LARGEST = ("TreasureLargest", 44, ItemClassification.filler) #100
-    TREASURE_BOSS = ("TreasureBoss", 45, ItemClassification.filler) #200
-    TREASURE_GOLD_LARGE = ("TreasureGoldLarge", 46, ItemClassification.filler) #200
-    TREASURE_GOLD_LARGEST = ("TreasureGoldLargest", 47, ItemClassification.filler) #500
-    TREASURE_JEWEL_LARGE = ("TreasureJewelLarge", 48, ItemClassification.filler) #1000
-    TREASURE_JEWEL_LARGEST = ("TreasureJewelLargest", 49, ItemClassification.filler) #2000
+    BONE_STONE_1 = ("100 Bonestone", 52, ItemClassification.filler) #100
+    BONE_STONE_2 = ("200 Bonestone",53, ItemClassification.filler) #200
+    BONE_STONE_3 = ("500 Bonestone",54, ItemClassification.filler) #500
+    BONE_STONE_4 = ("800 Bonestone",55, ItemClassification.filler) #800
+    BONE_STONE_5 = ("1000 Bonestone",56, ItemClassification.filler) #1000
+    BONE_STONE_6 = ("2000 Bonestone",57, ItemClassification.filler) #2000
+    BONE_STONE_7 = ("3000 Bonestone",58, ItemClassification.filler) #3000
+    BONE_STONE_8 = ("4000 Bonestone",59, ItemClassification.filler) #4000
+    BONE_STONE_9 = ("5000 Bonestone",60, ItemClassification.filler) #5000
+    BONE_STONE_10 = ("6000 Bonestone",61, ItemClassification.filler) #6000
+    TREASURE_SMALLEST = ("TreasureSmallest (1)", 40, ItemClassification.filler) #1
+    TREASURE_SMALL = ("TreasureSmall (5)", 41, ItemClassification.filler) #5
+    TREASURE_MEDIUM = ("TreasureMedium (20)", 42, ItemClassification.filler) #20
+    TREASURE_LARGE = ("TreasureLarge (50)", 43, ItemClassification.filler) #50
+    TREASURE_LARGEST = ("TreasureLargest (100)", 44, ItemClassification.filler) #100
+    TREASURE_BOSS = ("TreasureBoss (200)", 45, ItemClassification.filler) #200
+    TREASURE_GOLD_LARGE = ("TreasureGoldLarge (200)", 46, ItemClassification.filler) #200
+    TREASURE_GOLD_LARGEST = ("TreasureGoldLargest (500)", 47, ItemClassification.filler) #500
+    TREASURE_JEWEL_LARGE = ("TreasureJewelLarge (1000)", 48, ItemClassification.filler) #1000
+    TREASURE_JEWEL_LARGEST = ("TreasureJewelLargest (2000)", 49, ItemClassification.filler) #2000
     # "BonestoneTower" : ItemData(62, ItemClassification.progression),
 
 class JunkFiller(ItemTypeEnum):

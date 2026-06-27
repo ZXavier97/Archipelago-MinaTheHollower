@@ -12,7 +12,7 @@ collectable_locations: dict[str, LocationData] = {
     "WW Occupied Bridge Brute Chest" : LocationData(253, "Western Wilds Brutes"),
     "WW Occupied Bridge Far Chest" : LocationData(250, "Western Wilds End", CanBurrow()),
     "WW Occupied Bridge Dead Leaf" : LocationData(245, "Western Wilds Brutes", CanBurrow() & CanCarry()), #needs kill the other leaf,
-    "WW Occupied Bridge Cuddlepus Shell" : LocationData(259, "Western Wilds Western Pond", HasFishingRod()),
+    "WW Occupied Bridge Cuddlepus Shell" : LocationData(259, "Western Wilds Main", HasFishingRod()),
     "WW Occupied Bridge Underneath Chest" : LocationData(252, "Western Wilds Foundry Path", CanBurrow()),
     "WW Molten Foundry Poppit Helio" : LocationData(256, "Western Wilds Molten Foundry Dark Poppit"),
     "WW Molten Foundry Poppit Kear" : LocationData(257, "Western Wilds Molten Foundry Dark Poppit"),

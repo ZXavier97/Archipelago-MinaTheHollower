@@ -95,7 +95,9 @@ base_movement_items: list[ItemMovement] = [
     ItemMovement(Abilities.BURROW, 2),
     ItemMovement(Trinkets.BRIDGE_WEAVER, 2),
     ItemMovement(Sidearms.DEFLECTOR_PARASOL, 3),
-    ItemMovement(Sidearms.IRON_STEED, 5),
+    ItemMovement(Sidearms.DRIVER_DRILL, 4),
+    ItemMovement(Sidearms.IRON_STEED, 4),
+    ItemMovement(Sidearms.MIST_JAR, 2),
 ]
 
 all_movement_items: list[ItemMovement] = [

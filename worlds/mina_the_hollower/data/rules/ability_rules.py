@@ -120,6 +120,9 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
             if base_needs_trinket:
                 trinket_slots -= 1
 
+            if state.has(Trinkets.BRIDGE_WEAVER.value, self.player) and state.has(Sidearms.DEFLECTOR_PARASOL.value, self.player):
+                best_distance = 5
+
             additive_bonus = 0
 
             for movement_item in additive_movement_items:

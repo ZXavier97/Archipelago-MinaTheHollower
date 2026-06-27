@@ -1,3 +1,4 @@
+from BaseClasses import LocationProgressType
 from rule_builder.rules import Has
 
 from ... import LocationData
@@ -54,11 +55,11 @@ collectable_locations: dict[str, LocationData] = {
         "OS Emporium Vial Pouch #2" : LocationData(190, "Ossex Emporium", item_rule=lambda item: item.name not in ABILITY_NAMES),
         "OS Emporium Vial Pouch #3" : LocationData(191, "Ossex Emporium", item_rule=lambda item: item.name not in ABILITY_NAMES),
         "OS Emporium Spark Container" : LocationData(192, "Ossex Emporium"),
-        "OS Legovich's Arms Whip" : LocationData(174, "Ossex Legovich's Arms", HasRepairedOneGenerator()),
-        "OS Legovich's Arms Hammer" : LocationData(175, "Ossex Legovich's Arms", HasRepairedOneGenerator()),
-        "OS Legovich's Arms Daggers" : LocationData(176, "Ossex Legovich's Arms", HasRepairedOneGenerator()),
-        "OS Legovich's Arms Guardian Casket" : LocationData(178, "Ossex Legovich's Arms", HasRepairedOneGenerator()),
-        "OS Legovich's Arms Battery Buster" : LocationData(177, "Ossex Legovich's Arms", HasRepairedOneGenerator()),
+        "OS Legovich's Arms Whip" : LocationData(174, "Ossex Legovich's Arms", HasRepairedOneGenerator(), progress_type=LocationProgressType.EXCLUDED),
+        "OS Legovich's Arms Hammer" : LocationData(175, "Ossex Legovich's Arms", HasRepairedOneGenerator(), progress_type=LocationProgressType.EXCLUDED),
+        "OS Legovich's Arms Daggers" : LocationData(176, "Ossex Legovich's Arms", HasRepairedOneGenerator(), progress_type=LocationProgressType.EXCLUDED),
+        "OS Legovich's Arms Guardian Casket" : LocationData(178, "Ossex Legovich's Arms", HasRepairedOneGenerator(), progress_type=LocationProgressType.EXCLUDED),
+        "OS Legovich's Arms Battery Buster" : LocationData(177, "Ossex Legovich's Arms", HasRepairedOneGenerator(), progress_type=LocationProgressType.EXCLUDED),
         "OS Gutterways Bonestone" : LocationData(172, "Ossex Gutterways", Has(Sidearms.IRON_STEED.value)),
         "OS High Street Valor Medallion" : LocationData(154, "Ossex High Street SE Garden", CanCarry()),
         "OS High Street Sewer Chest" : LocationData(164, "Ossex High Street Sewer"),

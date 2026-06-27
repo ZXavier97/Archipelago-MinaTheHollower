@@ -9,7 +9,7 @@ from ...rules.state_rules import HasRepairedSolemnGenerator, HasKear, HasRepaire
 
 collectable_locations: dict[str, LocationData] = {
     "EH Grassland Trinket Bag" : LocationData(221, "Eastern Heath Grassland", HasRepairedOneGenerator()),
-    "EH Grassland Dork Eyes" : LocationData(241, "Eastern Heath Grassland Bridge Right", HasFishingRod()), #needs fishing rod,
+    "EH Grassland Dork Eyes" : LocationData(241, "Eastern Heath Grassland Bridge Left", HasFishingRod()), #needs fishing rod,
     "EH Grassland Ossex Patio Chest" : LocationData(231, "Eastern Heath I Screen", CanBurrow()),
     "EH Grassland Bush Room Bonestone" : LocationData(236, "Eastern Heath Bush Room", HasKear(kear=SingleKears.EASTERN_HEATH_GRASSLAND_BUSHROOM_KEAR.value)), #needs kear,
     "EH Grassland Riverbed Chest" : LocationData(233, "Eastern Heath Grassland Riverbed Bottom"),

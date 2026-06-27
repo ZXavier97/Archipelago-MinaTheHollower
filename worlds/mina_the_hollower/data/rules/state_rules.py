@@ -190,7 +190,7 @@ sidearm_rules: list[ShortCutItem] = [
     ShortCutItem(Sidearms.HOLLOWERS_ROCKS, True_()),
     ShortCutItem(Sidearms.GYRO_DAGGER, True_()),
     ShortCutItem(Sidearms.VOLT_HATCHET, True_()),
-    ShortCutItem(Sidearms.IRON_STEED, Has(PlayerUpgrades.SPARK_CONTAINER.value, 2) | ((Has(PermanentUpgrades.SEPTEMBURG_TICKET.value) & Has(PermanentUpgrades.TRAIN_PASS.value)) & CanBurrow())),
+    ShortCutItem(Sidearms.IRON_STEED, CanBurrow() & Has(PlayerUpgrades.SPARK_CONTAINER.value, 2) | ((Has(PermanentUpgrades.SEPTEMBURG_TICKET.value) & Has(PermanentUpgrades.TRAIN_PASS.value)) & CanBurrow())),
     ShortCutItem(Sidearms.FOG_THROWER, CanBurrow()),
     ShortCutItem(Sidearms.DEFLECTOR_PARASOL, CanBurrow()),
     ShortCutItem(Sidearms.MIST_JAR, CanBurrow()),
