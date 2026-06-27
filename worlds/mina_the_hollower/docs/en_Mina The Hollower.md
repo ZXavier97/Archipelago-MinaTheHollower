@@ -32,22 +32,77 @@ The [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?
 
 We would also appreciate feedback on how the map tracker is organized and whether you find it useful as development continues.
 
-## Install Guide
+## Installing
 
-Find more detailed setup instructions for the mod in the [Mod Readme](https://github.com/Axertin/mth-apclient#installing--running)
-
+Download the mod and the AP world. The mod will be a zip file with your OS name
 - [Latest Mod Release](https://github.com/Axertin/mth-apclient/releases/latest)
 
 - [Latest AP World release](https://github.com/FyreDay/Archipelago-MinaTheHollower/releases/latest)
 
-1. Download the latest version of the mod. it will be a version.dll for windows, or a libmthap.so for linux
-2. copy the file into the games install folder in steam apps next to the application
-3. If on linux, set a steam launch option ```LD_PRELOAD=libmthap.so %command%```
-4. After launch if the login window is not there Press **F2** to toggle it
-5. Connect To your AP Slot
-6. Load into a NEW save OR a save already playing on the connected slot.
+### Switch to the Experimental Modding Beta
+ The mod requires a Steam copy of Mina the Hollower on the **experimental-modding Beta** (password `modsmodsmods`) It also requires 
+ `-mod -mod-allow-code` launch options set (this enables loading a mod's code library).
+
+If you have never done this before, 
+1. navigate to Steam->Mina The Hollower->Properties->Game Versions & Betas 
+2. Type in `modsmodsmods` into Private Versions field
+3. Select experimental-modding in the version list
+### Windows
+
+Unzip the mod.zip (containing a `apclient` folder with a `mod.dll` and `mod.yc`) inside into:
+
+```
+%APPDATA%\Yacht Club Games\Mina the Hollower\mods
+```
+so that the .dll and .yc files are in
+```
+%APPDATA%\Yacht Club Games\Mina the Hollower\mods\apclient\
+```
+
+Set Steam launch options for Mina the Hollower:
+
+```
+-mod -mod-allow-code
+```
+
+The game's mod loader writes `%APPDATA%\Yacht Club Games\Mina the Hollower\mod.log` each run;
+the mod's own runtime log is `%LOCALAPPDATA%\mth-apclient\mthap_*.log`.
+
+### Linux
+
+The mod is installed into Mina The Hollower's save directory (the SDL prefix path), not the install dir.
+
+Unzip the mod.zip (containing a `apclient` folder with a `mod.so` and `mod.yc`) inside into:, 
+
+```
+~/.local/share/Yacht Club Games/Mina the Hollower/mods
+```
+so that the .dll and .yc files are in
+```
+~/.local/share/Yacht Club Games/Mina the Hollower/mods/apclient/
+```
+Set Steam launch options for Mina the Hollower:
+
+```
+-mod -mod-allow-code
+```
+
+The game's mod loader writes `~/.local/share/Yacht Club Games/Mina the Hollower/mod.log` each
+run (whether a mod loaded, version-check or load failures) - check it first if the mod doesn't
+appear. The mod's own runtime log is `~/.local/share/mth-apclient/mthap_*.log` (one file per run).
+
+## Running
+An ImGui overlay window should appear allowing connection and disconnection to an AP server. If it
+doesn't appear or you want to hide it once connected, it can be toggled by pressing `F2`.
+
+1. Connect to AP immediately on game launch
+2. Create a new save or load into a save already played on with this slot
+
+# Warnings
 
 **NEVER CREATE A SAVE AND THEN CONNECT**
+
+**NEVER COPY A SAVE AND PLAY THAT SAVE IN AP**
 
 **NEVER LOAD INTO A SAVE AND THEN CONNECT**
 

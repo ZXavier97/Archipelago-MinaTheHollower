@@ -16,7 +16,7 @@ collectable_locations: dict[str, LocationData] = {
     "BW Pinky's Parlor Spark Catcher": LocationData(297, "Backwaters Pinky Shop"),
     "BW Pinky's Parlor Kear": LocationData(298, "Backwaters Pinky Shop"),
     "BW Pinky's Parlor Joule Box": LocationData(286, "Backwaters Pinky Shop Back", HasLadder()),
-    "BW Lower Shanty Swamp Bonestone Block": LocationData(293, "Backwaters Lower Swamp Fishing", HasKear(kear=SingleKears.BACKWATERS_FISHING_KEAR.value) & (CanSwim() | CanJumpTiles(distance=4))),
+    "BW Lower Shanty Swamp Locked Chest": LocationData(293, "Backwaters Lower Swamp Fishing", HasKear(kear=SingleKears.BACKWATERS_FISHING_KEAR.value) & (CanSwim() | CanJumpTiles(distance=4))),
     "BW Lower Shanty Swamp Evasion Powder": LocationData(294, "Backwaters Lower Swamp Station Entrance", HasLadder()),
     "BW Lower Shanty Swamp Bonestone": LocationData(288, "Backwaters Lower Swamp Station Entrance", HasLadder()),
     "BW Lower Shanty Swamp Tumbling Tutu": LocationData(291, "Backwaters Lower Swamp Shanty Band", CanCarry() & CanBurrow() & CanSwim() & CanClimb()),

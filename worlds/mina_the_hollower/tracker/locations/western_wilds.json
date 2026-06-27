@@ -1,0 +1,172 @@
+[
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Secret Passage Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 462,
+                "y": 1200
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Occupied Bridge Brute Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 534,
+                "y": 172
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Occupied Bridge Far Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 113,
+                "y": 207
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "WW Occupied Bridge Dead Leaf"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 113,
+                "y": 300
+            }
+        ]
+    },
+    {
+        "name": "Fish",
+        "sections": [
+            {"name": "WW Occupied Bridge Cuddlepus Shell"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 945,
+                "y": 622
+            }
+        ]
+    },
+    {
+        "name": "Fish",
+        "sections": [
+            {"name": "WW Occupied Bridge Cuddlepus Shell"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 881,
+                "y": 370
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Occupied Bridge Underneath Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 881,
+                "y": 370
+            }
+        ]
+    },
+    {
+        "name": "Fish",
+        "sections": [
+            {"name": "WW Western Pond Glomper Stalk"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Wilds",
+                "x": 100,
+                "y": 900
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Balcony Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Outlook",
+                "x": 464,
+                "y": 143
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "WW Balcony Dummy Cache"}
+        ],
+        "map_locations": [
+            {
+                "map": "Western Outlook",
+                "x": 335,
+                "y": 190
+            }
+        ]
+    },
+    {
+        "name": "Poppit Shop",
+        "sections": [
+            {"name": "WW Molten Foundry Poppit Helio"},
+            {"name": "WW Molten Foundry Poppit Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Molten Foundry",
+                "x": 144,
+                "y": 80
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "WW Molten Foundry Dark Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Molten Foundry",
+                "x": 976,
+                "y": 108
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "WW Molten Foundry Flame Guard"}
+        ],
+        "map_locations": [
+            {
+                "map": "Molten Foundry",
+                "x": 1741,
+                "y": 164
+            }
+        ]
+    }
+]

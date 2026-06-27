@@ -1,0 +1,211 @@
+[
+    {
+        "name": "Fish",
+        "sections": [
+            {"name": "NB Boat Takeoff Shrimpter Tail"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Start",
+                "x": 1600,
+                "y": 700
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "NB Guard Room Twill Weave"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Start",
+                "x": 1787,
+                "y": 45
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB First Flooder Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Boat Bog",
+                "x": 256,
+                "y": 911
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Shallow Pool Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Boat Bog",
+                "x": 912,
+                "y": 47
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Lagoon Dark Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Interiors",
+                "x": 559,
+                "y": 330
+            }
+        ]
+    },
+    {
+        "name": "Shop",
+        "sections": [
+            {"name": "NB Swamp Shack Pit Preserver"},
+            {"name": "NB Swamp Shack Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Interiors",
+                "x": 886,
+                "y": 400
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Swamp Shack Blastrike Maul"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Interiors",
+                "x": 775,
+                "y": 331
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Submerged Side Room Trinket"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Big Lagoon",
+                "x": 1455,
+                "y": 900
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Moonlit Path Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Moonlit Path",
+                "x": 432,
+                "y": 600
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "NB Moonlit Hideaway Iron Lung"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Moonlit Path",
+                "x": 208,
+                "y": 94
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Plant Pond Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Interiors",
+                "x": 379,
+                "y": 52
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Twin Thicket Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Thicket",
+                "x": 976,
+                "y": 320
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Hidden Cave Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Interiors",
+                "x": 1061,
+                "y": 46
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Grate Lake Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Tainted",
+                "x": 560,
+                "y": 1521
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "NB Gutter Tunnel Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Tainted",
+                "x": 432,
+                "y": 78
+            }
+        ]
+    },
+    {
+        "name": "Rose",
+        "sections": [
+            {"name": "NB Tainted Depths Health Rose"}
+        ],
+        "map_locations": [
+            {
+                "map": "Bayou Lair",
+                "x": 1631,
+                "y": 1048
+            }
+        ]
+    }
+]

@@ -1,0 +1,163 @@
+[
+    {
+        "name": "Frog Fight",
+        "sections": [
+            {"name": "BW Upper Shanty Swamp Plasma Jug"},
+            {"name": "BW Upper Shanty Swamp Glutton's Jug"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 558,
+                "y": 203
+            }
+        ]
+    },
+    {
+        "name": "Frog Fight",
+        "sections": [
+            {"name": "BW Upper Swamp Side Room Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 51,
+                "y": 425
+            }
+        ]
+    },
+    {
+        "name": "BoneStone",
+        "sections": [
+            {"name": "BW Lantern Cave Bonestone"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters Interiors",
+                "x": 237,
+                "y": 110
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "BW Lantern Cave Vial Pouch"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters Interiors",
+                "x": 204,
+                "y": 591
+            }
+        ]
+    },
+    {
+        "name": "Pinky Shop",
+        "sections": [
+            {"name": "BW Pinky's Parlor Spark Catcher"},
+            {"name": "BW Pinky's Parlor Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters East",
+                "x": 176,
+                "y": 383
+            }
+        ]
+    },
+    {
+        "name": "Pinky Box",
+        "sections": [
+            {"name": "BW Pinky's Parlor Joule Box"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters East",
+                "x": 60,
+                "y": 60
+            }
+        ]
+    },
+    {
+        "name": "Locked Chest",
+        "sections": [
+            {"name": "BW Lower Shanty Swamp Locked Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 1420,
+                "y": 650
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "BW Lower Shanty Swamp Evasion Powder"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 1454,
+                "y": 1037
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "BW Lower Shanty Swamp Bonestone"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 1005,
+                "y": 1075
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "BW Lower Shanty Swamp Tumbling Tutu"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters",
+                "x": 926,
+                "y": 611
+            }
+        ]
+    },
+    {
+        "name": "Gift",
+        "sections": [
+            {"name": "BW Lucky's Lair Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters Interiors",
+                "x": 624,
+                "y": 317
+            }
+        ]
+    },
+    {
+        "name": "Fishing Rod",
+        "sections": [
+            {"name": "BW Fishing Hole Fishing Rod"},
+            {"name": "BW Fishing Hole Thalessian Pearl"},
+            {"name": "BW Fishing Hole Fleeper Head"},
+            {"name": "BW Fishing Hole Gilded Rod"}
+        ],
+        "map_locations": [
+            {
+                "map": "Backwaters East",
+                "x": 306,
+                "y": 640
+            }
+        ]
+    }
+]

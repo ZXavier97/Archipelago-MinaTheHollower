@@ -75,7 +75,7 @@ collectable_locations: dict[str, LocationData] = {
         "Ossex Bowery Residence Kear" : LocationData(156, "Ossex Bowery Begger Residence"),
         "OS Music Hall Chest" : LocationData(170, "Ossex Music Hall"),
         "OS Music Hall Pneumatic Armlet" : LocationData(148, "Ossex Music Hall", CanCarry() & CanClimb()),
-        "OS Station Train Ticket Donation" : LocationData(149, "Ossex Station"),
+        "OS Station Train Ticket Donation" : LocationData(149, "Ossex Station", item_rule=lambda item: item.name not in ABILITY_NAMES),
         "OS Station Underside Bell of Grace" : LocationData(158, "Ossex Station Underside Main"),
         "OS Trinket Bazaar Kear" : LocationData(160, "Ossex Trinket Bazaar"),
         "OS Trinket Bazaar Plasma Funnel" : LocationData(179, "Ossex Trinket Bazaar"),

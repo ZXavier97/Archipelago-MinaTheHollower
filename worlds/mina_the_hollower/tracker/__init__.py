@@ -193,6 +193,71 @@ train_out: dict[int, int] = {
 train_engine: dict[int, int] = {
     2:0,
 }
+western_wilds: dict[int, int] = {
+    6:0,
+    9:0,
+}
+wilds_secret: dict[int, int] = {
+    7:0,
+}
+
+molten_foundry: dict[int, int] = {
+    5:0,
+    10:0,
+}
+molten_dungeon: dict[int, int] = {
+    12:0,
+    13:0,
+    14:0,
+}
+western_pond: dict[int, int] = {
+    3:0,
+}
+wilds_outlook: dict[int, int] = {
+    8:0,
+    11:0,
+}
+backwaters: dict[int, int] = {
+    5:0,
+    18:0,
+    4:0,
+    11:1,
+    15:1,
+    8:1,
+    6:0,
+    24:3
+}
+pinky: dict[int, int] = {
+    9:0,
+}
+fishing: dict[int, int] = {
+    0:0,
+    3:0,
+    2:0,
+}
+lanturn_cave: dict[int, int] = {
+    16:0,
+}
+backwaters_station: dict[int, int] = {
+    7:0,
+}
+lucky_lair: dict[int, int] = {
+    12:0,
+}
+bayou_boat: dict[int, int] = {
+    24:0,
+    36:0,
+    10:0,
+    23:0
+}
+bayou_start: dict[int, int] = {
+    24:0,
+}
+bayou_fen: dict[int, int] = {
+    30:0,
+    33:0,
+    29:0,
+}
 
 @dataclasses.dataclass
 class MapData:
@@ -233,6 +298,22 @@ area_id_to_map: dict[int, MapData] = {
     178: MapData(train_cabins, 23),
     179: MapData(train_out, 23),
     180: MapData(train_engine, 23),
+    63: MapData(western_wilds, 24),
+    66: MapData(wilds_secret, 24),
+    65: MapData(western_pond, 24),
+    67: MapData(molten_foundry, 25),
+    68: MapData(molten_dungeon, 25),
+    64: MapData(wilds_outlook, 26),
+    70: MapData(backwaters, 27),
+    72: MapData(pinky, 28),
+    74: MapData(fishing, 28),
+    73: MapData(lanturn_cave, 29),
+    77: MapData(backwaters_station, 29),
+    75: MapData(lucky_lair, 29),
+    1: MapData(bayou_boat, 30),
+    8: MapData(bayou_fen, 30),
+    2: MapData(bayou_start, 30),
+
 }
 
 

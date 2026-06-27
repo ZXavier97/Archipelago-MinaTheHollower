@@ -26,5 +26,22 @@
   {"name": "Ossex High Street Interiors", "img": "area_images/ossex/OS_hs_interiors.png", "location_size": 16, "location_border_thickness": 2},
   {"name": "Ossex Main Interiors", "img": "area_images/ossex/OS_main_interiors.png", "location_size": 16, "location_border_thickness": 2},
   {"name": "Ossex Bowery Interiors", "img": "area_images/ossex/OS_b_interiors.png", "location_size": 16, "location_border_thickness": 2},
-  {"name": "Train", "img": "area_images/ossex/train.png", "location_size": 32, "location_border_thickness": 2}
+  {"name": "Train", "img": "area_images/ossex/train.png", "location_size": 32, "location_border_thickness": 2},
+
+  {"name": "Western Wilds", "img": "area_images/western_wilds/western_wilds.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Molten Foundry", "img": "area_images/western_wilds/molten_foundry.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Western Outlook", "img": "area_images/western_wilds/western_outlook.png", "location_size": 32, "location_border_thickness": 2},
+
+  {"name": "Backwaters", "img": "area_images/backwaters/backwaters.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Backwaters East", "img": "area_images/backwaters/east_backwaters.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Backwaters Interiors", "img": "area_images/backwaters/backwaters_interiors.png", "location_size": 32, "location_border_thickness": 2},
+
+  {"name": "Bayou Start", "img": "area_images/bayou/boat.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Boat Bog", "img": "area_images/bayou/bog.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Big Lagoon", "img": "area_images/bayou/big_lagoon.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Moonlit Path", "img": "area_images/bayou/moonlit_path.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Thicket", "img": "area_images/bayou/thicket.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Tainted", "img": "area_images/bayou/tainted.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Lair", "img": "area_images/bayou/lair.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Bayou Interiors", "img": "area_images/bayou/interiors.png", "location_size": 32, "location_border_thickness": 2}
 ]
