@@ -16,13 +16,14 @@ Use [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?
   - Selling to pawnty is broken and can crash your game
   - some kears give you the vanilla item in addition to the AP item
   - You are forced to teleport to ossex if transitions take you to ropes without you having climb
-  - Vitality Vest in Atelier doesnt send checks
+  - Goal does not send. The host will have to /release you
+
 
 - Ability randomization is implemented. Please test all abilities and report any bugs.
 - Randomizing Burrow can make starts significantly more difficult. Be careful when enabling it, and please share any ideas for improving the experience.
 - Randomizing starting items can cause funny starts. Feedback and suggestions Welcome.
 - Kear randomization is implemented. Please report any locks that are not removed correctly or any progression issues you encounter.
-- Goaling is implemented but still needs validation.
+
 - Location logic still has many bugs. Please report anything that UT says is inaccessible that you can reach, or anything UT says is accessible that you cannot reach.
 - Combat logic has been implemented. When reporting a boss that feels too difficult, please include your attack Bone Ups, defense Bone Ups, health, vials, and currently equipped combat trinkets. [Report Combat Issues Here](https://github.com/FyreDay/Archipelago-MinaTheHollower/issues/12)
 
@@ -33,6 +34,8 @@ The [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?
 We would also appreciate feedback on how the map tracker is organized and whether you find it useful as development continues.
 
 ## Installing
+
+If you previously had this installed, remove the version.dll or the libmthap.so from your game directory
 
 Download the mod and the AP world. The mod will be a zip file with your OS name
 - [Latest Mod Release](https://github.com/Axertin/mth-apclient/releases/latest)
@@ -46,7 +49,7 @@ Download the mod and the AP world. The mod will be a zip file with your OS name
 If you have never done this before, 
 1. navigate to Steam->Mina The Hollower->Properties->Game Versions & Betas 
 2. Type in `modsmodsmods` into Private Versions field
-3. Select experimental-modding in the version list
+3. Select `experimental-modding` in the version list
 ### Windows
 
 Unzip the mod.zip (containing a `apclient` folder with a `mod.dll` and `mod.yc`) inside into:
