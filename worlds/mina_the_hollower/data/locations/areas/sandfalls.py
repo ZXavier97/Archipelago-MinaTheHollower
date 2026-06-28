@@ -1,7 +1,7 @@
 from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
-from ...items import SingleKears
+from ...items import SingleKears, PermanentUpgrades
 from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, \
     HasFishingRod, CanSwim
 from ...rules.state_rules import HasRepairedShorelineGenerator, HasKear
@@ -18,7 +18,7 @@ collectable_locations: dict[str, LocationData] = {
     "SF Shifty Seclusion Chest" : LocationData(327, "Sandfalls Shifty Seclusion"),
     "SF Payload Passage Chest" : LocationData(332, "Sandfalls Payload Passage Chest", CanBurrow() & CanCarry()),
     "SF Bone Junction Chest" : LocationData(356, "Sandfalls Bone Junction"),
-    "SF Train Vita's Shop" : LocationData(333, "Sandfalls Sandy Station"),
+    "SF Train Vita's Shop" : LocationData(333, "Sandfalls Sandy Station", Has(PermanentUpgrades.TRAIN_PASS.value) & Has(PermanentUpgrades.BAYOU_TICKET.value)),
     "BB Sandwater Junction Angler's Raft" : LocationData(325, "Sandfalls Sandwater Junction", CanJumpTiles(distance=2) | CanSwim()),
 }
 

@@ -62,7 +62,7 @@ regions: set[str] = {
 
 connections: dict[str, RegionConnection] = {
     'Backwaters Bayou Falls East_Backwaters Bayou Falls West': RegionConnection('Backwaters Bayou Falls East', 'Backwaters Bayou Falls West', CanSwim()),
-    'Backwaters Bayou Falls West_Backwaters Bayou Falls East': RegionConnection('Backwaters Bayou Falls West', 'Backwaters Bayou Falls East', CanSwim()),
+    'Backwaters Bayou Falls West_Backwaters Bayou Falls East': RegionConnection('Backwaters Bayou Falls West', 'Backwaters Bayou Falls East', CanSwim() | CanJumpTiles(distance=2)),
     'Backwaters Lower Swamp Bayou Entrance_Backwaters Lower Swamp Shanty Band': RegionConnection('Backwaters Lower Swamp Bayou Entrance', 'Backwaters Lower Swamp Shanty Band', True_()),
     'Backwaters Lower Swamp Fishing_Backwaters Lower Swamp': RegionConnection('Backwaters Lower Swamp Fishing', 'Backwaters Lower Swamp', CanJumpTiles(distance=7) | HasKear(kear=SingleKears.BACKWATERS_FISHING_KEAR.value)),
     'Backwaters Lower Swamp Shanty Band_Backwaters Lower Swamp': RegionConnection('Backwaters Lower Swamp Shanty Band', 'Backwaters Lower Swamp', CanSwim()),

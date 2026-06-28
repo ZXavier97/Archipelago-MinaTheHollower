@@ -1,7 +1,7 @@
 from ... import LocationData
 from ...items import SingleKears
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, HasFishingRod
-from ...rules.state_rules import HasKear
+from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, HasFishingRod, CanSwim
+from ...rules.state_rules import HasKear, HasRepairedOneGenerator, HasLadder
 
 boss_locations: dict[str, LocationData] = {
 }
@@ -17,9 +17,9 @@ collectable_locations: dict[str, LocationData] = {
     "LL Boardwalk Sandfalls Ledge Chest": LocationData(324, "Loner's Landing Boardwalk Sandfalls Ledge"),
     # needs bounce,
     "LL Shipwreck Beach Trigger Antennae": LocationData(32, "Loner's Landing Boat Side", HasFishingRod() & CanBurrow()),
-    "LL Belowdecks Unchosen Weapon #1": LocationData(17, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_LEFT_WEAPON_KEAR.value) & CanBurrow()),
-    "LL Belowdecks Unchosen Weapon #2": LocationData(18, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_RIGHT_WEAPON_KEAR.value) & CanBurrow()),
-    "LL Belowdecks Chest": LocationData(30, "Loner's Landing Belowdecks", CanJumpTiles(distance=2)),
+    "LL Belowdecks Unchosen Weapon #1": LocationData(17, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_LEFT_WEAPON_KEAR.value) & CanBurrow() & (HasRepairedOneGenerator() | (HasLadder() & CanSwim()))),
+    "LL Belowdecks Unchosen Weapon #2": LocationData(18, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_RIGHT_WEAPON_KEAR.value) & CanBurrow() & (HasRepairedOneGenerator() | (HasLadder() & CanSwim()))),
+    "LL Belowdecks Chest": LocationData(30, "Loner's Landing Belowdecks", CanJumpTiles(distance=2), HasRepairedOneGenerator() | (HasLadder() & CanSwim())),
     "LL Captain's Gift" : LocationData(24, "Loner's Landing Shipwreck"),
 }
 

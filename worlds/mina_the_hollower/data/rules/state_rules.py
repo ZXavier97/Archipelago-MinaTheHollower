@@ -184,7 +184,7 @@ def HasAccessToTorch():
 
 #figure out when screen rando exists
 def HasLadder():
-    return HasKear(kear=SingleKears.PINKY_KEAR.value) & HasKear(kear=SingleKears.PINKY_BACK_KEAR.value) & (CanBurrow() | CanJumpTiles(distance=3)) & CanCarry()
+    return HasKear(kear=SingleKears.PINKY_KEAR.value) & HasKear(kear=SingleKears.PINKY_BACK_KEAR.value) & (CanBurrow() | CanJumpTiles(distance=3)) & CanCarry() & CanClimb()
 
 sidearm_rules: list[ShortCutItem] = [
     ShortCutItem(Sidearms.HOLLOWERS_ROCKS, True_()),
