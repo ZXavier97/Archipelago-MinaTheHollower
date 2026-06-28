@@ -87,9 +87,8 @@ additive_movement_items: list[ItemMovement] = [
     ItemMovement(Trinkets.KERI_THE_WISP, 1),
     ItemMovement(Trinkets.PIT_PRESERVER, 1),
     ItemMovement(Trinkets.BELLOWS_BUSTLE, 2),
-
-
 ]
+
 base_movement_items: list[ItemMovement] = [
     ItemMovement(Trinkets.SPRING_HEELS, 3),
     ItemMovement(Abilities.BURROW, 2),

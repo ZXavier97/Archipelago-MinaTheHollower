@@ -13,7 +13,7 @@ from ...options import AbilityRando
 from ...world_base import MinaTheHollowerBase
 
 def HasReachingSideArm():
-    return Has(PlayerUpgrades.JOULE_BOX.value)
+    return Has(PlayerUpgrades.JOULE_BOX.value) & Has(Sidearms.VOLT_HATCHET.value)
 
 @dataclasses.dataclass(kw_only=True)
 class CanBurrow(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
@@ -71,7 +71,7 @@ class HasVialsCount(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return (Has(PermanentUpgrades.HEALING_VIAL_POUCH.value) & Has(PlayerUpgrades.HEALING_VIAL.value, count=self.count)).resolve(world)
+        return Has(PlayerUpgrades.HEALING_VIAL.value, count=self.count).resolve(world)
 
 def HasBeastiumTransform():
     return Has(PlayerUpgrades.TRINKET_BAG.value, count=5) & (Has(Trinkets.RECKLESS_BEASTIUM.value) &
@@ -104,8 +104,11 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
             trinket_slots = state.count(PlayerUpgrades.TRINKET_BAG.value, self.player)
             # Check each owned base movement type
             base_needs_trinket = False
+            base_needs_sidearm = False
             for movement_item in base_movement_items:
                 if state.has(movement_item.type.value, self.player):
+                    if movement_item.type in Sidearms and not state.has(PlayerUpgrades.JOULE_BOX.value, self.player):
+                        continue
                     needs_trinket = False
                     if movement_item.type in Trinkets:
                         if trinket_slots <= 0:
@@ -117,10 +120,13 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
                     if best_distance < movement_item.distance:
                         best_distance = movement_item.distance
                         base_needs_trinket = needs_trinket
+                        base_needs_sidearm = movement_item.type in Sidearms
             if base_needs_trinket:
                 trinket_slots -= 1
 
-            if state.has(Trinkets.BRIDGE_WEAVER.value, self.player) and state.has(Sidearms.DEFLECTOR_PARASOL.value, self.player):
+            if (state.has(Trinkets.BRIDGE_WEAVER.value, self.player) and
+                    state.has(Sidearms.DEFLECTOR_PARASOL.value, self.player) and
+                    state.has(PlayerUpgrades.JOULE_BOX.value, self.player)):
                 best_distance = 5
 
             additive_bonus = 0
@@ -129,7 +135,11 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
                 if not state.has(movement_item.type.value, self.player):
                     continue
 
-                if trinket_slots == 0:
+                if movement_item.type in Sidearms and (not state.has(PlayerUpgrades.JOULE_BOX.value, self.player) or
+                                                       (base_needs_sidearm and not state.has(PermanentUpgrades.DOUBLE_SIDEARM_PERMIT.value, self.player))):
+                    continue
+
+                if movement_item in Trinkets and trinket_slots == 0:
                     continue
 
                 trinket_slots -= 1

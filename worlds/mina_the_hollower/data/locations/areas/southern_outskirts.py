@@ -19,7 +19,7 @@ collectable_locations: dict[str, LocationData] = {
     "SO Residence Trinket" : LocationData(269, "Southern Outskirts Residence Basement"),
     "SO Mining Passage Chest" : LocationData(331, "Southern Outskirts Mining Passage Secret"),
     "SO Moonbath Lace Glove" : LocationData(263, "Southern Outskirts Moonbath", HasRepairedOneGenerator()),
-    "SO Four Flowers Chest" : LocationData(271, "Southern Outskirts Four Flowers Shortcut", CanBurrow() & CanBounce()),
+    "SO Four Flowers Chest" : LocationData(271, "Southern Outskirts Four Flowers Shortcut", CanBounce()),
 }
 
 boss_locations: dict[str, LocationData] = {

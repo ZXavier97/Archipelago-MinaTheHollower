@@ -62,6 +62,7 @@ regions: set[str] = {
     'Astral Orrery Stellarium Complete',
     'Astral Orrery Stellarium Gravity Switch',
     'Astral Orrery Stellarium Mutant Switch',
+    'Astral Orrery Stellarium Scholars Pipe',
     'Astral Orrery Stellarium Scholars Switch',
     'Astral Orrery Under Coltrane Peak Mirror',
 }
@@ -80,8 +81,10 @@ connections: dict[str, RegionConnection] = {
     "Astral Orrery Septemburg Mirror_Astral Orrery Mirror's End": RegionConnection('Astral Orrery Septemburg Mirror', "Astral Orrery Mirror's End", Has(AstralPlatforms.YELLOW_ASTRAL_PLATFORMS.value)),
     'Astral Orrery Stellarium Cog Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Cog Switch', 'Astral Orrery Stellarium', True_()),
     'Astral Orrery Stellarium Gravity Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Gravity Switch', 'Astral Orrery Stellarium', True_()),
-    'Astral Orrery Stellarium Mutant Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Stellarium', True_()),
-    'Astral Orrery Stellarium Scholars Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Scholars Switch', 'Astral Orrery Stellarium', True_()),
+    'Astral Orrery Stellarium Mutant Switch_Astral Orrery Stellarium': RegionConnection('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Stellarium', CanClimb()),
+    'Astral Orrery Stellarium Mutant Switch_Astral Orrery Stellarium Scholars Pipe': RegionConnection('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Stellarium Scholars Pipe', CanClimb()),
+    'Astral Orrery Stellarium Scholars Pipe_Astral Orrery Stellarium Mutant Switch': RegionConnection('Astral Orrery Stellarium Scholars Pipe', 'Astral Orrery Stellarium Mutant Switch', CanClimb()),
+    'Astral Orrery Stellarium Scholars Switch_Astral Orrery Stellarium Mutant Switch': RegionConnection('Astral Orrery Stellarium Scholars Switch', 'Astral Orrery Stellarium Mutant Switch', True_()),
     'Astral Orrery Stellarium_Astral Orrery Stellarium Complete': RegionConnection('Astral Orrery Stellarium', 'Astral Orrery Stellarium Complete', CanCarry() & CanBurrow() & CanClimb()),
 }
 
@@ -112,7 +115,7 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Mutant Lab End Mirror': Transition('Astral Orrery Mutant Lab End', 'Astral Orrery Stellarium Mutant Switch', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
     'Astral Orrery Mutant Lab Pipe': Transition('Astral Orrery Mutant Lab', 'Astral Orrery Stellarium', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Queensbury Mirror': Transition('Astral Orrery Queensbury Mirror', 'Queensbury Crypt Mirror Room East', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
-    'Astral Orrery Scholars  Pipe': Transition('Astral Orrery Hall Of Scholars', 'Astral Orrery Hall Of Scholars', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
+    'Astral Orrery Scholars  Pipe': Transition('Astral Orrery Hall Of Scholars', 'Astral Orrery Stellarium Scholars Pipe', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Sealed Archive Boxes North Transition': Transition('Astral Orrery Sealed Archive Boxes', 'Astral Orrery Sealed Archive Hall', DirectionType.NORTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Sealed Archive Boxes South Transition': Transition('Astral Orrery Sealed Archive Boxes', 'Astral Orrery Sealed Archive Glass', DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Sealed Archive Congealed Chamber North Transition': Transition('Astral Orrery Sealed Archive Congealed Chamber', 'Astral Orrery Starry Generator Stairs', DirectionType.NORTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
@@ -137,7 +140,7 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Stellarium Gravity Zone Pipe': Transition('Astral Orrery Stellarium', 'Astral Orrery Gravity Zone', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Stellarium Mutant Lab Pipe': Transition('Astral Orrery Stellarium', 'Astral Orrery Mutant Lab', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Stellarium Mutant Switch Mirror': Transition('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Mutant Lab End', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
-    'Astral Orrery Stellarium Scholars Pipe': Transition('Astral Orrery Stellarium Mutant Switch', 'Astral Orrery Hall Of Scholars', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanClimb()),
+    'Astral Orrery Stellarium Scholars Pipe': Transition('Astral Orrery Stellarium Scholars Pipe', 'Astral Orrery Hall Of Scholars', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Stellarium Scholars Switch Mirror': Transition('Astral Orrery Stellarium Scholars Switch', 'Astral Orrery Hall Of Scholars End', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
     'Astral Orrery Stellarium Stairs': Transition('Astral Orrery Stellarium', "Astral Orrery Mirror's End Moving Stairs", DirectionType.NORTH, TransitionType.STAIRS, True_()),
     'Astral Orrery Under Coltrane Peak Mirror West Burrow': Transition('Astral Orrery Under Coltrane Peak Mirror', 'Astral Orrery Coltrane Peak Mirror', DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
