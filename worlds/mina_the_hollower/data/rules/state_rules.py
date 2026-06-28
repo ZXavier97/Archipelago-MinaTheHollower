@@ -177,6 +177,9 @@ def HasRepairedAllGenerators():
 def HasRepairedOneGenerator():
     return HasRepairedSolemnGenerator() | HasRepairedSwampyGenerator() | HasRepairedWindyGenerator() | HasRepairedShorelineGenerator() | HasRepairedFrozenGenerator() | HasRepairedStarryGenerator()
 
+def HasRepairedGeneratorCount(count):
+    return HasRepairedSolemnGenerator() | HasRepairedSwampyGenerator() | HasRepairedWindyGenerator() | HasRepairedShorelineGenerator() | HasRepairedFrozenGenerator() | HasRepairedStarryGenerator()
+
 
 #figure out when screen rando exists
 def HasAccessToTorch():

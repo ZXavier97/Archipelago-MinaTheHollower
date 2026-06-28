@@ -3,7 +3,7 @@ from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears
 from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, HasFishingRod, CanSpring
-from ...rules.state_rules import HasKear, HasRepairedWindyGenerator
+from ...rules.state_rules import HasKear, HasRepairedWindyGenerator, HasSparks
 
 collectable_locations: dict[str, LocationData] = {
     "SB Launch Pad Secret Room #1 Chest": LocationData(91, "Septemburg Withered Farms Hills Maze", CanSpring()),
@@ -21,7 +21,7 @@ collectable_locations: dict[str, LocationData] = {
     "SB Galloway Room Chest": LocationData(100, "Septemburg Tangled Woods Kid Room", CanBurrow() & CanSpring()),
     "SB Stormwatch Way Chest": LocationData(101, "Septemburg Stormwatch Wind", CanBurrow()),
     "SB Carving Shack Health Rose": LocationData(95, "Septemburg Carving Shack Arena"),
-    "SB Dark Deluxy Spark Container": LocationData(353, "Septemburg Windy Generator", CanBurrow() & HasRepairedWindyGenerator()),
+    "SB Dark Deluxy Spark Container": LocationData(353, "Septemburg Windy Generator", CanBurrow() & HasRepairedWindyGenerator() & HasSparks(count=2)),
     "SB Wastewater Canal Spincer": LocationData(108, "Septemburg Wastewater Canal Well Entrance", HasFishingRod()),
     "SB Wastewater Canal Slime Room Chest": LocationData(106, "Septemburg Wastewater Canal Slime Room", CanBurrow()),
     "SB Wastewater Canal Box Room Chest": LocationData(105, "Septemburg Wastewater Canal Boxes", CanBurrow()),
