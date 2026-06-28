@@ -1,7 +1,7 @@
 from rule_builder.rules import True_, Has
 from .abilities import Abilities
 from .blockers import AstralPlatforms
-from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller
+from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller, CosmeticUpgrades
 from .kears import Kear, AreaKears, SingleKears
 from .progressives import Weapons, BoneUps, GenericBoneUp, FishingUpgrades
 from .. import ItemData, ItemTypeEnum, ItemFiller, ItemMovement, ItemPower
@@ -21,7 +21,8 @@ all_items: list[ItemTypeEnum] = [
     *Weapons,
     *BoneUps,
     *GenericBoneUp,
-    *FishingUpgrades
+    *FishingUpgrades,
+    *CosmeticUpgrades
 ]
 
 item_name_to_type = {
@@ -87,9 +88,8 @@ additive_movement_items: list[ItemMovement] = [
     ItemMovement(Trinkets.KERI_THE_WISP, 1),
     ItemMovement(Trinkets.PIT_PRESERVER, 1),
     ItemMovement(Trinkets.BELLOWS_BUSTLE, 2),
-
-
 ]
+
 base_movement_items: list[ItemMovement] = [
     ItemMovement(Trinkets.SPRING_HEELS, 3),
     ItemMovement(Abilities.BURROW, 2),

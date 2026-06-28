@@ -7,7 +7,7 @@ from ...rules.state_rules import HasKear
 
 collectable_locations: dict[str, LocationData] = {
     "AO Mirror's End Beach Room Chest": LocationData(281, "Astral Orrery Mirror's End", Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
-    "AO Mirror's End Reckless Beastium": LocationData(276, "Astral Orrery Mirror's End", CanJumpTiles(distance=3) & CanCarry()),
+    "AO Mirror's End Reckless Beastium": LocationData(276, "Astral Orrery Mirror's End", CanJumpTiles(distance=3) & CanCarry() & HasKear(kear=SingleKears.ASTRAL_ORREY_MIRROR_ROOM_RIGHT_SIDE_KEAR.value)),
     "AO Mirror's End West Ledge Trinket Bag": LocationData(279, "Astral Orrery Mirror's End",  HasKear(kear=SingleKears.ASTRAL_ORREY_MIRROR_ROOM_LEFT_SIDE_KEAR.value)
            & Has(AstralPlatforms.YELLOW_ASTRAL_PLATFORMS.value) & ( CanJumpTiles(distance=7) | CanBurrow() |
                 (Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & Has(AstralPlatforms.GREEN_ASTRAL_PLATFORMS.value)))),
@@ -18,7 +18,7 @@ collectable_locations: dict[str, LocationData] = {
     "AO Tubert Vial Kear": LocationData(138, "Astral Orrery Stellarium Mutant Switch"),
     "AO Gravity Zone Long Hallway Chest": LocationData(133, "Astral Orrery Gravity Zone", CanJumpTiles(distance=2)),
     "AO Gravity Zone Secret Room #1 Kear": LocationData(134, "Astral Orrery Gravity Zone"),
-    "AO Gravity Zone Secret Room #2 Chest": LocationData(126, "Astral Orrery Gravity Zone", CanBurrow()),
+        "AO Gravity Zone Secret Room #2 Chest": LocationData(128, "Astral Orrery Gravity Zone", CanBurrow()),
     "AO Cog Chamber Secret Room #1 Chest": LocationData(130, "Astral Orrery Cog Chamber", CanBurrow() & CanCarry()),
     "AO Cog Chamber Secret Room #1 Kear": LocationData(135, "Astral Orrery Cog Chamber", CanBurrow() & CanCarry()),
     "AO Mutant Lab Secret Room #1 Chest": LocationData(131, "Astral Orrery Mutant Lab", CanBurrow()),

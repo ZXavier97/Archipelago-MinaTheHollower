@@ -21,7 +21,7 @@ collectable_locations: dict[str, LocationData] = {
     "QC Putrid Place Tombstone": LocationData(68, "Queensbury Crypt Putrid Place", HasFishingRod()),
     "QC Rancid Room Fly Bait": LocationData(59, "Queensbury Crypt Rancid Room"),
     "QC Ancestral Chamber Health Rose": LocationData(58, "Queensbury Crypt Ancestral Chamber"),
-    "QC Royal Tomb Proto Spark": LocationData(60, "Queensbury Crypt Royal Tomb", HasVialsCount(count=2)),
+    "QC Royal Tomb Proto Spark": LocationData(60, "Queensbury Crypt Royal Tomb", HasVialsCount(count=2) & CanClimb()),
 
 
 }

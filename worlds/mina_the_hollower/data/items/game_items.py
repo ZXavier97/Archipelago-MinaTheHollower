@@ -8,21 +8,20 @@ class Sidearms(ItemTypeEnum):
     GYRO_DAGGER = ("Gyro Dagger", 22, ItemClassification.progression)
     VOLT_HATCHET = ("Volt Hatchet", 21, ItemClassification.progression)
 
-    FOG_THROWER = ("FogThrower", 29, ItemClassification.progression)  # burrow
-    DEFLECTOR_PARASOL = ("BarrierParasol", 33, ItemClassification.progression)# burrow
-    MIST_JAR = ("Mist Jar", 31, ItemClassification.progression)# burrow
-    DRIVER_DRILL = ("ShieldBash", 25, ItemClassification.progression)# burrow
+    FOG_THROWER = ("Fog Thrower", 29, ItemClassification.progression)  # burrow
+    DEFLECTOR_PARASOL = ("Deflector Parasol", 33, ItemClassification.progression)  # burrow
+    MIST_JAR = ("Mist Jar", 31, ItemClassification.progression)  # burrow
+    DRIVER_DRILL = ("Driver Drill", 25, ItemClassification.progression)  # burrow
 
-    RECALL_DISC = ("Recall Disc",23, ItemClassification.progression)
+    RECALL_DISC = ("Recall Disc", 23, ItemClassification.progression)
     DYNAMO_LANTURN = ("Dynamo Lanturn", 24, ItemClassification.progression)
 
-    BOUNDING_BOMBS =("Bounding Bombs", 26, ItemClassification.progression)
-    IRON_STEED = ("Iron Steed", 27, ItemClassification.progression) #2 sparks or train ticket and septemburg ticket
+    BOUNDING_BOMBS = ("Bounding Bombs", 26, ItemClassification.progression)
+    IRON_STEED = ("Iron Steed", 27, ItemClassification.progression)  # 2 sparks or train ticket and septemburg ticket
 
+    BECKONING_COLLAR = ("Beckoning Collar", 30, ItemClassification.progression)
 
-    BECKONING_COLLAR = ("Beckoning Collar",30, ItemClassification.progression)
-
-    GNAWING_GHOSTS = ("Gnawing Ghosts",32, ItemClassification.progression)
+    GNAWING_GHOSTS = ("Gnawing Ghosts", 32, ItemClassification.progression)
 
     FISHING_ROD = ("Fishing Rod",34, ItemClassification.progression) #103 is gold
     # ANGLERS_RAFT = ("Angler's Raft", 102, ItemClassification.progression)
@@ -32,36 +31,21 @@ class Sidearms(ItemTypeEnum):
 
 class PermanentUpgrades(ItemTypeEnum):
     HEALING_VIAL_POUCH = ("Healing Vial Pouch", 18, ItemClassification.progression)
-    CANDLE_VISION = ("Candle Vision",74, ItemClassification.useful)
-    WORLD_MAP = ("World Map",75, ItemClassification.useful)
-    ENHANCED_MAP = ("EnhancedMap",76, ItemClassification.useful)
-    RADAR_MAP = ("RadarMap",77, ItemClassification.useful)
-    DOUBLE_SIDEARM_PERMIT = ("Double Side Arm Permit",78, ItemClassification.progression)
-    VITALITY_VEST = ("Vitality Vest",79, ItemClassification.progression)
-    SAFETY_SHROUD = ("Safety Shroud",80, ItemClassification.progression)
-    ARMOR_CUSTOM = ("Custom Fitting",81, ItemClassification.useful)
+    CANDLE_VISION = ("Memory Goggles", 74, ItemClassification.useful)
+    # WORLD_MAP = ("World Map", 75, ItemClassification.useful)
+    # ENHANCED_MAP = ("Enhanced Map", 76, ItemClassification.useful)
+    RADAR_MAP = ("All-Seeing Skull", 77, ItemClassification.useful)
+    DOUBLE_SIDEARM_PERMIT = ("Double Sidearm Permit", 78, ItemClassification.progression)
+    VITALITY_VEST = ("Vitality Vest", 79, ItemClassification.progression)
+    SAFETY_SHROUD = ("Safety Shroud", 80, ItemClassification.progression)
+    ARMOR_CUSTOM = ("Custom Fitting", 81, ItemClassification.useful)
     # "ArmorDefault" : ItemData(92, ItemClassification.progression),
     # "ArmorUpgradeAll" : ItemData(93, ItemClassification.progression),
-    JOULE_ALMEMBIC = ("Joule Alembic",82, ItemClassification.progression)
-    SIDEARM_SAVER = ("Sidearm Saver",83, ItemClassification.progression)
-    SIDEARM_KEEPER = ("SidearmKeeper",84, ItemClassification.progression)
-    TRAINING_DUMMY =("TrainingDummy",85, ItemClassification.useful)
-    PHONOGRAPH = ("Phonograph",86, ItemClassification.useful)
-    # UNDERLAB_DEFAULT =("Underlab Default" ,120, ItemClassification.filler)
-    UNDERLAB_CRYPT = ("Underlab Crypt" ,121, ItemClassification.filler)
-    UNDERLAB_BAYOU = ("Underlab Bayou" ,122, ItemClassification.filler)
-    UNDERLAB_SEPTEMBURG = ("Underlab Septemburg" ,123, ItemClassification.filler)
-    UNDERLAB_TRAINYARD = ("Underlab Trainyard" ,124, ItemClassification.filler)
-    UNDERLAB_BONE_BEACH = ("Underlab BoneBeach" ,125, ItemClassification.filler)
-    UNDERLAB_ASTRAL = ("Underlab Astral" ,126, ItemClassification.filler)
-    UNDERLAB_MANSION = ("Underlab Mansion" ,127, ItemClassification.filler)
-    UNDERLAB_HUB = ("Underlab HUB" ,128, ItemClassification.filler)
-    UNDERLAB_EAST = ("Underlab East" ,129, ItemClassification.filler)
-    UNDERLAB_WEST = ("Underlab West" ,130, ItemClassification.filler)
-    UNDERLAB_SOUTH = ("Underlab South" ,131, ItemClassification.filler)
-    UNDERLAB_SEWER = ("Underlab Sewer" ,132, ItemClassification.filler)
-    UNDERLAB_GUILD = ("Underlab Guild" ,133, ItemClassification.filler)
-    WIERD_DANCE = ("Weird Dance",90, ItemClassification.useful)
+    JOULE_ALMEMBIC = ("Joule Alembic", 82, ItemClassification.progression)
+    SIDEARM_SAVER = ("Sidearm Recoverer", 83, ItemClassification.progression)
+    SIDEARM_KEEPER = ("Sidearm Duplicator", 84, ItemClassification.progression)
+    TRAINING_DUMMY = ("Training Dummy", 85, ItemClassification.useful)
+    PHONOGRAPH = ("Phonograph", 86, ItemClassification.useful)
     TRAIN_PASS = ("Train Pass",94, ItemClassification.progression)
     OSSEX_TICKET = ("Ossex Ticket", 95, ItemClassification.progression)
     BAYOU_TICKET = ("Bayou Ticket",96, ItemClassification.progression)
@@ -69,6 +53,22 @@ class PermanentUpgrades(ItemTypeEnum):
     BONE_BEACH_TICKET = ("Bone Beach Ticket",98, ItemClassification.progression)
     COLTRANE_PEAK_TICKET = ("Coltrane Peak Ticket",99, ItemClassification.progression)
 
+class CosmeticUpgrades(ItemTypeEnum):
+    UNDERLAB_DEFAULT =("Underlab Default" ,120, ItemClassification.filler)
+    UNDERLAB_CRYPT = ("Underlab Crypt", 121, ItemClassification.filler)
+    UNDERLAB_BAYOU = ("Underlab Bayou", 122, ItemClassification.filler)
+    UNDERLAB_SEPTEMBURG = ("Underlab Septemburg", 123, ItemClassification.filler)
+    UNDERLAB_TRAINYARD = ("Underlab Trainyard", 124, ItemClassification.filler)
+    UNDERLAB_BONE_BEACH = ("Underlab BoneBeach", 125, ItemClassification.filler)
+    UNDERLAB_ASTRAL = ("Underlab Astral", 126, ItemClassification.filler)
+    UNDERLAB_MANSION = ("Underlab Mansion", 127, ItemClassification.filler)
+    UNDERLAB_HUB = ("Underlab HUB", 128, ItemClassification.filler)
+    UNDERLAB_EAST = ("Underlab East", 129, ItemClassification.filler)
+    UNDERLAB_WEST = ("Underlab West", 130, ItemClassification.filler)
+    UNDERLAB_SOUTH = ("Underlab South", 131, ItemClassification.filler)
+    UNDERLAB_SEWER = ("Underlab Sewer", 132, ItemClassification.filler)
+    UNDERLAB_GUILD = ("Underlab Guild", 133, ItemClassification.filler)
+    WIERD_DANCE = ("Weird Dance", 90, ItemClassification.useful)
 
  # "Lock" : ItemData(64, ItemClassification.progression),
     # "EarlyBuy" : ItemData(65, ItemClassification.progression),

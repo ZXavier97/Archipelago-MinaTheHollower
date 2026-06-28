@@ -14,7 +14,7 @@ collectable_locations: dict[str, LocationData] = {
         "OS City Center Steady Soles" : LocationData(162, "Ossex High Street Residence Balcony West"),
         "OS City Center Triple Flagellum" : LocationData(220, "Ossex City Center Main", HasFishingRod()),
         "OS City Center 2nd Race Kear" : LocationData(243, "Ossex City Center Main", CanBurrow()),
-        "OS City Center Final Race Bellows Bustle" : LocationData(322, "Ossex City Center Main", CanBounce() & CanBurrow() & CanCarry()),
+        "OS City Center Final Race Bellows Bustle" : LocationData(322, "Ossex City Center Main", CanBounce() & CanBurrow() & CanCarry() & CanClimb()),
         "OS Courtyard East Deboning Wand" : LocationData(161, "Ossex Courtyard East"),
         "OS Courtyard West Weapon Upgrade" : LocationData(163, "Ossex Courtyard West Chest", HasVialsCount(count=5)),
         "OS Courtyard Garden Warding Beastium" : LocationData(171, "Ossex Courtyard East Manor Side"),

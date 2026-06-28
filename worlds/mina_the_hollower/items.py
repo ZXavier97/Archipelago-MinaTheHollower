@@ -30,7 +30,9 @@ def create_single_item(world: "MinaTheHollowerWorld", item_type: ItemTypeEnum):
 
 
 def create_items(world: "MinaTheHollowerWorld"):
-    is_ut = world.using_ut
+    is_ut = getattr(world.multiworld, "generation_is_fake", False)
+    #crashed. will do later
+    # is_ut = world.using_ut
     all_items: list[ItemData] = []
     trinket_types = set(Trinkets)
     bone_cap_types = {*BoneUps, GenericBoneUp.ALL_BONE_UP_CAP}

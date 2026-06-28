@@ -8,8 +8,8 @@ from ...rules.ability_rules import CanBurrow, CanJumpTiles, CanBounce, CanSwim, 
 from ...rules.state_rules import HasLadder, HasKear
 
 collectable_locations: dict[str, LocationData] = {
-    "BW Upper Shanty Swamp Plasma Jug": LocationData(290, "Backwaters Upper Swamp Waterfall"),
-    "BW Upper Shanty Swamp Glutton's Jug": LocationData(289, "Backwaters Upper Swamp Waterfall", Has(Trinkets.EMPTY_JUG.value)),
+    "BW Upper Shanty Swamp Plasma Jug": LocationData(290, "Backwaters Upper Swamp Waterfall", Has(Trinkets.EMPTY_JUG.value)),
+    "BW Upper Shanty Swamp Glutton's Jug": LocationData(289, "Backwaters Upper Swamp Waterfall"),
     "BW Upper Swamp Side Room Chest": LocationData(296, "Backwaters Upper Swamp Secret Room", CanSwim()),
     "BW Lantern Cave Bonestone": LocationData(287, "Backwaters Upper Lantern Cave"),
     "BW Lantern Cave Vial Pouch": LocationData(295, "Backwaters Upper Lantern Cave"),

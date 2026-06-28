@@ -8,7 +8,7 @@ from ...rules.state_rules import HasKear
 
 collectable_locations: dict[str, LocationData] = {
     "KW Overgrowth Bonfire Chest": LocationData(340, "Kindlewood Overgrowth Bonfire Main"),
-    "KW Residence Basement Chest": LocationData(441, "Kindlewood Overgrowth Residence Basement"),
+    "KW Residence Basement Chest": LocationData(341, "Kindlewood Overgrowth Residence Basement"),
 
     "KW Madd House Draining Beastium": LocationData(348, "Kindlewood Overgrowth Madd House"),
     "KW Madd House Oozing Organ": LocationData(347, "Kindlewood Overgrowth Madd House"),
