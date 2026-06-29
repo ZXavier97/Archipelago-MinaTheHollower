@@ -148,6 +148,7 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
             "goal": self.options.goal.value,
             "ossex_start": self.options.ossex_start.value,
             "kear_rando": self.options.kear_rando.value,
+            "max_stat_level": self.options.max_stat_level.value,
             # "entrance_rando" : self.options.entrance_rando.value,
             "death_link": self.options.death_link.value,
             # The client disables each ability while its "*_rando" key is nonzero.
