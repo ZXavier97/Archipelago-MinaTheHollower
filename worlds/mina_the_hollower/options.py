@@ -30,6 +30,15 @@ class NumberOfGenerators(Range):
     range_end = 6
     default = 6
 
+class MaximumStatLevel(Range):
+    """
+    The maximum cap of each stat. Vanilla non-NG+ is 10, maximum at the end of the NG+es is 99
+    """
+    display_name = "Maximum Stat Caps"
+    range_start = 10
+    range_end = 99
+    default = 20
+
 class OssexStart(DefaultOnToggle):
     """
     Start In Ossex
@@ -125,6 +134,7 @@ mina_the_hollower_option_groups= [
     OptionGroup("AP Options", [
         Goal,
         BoneUpCap,
+        MaximumStatLevel,
         OssexStart,
         KearRandomization,
         ExcludedAreas,
@@ -142,6 +152,7 @@ class MinaTheHollowerOptions(PerGameCommonOptions):
     kear_rando: KearRandomization
     # excluded_areas : ExcludedAreas
     bone_up_cap: BoneUpCap
+    max_stat_level: MaximumStatLevel
     random_starting_items: RandomizeStartingItems
     # entrance_rando: RandomizeEntrances
     ability_rando: AbilityRando

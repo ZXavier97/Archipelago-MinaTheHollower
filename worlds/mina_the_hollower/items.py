@@ -8,7 +8,7 @@ from .data.items import Kear, SingleKears, AreaKears, base_items, Abilities, Bon
     trinket_powers, upgrade_powers, valid_power_types
 from .data.rules.ability_rules import CanJumpTiles
 from .data.rules.state_rules import sidearm_rules
-from .options import BoneUpCap, KearRandomization
+from .options import BoneUpCap, KearRandomization, MaximumStatLevel
 
 from typing import TYPE_CHECKING
 
@@ -55,10 +55,10 @@ def create_items(world: "MinaTheHollowerWorld"):
     # dont want to start
     if world.options.bone_up_cap == BoneUpCap.option_perUpgrade:
         for item_type in BoneUps:
-            for _ in range(9):
+            for _ in range(world.options.max_stat_level.value - 1):
                 all_items.append(ItemData(item_type, 1))
     else:
-        for _ in range(9):
+        for _ in range(world.options.max_stat_level.value - 1):
             all_items.append(ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 1))
 
     starting_items: list[Item] = [] if not is_ut else world.starting_items
