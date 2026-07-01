@@ -25,7 +25,7 @@ collectable_locations: dict[str, LocationData] = {
     "EH Grassland Poppit Cave Willow" : LocationData(239, "Eastern Heath Poppit"),
     "EH Grassland Poppit Cave Kear" : LocationData(240, "Eastern Heath Poppit"),
     "EH Frozen Pass Chest" : LocationData(232, "Eastern Heath Frozen Pass Top"),
-    "EH Frozen Pass IceBlock" : LocationData(237, "Eastern Heath Frozen Pass Top"),
+    "EH Frozen Pass IceBlock Smelling Salts" : LocationData(237, "Eastern Heath Frozen Pass Top"),
 }
 
 boss_locations: dict[str, LocationData] = {
