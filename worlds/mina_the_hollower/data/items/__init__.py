@@ -1,4 +1,5 @@
 from rule_builder.rules import True_, Has
+from worlds.ff1.Client import movement_items
 from .abilities import Abilities
 from .blockers import AstralPlatforms
 from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller, CosmeticUpgrades, \
@@ -87,22 +88,33 @@ upgrade_items: list[ItemData] = [
     ItemData(MapUpgrades.PROGRESSIVE_MAP, 2)
 ]
 
-#Raft?
-all_movement_items: list[ItemTypeEnum] = [
-    Trinkets.SPRING_HEELS,
-    Abilities.BURROW,
-    Trinkets.BRIDGE_WEAVER,
+movement_sidearms: list[ItemTypeEnum] = [
     Sidearms.DEFLECTOR_PARASOL,
     Sidearms.DRIVER_DRILL,
     Sidearms.IRON_STEED,
     Sidearms.MIST_JAR,
+]
+
+movement_trinkets: list[ItemTypeEnum] = [
+    Trinkets.SPRING_HEELS,
+    Trinkets.BRIDGE_WEAVER,
     Trinkets.KERI_THE_WISP,
     Trinkets.PIT_PRESERVER,
     Trinkets.BELLOWS_BUSTLE,
     Trinkets.BRISK_BREW,
-    Weapons.GUARDIAN_CASKET,
-    Trinkets.WALLOWERS_GAUNTLETS
+    Trinkets.WALLOWERS_GAUNTLETS,
 ]
+#Raft?
+all_movement_items: list[ItemTypeEnum] = [
+    Abilities.BURROW,
+    Weapons.GUARDIAN_CASKET,
+    PlayerUpgrades.JOULE_BOX,
+    PlayerUpgrades.TRINKET_BAG,
+    *movement_trinkets,
+    *movement_sidearms
+]
+
+
 
 item_powers_dependencies: list[ItemPower] = [
     ItemPower(PlayerUpgrades.TRINKET_BAG, 0),

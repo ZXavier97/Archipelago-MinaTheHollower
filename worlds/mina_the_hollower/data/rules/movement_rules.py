@@ -9,8 +9,7 @@ from ...constants import MINA_THE_HOLLOWER
 from ...world_base import MinaTheHollowerBase
 from ...data import ItemTypeEnum
 from ..items import Trinkets, Sidearms, PlayerUpgrades, Weapons, \
-    Abilities, all_movement_items
-
+    Abilities, all_movement_items, movement_trinkets, movement_sidearms
 
 
 def base_movement_calc(movement_loadout, has_walls: bool):
@@ -113,13 +112,18 @@ exclusive_movements = [
 ]
 
 
-def is_valid_loadout(loadout):
-    return not len(loadout & exclusive_movements) > 1
+EXCLUSIVE_ITEMS = {
+    item
+    for item, _ in exclusive_movements
+}
 
+
+def is_valid_loadout(loadout):
+    return len(loadout & EXCLUSIVE_ITEMS) <= 1
 
 def valid_loadouts(state: CollectionState, player: int):
     available_trinkets: list[ItemTypeEnum] = [
-        t for t in Trinkets
+        t for t in movement_trinkets
         if state.has(t.value, player)
     ]
     if state.has(Weapons.GUARDIAN_CASKET.value, player, 2):
@@ -127,7 +131,7 @@ def valid_loadouts(state: CollectionState, player: int):
 
     has_joules = state.has(PlayerUpgrades.JOULE_BOX.value, player)
     available_sidearms = [
-        s for s in Sidearms
+        s for s in movement_sidearms
         if has_joules and state.has(s.value, player)
     ]
 
@@ -135,24 +139,22 @@ def valid_loadouts(state: CollectionState, player: int):
 
     trinket_slots = state.count(PlayerUpgrades.TRINKET_BAG.value, player)
 
-
-    def emit(loadout: set):
-        frozen = frozenset(loadout)
-        if is_valid_loadout(frozen):
-            yield frozen
-
     for num_trinkets in range(min(trinket_slots, len(available_trinkets)), -1, -1):
         for trinkets in combinations(available_trinkets, num_trinkets):
 
-            base_loadout = set(trinkets)
+            base_loadout = trinkets
 
             if has_burrow:
-                base_loadout.add(Abilities.BURROW)
+                base_loadout += (Abilities.BURROW,)
 
-            yield from emit(base_loadout)
+            loadout = frozenset(base_loadout)
+            if is_valid_loadout(loadout):
+                yield loadout
 
             for sidearm in available_sidearms:
-                yield from emit(base_loadout | {sidearm})
+                loadout = frozenset(base_loadout + (sidearm,))
+                if is_valid_loadout(loadout):
+                    yield loadout
 
 
 
@@ -166,7 +168,7 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     @override
     def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
         # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return self.Resolved(distance=self.distance, has_wall=self.has_wall, player=world.player, caching_enabled=False)
+        return self.Resolved(distance=self.distance, has_wall=self.has_wall, player=world.player, caching_enabled=True)
 
     class Resolved(Rule.Resolved):
         distance: int
@@ -175,20 +177,18 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
         @override
         def _evaluate(self, state: CollectionState) -> bool:
             for loadout in valid_loadouts(state, self.player):
-                candidates = [
-                    calc(loadout, self.has_wall)
-                    for item, calc in exclusive_movements
-                    if item in loadout
-                ]
-                if not candidates:
-                    candidates = [base_movement_calc(loadout, self.has_wall)]
-                if max(candidates) >= self.distance:
+                distance = base_movement_calc(loadout, self.has_wall)
+
+                for item, calc in exclusive_movements:
+                    if item in loadout:
+                        distance = max(distance, calc(loadout, self.has_wall))
+                if distance >= self.distance:
                     return True
             return False
 
         @override
         def item_dependencies(self) -> dict[str, set[int]]:
-            return  {item.value : {item.item_id} for item in all_movement_items}
+            return  {item.value : {id(self)} for item in all_movement_items}
 
         @override
         def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:

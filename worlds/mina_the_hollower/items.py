@@ -166,7 +166,7 @@ def create_items(world: "MinaTheHollowerWorld"):
     if world.options.bone_up_cap == BoneUpCap.option_perUpgrade:
         for item_type in BoneUps:
             for _ in range(world.options.max_stat_level.value-10):
-                all_items.append(ItemData(item_type, 1))
+                create_item(world, ItemData(item_type, 1))
                 remaining -= 1
                 if remaining <= 20:
                     break
@@ -174,7 +174,7 @@ def create_items(world: "MinaTheHollowerWorld"):
                 break
     else:
         for _ in range(world.options.max_stat_level.value-10):
-            all_items.append(ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 1))
+            create_item(world, ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 1))
             remaining -= 1
             if remaining <= 20:
                 break
