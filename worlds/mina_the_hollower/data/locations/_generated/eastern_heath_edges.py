@@ -79,7 +79,7 @@ connections: dict[str, RegionConnection] = {
     'Eastern Heath East Corner Cliff_Eastern Heath East Corner': RegionConnection('Eastern Heath East Corner Cliff', 'Eastern Heath East Corner', True_()),
     'Eastern Heath Frozen Pass_Eastern Heath Grassland Waterfall Second Level': RegionConnection('Eastern Heath Frozen Pass', 'Eastern Heath Grassland Waterfall Second Level', True_()),
     'Eastern Heath Grassland Bridge Right_Eastern Heath Grassland Bridge Left': RegionConnection('Eastern Heath Grassland Bridge Right', 'Eastern Heath Grassland Bridge Left', True_()),
-    'Eastern Heath Grassland Waterfall Bottom_Eastern Heath Frozen Pass': RegionConnection('Eastern Heath Grassland Waterfall Bottom', 'Eastern Heath Frozen Pass', CanSwim()),
+    'Eastern Heath Grassland Waterfall Second Level_Eastern Heath Frozen Pass': RegionConnection('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Frozen Pass', CanSwim()),
     'Eastern Heath Poppet Entry Top_Eastern Heath Poppet Entry': RegionConnection('Eastern Heath Poppet Entry Top', 'Eastern Heath Poppet Entry', CanBurrow()),
     'Eastern Heath Poppet Entry_Eastern Heath Poppet Entry Top': RegionConnection('Eastern Heath Poppet Entry', 'Eastern Heath Poppet Entry Top', CanBurrow()),
 }
