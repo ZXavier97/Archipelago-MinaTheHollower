@@ -10,17 +10,9 @@ class Goal(Choice):
     """
     display_name = "Goal"
     option_radientManorGenerator = 0
-    option_RepairGenerators = 1
+    option_fixGenerators = 1
+    option_killBosses = 2
     default = 0
-
-class GeneratorGoalCount(Range):
-    """
-    The number of generators required to go to goal on repair generators goal
-    """
-    display_name = "Generator Goal Count"
-    range_start = 1
-    range_end = 6
-    default = 6
 
 class BoneUpCap(Choice):
     """
@@ -30,6 +22,33 @@ class BoneUpCap(Choice):
     option_perUpgrade = 0
     option_allUpgrade = 1
     default = 0
+
+class NumberOfGenerators(Range):
+    """
+    The number of generators required to goal.
+    """
+    display_name = "Generators Required"
+    range_start = 1
+    range_end = 6
+    default = 6
+
+class NumberOfBosses(Range):
+    """
+    The number of bosses required to goal.
+    """
+    display_name = "Bosses Required"
+    range_start = 1
+    range_end = 26
+    default = 26
+
+class MaximumStatLevel(Range):
+    """
+    The maximum cap of each stat. Vanilla non-NG+ is 10, maximum at the end of the NG+es is 99
+    """
+    display_name = "Maximum Stat Caps"
+    range_start = 10
+    range_end = 99
+    default = 20
 
 class OssexStart(DefaultOnToggle):
     """
@@ -125,8 +144,10 @@ class ShuffledSidearms(Toggle):
 mina_the_hollower_option_groups= [
     OptionGroup("AP Options", [
         Goal,
-        # GeneratorGoalCount,
         BoneUpCap,
+        NumberOfGenerators,
+        NumberOfBosses,
+        MaximumStatLevel,
         OssexStart,
         KearRandomization,
         ExcludedAreas,
@@ -140,11 +161,13 @@ mina_the_hollower_option_groups= [
 @dataclass
 class MinaTheHollowerOptions(PerGameCommonOptions):
     goal: Goal
-    # generator_goal_count: GeneratorGoalCount
+    goal_generators: NumberOfGenerators
+    goal_bosses: NumberOfBosses
     ossex_start: OssexStart
     kear_rando: KearRandomization
     # excluded_areas : ExcludedAreas
     bone_up_cap: BoneUpCap
+    max_stat_level: MaximumStatLevel
     random_starting_items: RandomizeStartingItems
     # entrance_rando: RandomizeEntrances
     ability_rando: AbilityRando
