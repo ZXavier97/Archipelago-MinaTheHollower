@@ -9,27 +9,17 @@ If you are reading this, you have either been invited to or are interested in he
 
 The randomizer is currently believed to be completable. Below is an ever-changing list of implemented features and their current state. Please let us know how your experience goes!
 
-Use [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?q=Tracker) to keep track of what you can access. There is also an in-progress map tracker built into UT that is actively being worked on.
-- Game Breaking Bugs:
-  - Legovich isn't able to be talked to after defeating Armand 
+
+- Known issues:
   - Backer code breaks any save created in AP. Remove backer code for AP.
-  - Selling to pawnty is broken and can crash your game
-  - some kears give you the vanilla item in addition to the AP item
   - You are forced to teleport to ossex if transitions take you to ropes without you having climb
-  - Goal does not send. The host will have to /release you
+  - Goal in theory sends after a fix. Let us know how if it sends.
 
-
-- Ability randomization is implemented. Please test all abilities and report any bugs.
-- Randomizing Burrow can make starts significantly more difficult. Be careful when enabling it, and please share any ideas for improving the experience.
-- Randomizing starting items can cause funny starts. Feedback and suggestions Welcome.
-- Kear randomization is implemented. Please report any locks that are not removed correctly or any progression issues you encounter.
-
-- Location logic still has many bugs. Please report anything that UT says is inaccessible that you can reach, or anything UT says is accessible that you cannot reach.
-- Combat logic has been implemented. When reporting a boss that feels too difficult, please include your attack Bone Ups, defense Bone Ups, health, vials, and currently equipped combat trinkets. [Report Combat Issues Here](https://github.com/FyreDay/Archipelago-MinaTheHollower/issues/12)
+- Location logic has been improved, but still has bugs. Please report anything that UT says is inaccessible that you can reach, or anything UT says is accessible that you cannot reach.
 
 ### Tracker
-
-The [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?q=Tracker) map tracker is currently complete for Train, Ossex, Loner's Landing, Southern Outskirts, and Eastern Hearth. Please limit map tracker feedback to these areas for now.
+Use [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?q=Tracker) to keep track of what you can access. There is also an in-progress map tracker built into UT that is actively being worked on.
+The map tracker is currently complete for Train, Ossex, Loner's Landing, Southern Outskirts, and Eastern Hearth. Please limit map tracker feedback to these areas for now.
 
 We would also appreciate feedback on how the map tracker is organized and whether you find it useful as development continues.
 
@@ -117,7 +107,9 @@ There is also a console you can access by presssing **F1**. type ```help``` to s
 
 All chests, shops, trinkets, and large Bonestones are randomized.
 
-The goal is to defeat Giga Lionel and repair the final generator
+### Goals
+- Defeat Giga Lionel and repair the final generator
+- Repair a target number of generators
 
 ## Options
 
