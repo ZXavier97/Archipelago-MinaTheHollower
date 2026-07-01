@@ -8,7 +8,7 @@ from .data.items import Kear, SingleKears, AreaKears, base_items, Abilities, Bon
     trinket_powers, upgrade_powers, valid_power_types, FilledJug
 
 from .data.rules.state_rules import sidearm_rules
-from .options import BoneUpCap, KearRandomization, MaximumStatLevel
+from .options import BoneUpCap, KearRandomization, MaximumStatLevel, Goal
 
 from typing import TYPE_CHECKING
 
@@ -52,13 +52,13 @@ def create_items(world: "MinaTheHollowerWorld"):
     for item_type in PlayerUpgrades:
         all_items.append(ItemData(item_type, 1))
 
-    # dont want to start
+
     if world.options.bone_up_cap == BoneUpCap.option_perUpgrade:
         for item_type in BoneUps:
-            for _ in range(world.options.max_stat_level.value - 1):
+            for _ in range(10):
                 all_items.append(ItemData(item_type, 1))
     else:
-        for _ in range(world.options.max_stat_level.value - 1):
+        for _ in range(10):
             all_items.append(ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 1))
 
     starting_items: list[Item] = [] if not is_ut else world.starting_items
@@ -159,9 +159,26 @@ def create_items(world: "MinaTheHollowerWorld"):
             create_single_item(world, item_type)
 
     total_location_count = len(world.multiworld.get_unfilled_locations(world.player))
+
     # print(f"total locs at start {total_location_count}")
     # print(f"total Itempool at start {len(world.itempool)}")
     remaining = total_location_count - len(world.itempool)
+    if world.options.bone_up_cap == BoneUpCap.option_perUpgrade:
+        for item_type in BoneUps:
+            for _ in range(world.options.max_stat_level.value-10):
+                all_items.append(ItemData(item_type, 1))
+                remaining -= 1
+                if remaining <= 20:
+                    break
+            if remaining <= 20:
+                break
+    else:
+        for _ in range(world.options.max_stat_level.value-10):
+            all_items.append(ItemData(GenericBoneUp.ALL_BONE_UP_CAP, 1))
+            remaining -= 1
+            if remaining <= 20:
+                break
+
 
     filler: list[ItemFiller] = world.random.choices(
         all_filler_items,
@@ -229,6 +246,6 @@ def create_events(world: "MinaTheHollowerWorld"):
 
     create_event(world, region_name="Astral Orrery Coltrane Peak Mirror",
                  item_name=AstralPlatforms.PURPLE_ASTRAL_PLATFORMS.value, loc_name="Purple Switch")
-
-    create_event(world, region_name="Radiant Manor Prime Generator",
-                 item_name="Victory", loc_name="Defeat Giga Lionel")
+    if world.options.goal.value == Goal.option_radientManorGenerator:
+        create_event(world, region_name="Radiant Manor Prime Generator",
+                     item_name="Victory", loc_name="Defeat Giga Lionel")
