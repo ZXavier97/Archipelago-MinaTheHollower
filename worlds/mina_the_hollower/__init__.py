@@ -1,14 +1,16 @@
 import json
 from importlib.resources import files
-from typing import Any, ClassVar
+from typing import Any, ClassVar, override
 
-from BaseClasses import ItemClassification, Location, Tutorial
+from BaseClasses import ItemClassification, Location, Tutorial, CollectionState
+from NetUtils import JSONMessagePart
 from Options import OptionError
 from entrance_rando import bake_target_group_lookup, randomize_entrances
 
 from Utils import visualize_regions
 from rule_builder.rules import Has
 from .data.rules.ability_rules import PowerLevelThreshold
+from .data.rules.movement_rules import CanJumpTiles, max_jump
 from .data.rules.state_rules import HasRepairedAllGenerators, HasRepairedGeneratorCount
 
 from ..AutoWorld import WebWorld
@@ -170,6 +172,21 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
             ]
         }
 
+    @override
+    def explain_rule(self, dest_name: str, state: CollectionState, *_: Any, **__: Any) -> list[JSONMessagePart] | None:
+        if dest_name == "Max Jump":
+            pure_distance, pure_loadout = max_jump(state, self.player, False)
+            wall_distance, wall_loadout = max_jump(state, self.player, True)
+
+            pure_loadout_message = "" if  pure_loadout is None else f" Loadout is {", ".join([x.value for x in pure_loadout])}"
+            wall_loadout_message = "" if  wall_loadout is None else f" Loadout is {", ".join([x.value for x in wall_loadout])}"
+            return [
+                {"type": "color", "color": "green", "text": f"Can Jump {pure_distance} Tiles.{pure_loadout_message}\n"},
+                {"type": "color", "color": "green", "text": f"Can Jump With Wallower {wall_distance} Tiles.{wall_loadout_message}\n"},
+            ]
+        return None
+
+
     def extend_hint_information(self, hint_data: dict[int, dict[int, str]]):
         hint_data[self.player] = self.hints
 
@@ -188,10 +205,13 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
         if not slot_data:
             return None
 
-        self.options.goal.value = slot_data["goal"]
+        self.options.goal.value = slot_data["goal_config"]
+        self.options.goal_generators.value = slot_data["goal_generators"]
+        # self.options.goal_bosses.value = slot_data["goal_bosses"]
         self.options.death_link.value = slot_data["death_link"]
         self.options.kear_rando.value = slot_data["kear_rando"]
         self.options.ossex_start.value = slot_data["ossex_start"]
+        self.options.max_stat_level.value = slot_data["max_stat_level"]
         self.options.ability_rando.value = {
             option_key
             for option_key, slot_keys in ABILITY_RANDO_SLOT_KEYS.items()

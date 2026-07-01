@@ -159,8 +159,6 @@ def valid_loadouts(state: CollectionState, player: int):
 
 
 
-
-
 @dataclasses.dataclass(kw_only=True)
 class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
     distance: int
@@ -199,3 +197,22 @@ class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
         @override
         def __str__(self) -> str:
             return "Jump x tiles"
+
+def max_jump(state: CollectionState, player: int, has_wall:bool)  -> tuple[int,frozenset[ItemTypeEnum]]:
+    distance = 0
+    loadout = None
+    for new_loadout in valid_loadouts(state, player):
+
+        new_distance = base_movement_calc(new_loadout, has_wall)
+
+        if new_distance > distance:
+            distance = new_distance
+            loadout = new_loadout
+
+        for item, calc in exclusive_movements:
+            if item in loadout:
+                new_distance = calc(new_loadout, has_wall)
+                if new_distance > distance:
+                    distance = new_distance
+                    loadout = new_loadout
+    return distance, loadout
