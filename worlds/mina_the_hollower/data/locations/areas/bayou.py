@@ -21,7 +21,7 @@ collectable_locations: dict[str, LocationData] = {
     "NB Moonlit Path Chest" : LocationData(43, "Nox's Bayou Moonlit Path"),
     "NB Moonlit Hideaway Iron Lung" : LocationData(37, "Nox's Bayou Moonlit Mirror"),
     "NB Plant Pond Chest" : LocationData(35, "Nox's Bayou Thick Plant Pond Cave"),
-    "NB Twin Thicket Chest" : LocationData(36, "Nox's Bayou Twin Thicket"),
+    "NB Thick Thicket Chest" : LocationData(36, "Nox's Bayou Twin Thicket"),
     "NB Hidden Cave Chest" : LocationData(44, "Nox's Bayou Canopy Bridge Cave"),
     "NB Grate Lake Chest" : LocationData(41, "Nox's Bayou Tainted Lair Grate Bridge"),
     "NB Tainted Depths Health Rose" : LocationData(34, "Nox's Bayou Tainted Lair Arena", CanSwim()),
