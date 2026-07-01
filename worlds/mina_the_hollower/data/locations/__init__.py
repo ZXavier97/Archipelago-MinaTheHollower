@@ -31,7 +31,7 @@ all_bosses: ChainMap[str, LocationData] = ChainMap(
     # bayou.boss_locations,
     # bone_beach.boss_locations,
     # coltrane_peak.boss_locations,
-    eastern_heath.boss_locations
+    # eastern_heath.boss_locations
     # kindlewood.boss_locations,
     # loners_landing.boss_locations,
     # mourners_mile.boss_locations,
@@ -41,7 +41,7 @@ all_bosses: ChainMap[str, LocationData] = ChainMap(
     # sandfalls.boss_locations,
     # septemburg.boss_locations,
     # southern_outskirts.boss_locations,
-    # backwaters.boss_locations,
+    backwaters.boss_locations,
     # western_wilds.boss_locations,
 )
 

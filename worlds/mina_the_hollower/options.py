@@ -11,7 +11,7 @@ class Goal(Choice):
     display_name = "Goal"
     option_radientManorGenerator = 0
     option_fixGenerators = 1
-    option_killBosses = 2
+    # option_killBosses = 2
     default = 0
 
 class BoneUpCap(Choice):
@@ -43,7 +43,8 @@ class NumberOfBosses(Range):
 
 class MaximumStatLevel(Range):
     """
-    The maximum cap of each stat. Vanilla non-NG+ is 10, maximum at the end of the NG+es is 99
+    The maximum cap of each stat. Vanilla non-NG+ is 10, maximum at the end of the NG+es is 99.
+    Will be soft capped if location count is too small
     """
     display_name = "Maximum Stat Caps"
     range_start = 10
@@ -145,6 +146,8 @@ mina_the_hollower_option_groups= [
     OptionGroup("AP Options", [
         Goal,
         BoneUpCap,
+        NumberOfGenerators,
+        # NumberOfBosses,
         MaximumStatLevel,
         OssexStart,
         KearRandomization,
@@ -160,7 +163,7 @@ mina_the_hollower_option_groups= [
 class MinaTheHollowerOptions(PerGameCommonOptions):
     goal: Goal
     goal_generators: NumberOfGenerators
-    goal_bosses: NumberOfBosses
+    # goal_bosses: NumberOfBosses
     ossex_start: OssexStart
     kear_rando: KearRandomization
     # excluded_areas : ExcludedAreas

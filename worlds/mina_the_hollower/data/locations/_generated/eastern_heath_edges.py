@@ -7,7 +7,10 @@ from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
     CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
-    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, 
+    HasVialsCount, HasReachingSideArm, HasFishingRod, CanSpring, 
+)
+from ...rules.movement_rules import (
+    CanJumpTiles, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, 
@@ -39,7 +42,6 @@ regions: set[str] = {
     'Eastern Heath East Corner',
     'Eastern Heath East Corner Cliff',
     'Eastern Heath Frozen Pass',
-    'Eastern Heath Frozen Pass Top',
     'Eastern Heath Grassland',
     'Eastern Heath Grassland Bridge Left',
     'Eastern Heath Grassland Bridge Right',
@@ -51,7 +53,6 @@ regions: set[str] = {
     'Eastern Heath Grassland Riverbed Top',
     'Eastern Heath Grassland Waterfall Bottom',
     'Eastern Heath Grassland Waterfall First Level',
-    'Eastern Heath Grassland Waterfall Mountain',
     'Eastern Heath Grassland Waterfall Second Level',
     'Eastern Heath Grotto Left',
     'Eastern Heath Grotto Right',
@@ -76,10 +77,9 @@ connections: dict[str, RegionConnection] = {
     'Eastern Heath Choppe Shoppe Entry_Eastern Heath Choppe Shoppe Entry Cliff': RegionConnection('Eastern Heath Choppe Shoppe Entry', 'Eastern Heath Choppe Shoppe Entry Cliff', True_()),
     'Eastern Heath Cliff Secret_Eastern Heath Choppe Shoppe Entry Cliff': RegionConnection('Eastern Heath Cliff Secret', 'Eastern Heath Choppe Shoppe Entry Cliff', HasKear(kear=SingleKears.EASTERN_HEATH_WATERFALL_KEAR.value)),
     'Eastern Heath East Corner Cliff_Eastern Heath East Corner': RegionConnection('Eastern Heath East Corner Cliff', 'Eastern Heath East Corner', True_()),
-    'Eastern Heath Frozen Pass Top_Eastern Heath Frozen Pass': RegionConnection('Eastern Heath Frozen Pass Top', 'Eastern Heath Frozen Pass', True_()),
+    'Eastern Heath Frozen Pass_Eastern Heath Grassland Waterfall Second Level': RegionConnection('Eastern Heath Frozen Pass', 'Eastern Heath Grassland Waterfall Second Level', True_()),
     'Eastern Heath Grassland Bridge Right_Eastern Heath Grassland Bridge Left': RegionConnection('Eastern Heath Grassland Bridge Right', 'Eastern Heath Grassland Bridge Left', True_()),
-    'Eastern Heath Grassland Waterfall Bottom_Eastern Heath Grassland Waterfall Mountain': RegionConnection('Eastern Heath Grassland Waterfall Bottom', 'Eastern Heath Grassland Waterfall Mountain', CanSwim()),
-    'Eastern Heath Grassland Waterfall Mountain_Eastern Heath Grassland Waterfall Second Level': RegionConnection('Eastern Heath Grassland Waterfall Mountain', 'Eastern Heath Grassland Waterfall Second Level', True_()),
+    'Eastern Heath Grassland Waterfall Bottom_Eastern Heath Frozen Pass': RegionConnection('Eastern Heath Grassland Waterfall Bottom', 'Eastern Heath Frozen Pass', CanSwim()),
     'Eastern Heath Poppet Entry Top_Eastern Heath Poppet Entry': RegionConnection('Eastern Heath Poppet Entry Top', 'Eastern Heath Poppet Entry', CanBurrow()),
     'Eastern Heath Poppet Entry_Eastern Heath Poppet Entry Top': RegionConnection('Eastern Heath Poppet Entry', 'Eastern Heath Poppet Entry Top', CanBurrow()),
 }
@@ -97,8 +97,7 @@ transitions: dict[str, Transition] = {
     'Eastern Heath East Corner North Transition': Transition('Eastern Heath East Corner', 'Eastern Heath Mourners Gate', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Eastern Heath East Corner South Transition': Transition('Eastern Heath East Corner', 'Eastern Heath Poppet Entry', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Eastern Heath East Corner West Transition': Transition('Eastern Heath East Corner', 'Eastern Heath Grassland Bridge Right', DirectionType.WEST, TransitionType.SCREENS, True_()),
-    'Eastern Heath Frozen Pass South Transition': Transition('Eastern Heath Frozen Pass', 'Eastern Heath Grassland Waterfall Second Level', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
-    'Eastern Heath Frozen Pass Top North Area Transition': Transition('Eastern Heath Frozen Pass Top', 'Coltrane Peak Frozen Pass', DirectionType.NORTH, TransitionType.AREA_SCREENS, True_()),
+    'Eastern Heath Frozen Pass North Area Transition': Transition('Eastern Heath Frozen Pass', 'Coltrane Peak Frozen Pass Bottom', DirectionType.NORTH, TransitionType.AREA_SCREENS, True_()),
     'Eastern Heath Grassland Bridge Left North Transition': Transition('Eastern Heath Grassland Bridge Left', 'Eastern Heath Grassland Waterfall Bottom', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Bridge Left South Transition': Transition('Eastern Heath Grassland Bridge Left', 'Eastern Heath Grassland Riverbed Top', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Bridge Left West Transition': Transition('Eastern Heath Grassland Bridge Left', 'Eastern Heath Grassland', DirectionType.WEST, TransitionType.SCREENS, True_()),
@@ -122,7 +121,6 @@ transitions: dict[str, Transition] = {
     'Eastern Heath Grassland Waterfall Bottom West Transition': Transition('Eastern Heath Grassland Waterfall Bottom', 'Eastern Heath Choppe Shoppe Entry', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Waterfall First Level Door': Transition('Eastern Heath Grassland Waterfall First Level', 'Eastern Heath Grotto Left', DirectionType.NORTH, TransitionType.DOORS, True_()),
     'Eastern Heath Grassland Waterfall First Level West Transition': Transition('Eastern Heath Grassland Waterfall First Level', 'Eastern Heath Choppe Shoppe Entry Cliff', DirectionType.WEST, TransitionType.SCREENS, True_()),
-    'Eastern Heath Grassland Waterfall Mountain North Transition': Transition('Eastern Heath Grassland Waterfall Mountain', 'Eastern Heath Frozen Pass', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Waterfall Second Level Dive South': Transition('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Under the Bridge', DirectionType.SOUTH, TransitionType.SCREENS, CanSwim()),
     'Eastern Heath Grassland Waterfall Second Level Door': Transition('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Grotto Right', DirectionType.NORTH, TransitionType.DOORS, True_()),
     'Eastern Heath Grassland Waterfall Second Level East Transition': Transition('Eastern Heath Grassland Waterfall Second Level', "Eastern Heath Buckler's Bluff Bucklers", DirectionType.EAST, TransitionType.SCREENS, CanJumpTiles(distance=2)),

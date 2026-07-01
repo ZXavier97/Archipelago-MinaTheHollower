@@ -7,7 +7,10 @@ from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
     CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
-    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, 
+    HasVialsCount, HasReachingSideArm, HasFishingRod, CanSpring, 
+)
+from ...rules.movement_rules import (
+    CanJumpTiles, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, 
@@ -64,6 +67,7 @@ regions: set[str] = {
     "Loner's Landing Cliff",
     "Loner's Landing Dock",
     "Loner's Landing Shipwreck",
+    "Loner's Landing Shipwreck Blocked",
     "Loner's Landing Waterfall",
 }
 
@@ -89,6 +93,7 @@ connections: dict[str, RegionConnection] = {
     "Loner's Landing Boardwalk Spike Path Upper_Loner's Landing Boardwalk Spike Path": RegionConnection("Loner's Landing Boardwalk Spike Path Upper", "Loner's Landing Boardwalk Spike Path", True_()),
     "Loner's Landing Boardwalk Spike Path_Loner's Landing Boardwalk Spike Gate": RegionConnection("Loner's Landing Boardwalk Spike Path", "Loner's Landing Boardwalk Spike Gate", CanBurrow()),
     "Loner's Landing Cliff_Loner's Landing Waterfall": RegionConnection("Loner's Landing Cliff", "Loner's Landing Waterfall", CanClimb()),
+    "Loner's Landing Shipwreck Blocked_Loner's Landing Shipwreck": RegionConnection("Loner's Landing Shipwreck Blocked", "Loner's Landing Shipwreck", True_()),
     "Loner's Landing Shipwreck_Loner's Landing Dock": RegionConnection("Loner's Landing Shipwreck", "Loner's Landing Dock", True_()),
 }
 
@@ -96,8 +101,8 @@ transitions: dict[str, Transition] = {
     "Loner's Landing Bay Cliff East Transition": Transition("Loner's Landing Bay Cliff", "Loner's Landing Cliff", DirectionType.EAST, TransitionType.SCREENS, True_()),
     "Loner's Landing Bay East Transition": Transition("Loner's Landing Bay", "Loner's Landing Boat Side", DirectionType.EAST, TransitionType.SCREENS, True_()),
     "Loner's Landing Bay North Area Transition": Transition("Loner's Landing Bay", 'Backwaters Lower Swamp Station', DirectionType.NORTH, TransitionType.AREA_SCREENS, True_()),
-    "Loner's Landing Belowdecks East Burrow": Transition("Loner's Landing Belowdecks", "Loner's Landing Waterfall", DirectionType.EAST, TransitionType.BURROW, CanBurrow() & HasRepairedOneGenerator()),
-    "Loner's Landing Belowdecks Front Stairs": Transition("Loner's Landing Belowdecks Front", "Loner's Landing Shipwreck", DirectionType.NORTH, TransitionType.STAIRS, HasRepairedOneGenerator()),
+    "Loner's Landing Belowdecks East Burrow": Transition("Loner's Landing Belowdecks", "Loner's Landing Waterfall", DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
+    "Loner's Landing Belowdecks Front Stairs": Transition("Loner's Landing Belowdecks Front", "Loner's Landing Shipwreck Blocked", DirectionType.NORTH, TransitionType.STAIRS, True_()),
     "Loner's Landing Blighted Docks Bridge Cliff Door": Transition("Loner's Landing Blighted Docks Bridge Cliff", "Loner's Landing Blighted Docks Residence", DirectionType.NORTH, TransitionType.DOORS, True_()),
     "Loner's Landing Blighted Docks Bridge East Transition": Transition("Loner's Landing Blighted Docks Bridge", "Loner's Landing Blighted Docks Road Upper", DirectionType.EAST, TransitionType.SCREENS, True_()),
     "Loner's Landing Blighted Docks Bridge Gate North Transition": Transition("Loner's Landing Blighted Docks Bridge Gate", "Loner's Landing Blighted Docks Lower Bridge", DirectionType.NORTH, TransitionType.SCREENS, True_()),
@@ -141,6 +146,6 @@ transitions: dict[str, Transition] = {
     "Loner's Landing Cliff West Transition": Transition("Loner's Landing Cliff", "Loner's Landing Bay Cliff", DirectionType.WEST, TransitionType.SCREENS, True_()),
     "Loner's Landing Dock East Transition": Transition("Loner's Landing Dock", "Loner's Landing Blighted Docks Gangplank", DirectionType.EAST, TransitionType.SCREENS, True_()),
     "Loner's Landing Dock Pipe": Transition("Loner's Landing Dock", "Loner's Landing Boardwalk Pipe Landing", DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, (HasKear(kear=SingleKears.LONERS_LANDING_BOARDWALK_KEAR.value) | StartedInOssex())),
-    "Loner's Landing Shipwreck Stairs": Transition("Loner's Landing Shipwreck", "Loner's Landing Belowdecks Front", DirectionType.NORTH, TransitionType.STAIRS, HasRepairedOneGenerator()),
-    "Loner's Landing Waterfall West Burrow": Transition("Loner's Landing Waterfall", "Loner's Landing Belowdecks", DirectionType.WEST, TransitionType.BURROW, CanSwim() & HasRepairedOneGenerator()),
+    "Loner's Landing Shipwreck Stairs": Transition("Loner's Landing Shipwreck Blocked", "Loner's Landing Belowdecks Front", DirectionType.NORTH, TransitionType.STAIRS, True_()),
+    "Loner's Landing Waterfall West Burrow": Transition("Loner's Landing Waterfall", "Loner's Landing Belowdecks", DirectionType.WEST, TransitionType.BURROW, CanSwim()),
 }

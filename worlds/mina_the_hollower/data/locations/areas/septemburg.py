@@ -2,8 +2,9 @@ from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, HasFishingRod, CanSpring
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, HasFishingRod, CanSpring
 from ...rules.state_rules import HasKear, HasRepairedWindyGenerator, HasSparks
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "SB Launch Pad Secret Room #1 Chest": LocationData(91, "Septemburg Withered Farms Hills Maze", CanSpring()),
@@ -13,7 +14,6 @@ collectable_locations: dict[str, LocationData] = {
     "SB Hidden Crop Thresher Room Chest": LocationData(90, "Septemburg Tractor Chase", CanSpring() & CanBurrow()),
     "SB Rotten Barn Chest": LocationData(94, "Septemburg Rotten Barn Kid Room", CanBurrow()),
     "SB Below Crow Town Bridge Chest": LocationData(98, "Septemburg Crow Town Tunnel Top", HasKear(kear=SingleKears.SEPTEMBURG_CROW_TOWN_TUNNEL_KEAR.value)),
-    "SB Below Crow Town Gazeworm Eye": LocationData(104, "Septemburg Crow Town Tunnel Top", HasFishingRod()),
     "SB Crow Town Shop Repulsing Root": LocationData(102, "Septemburg Crow Town"),
     "SB Crow Town Shop Kear": LocationData(103, "Septemburg Crow Town"),
     "SB Crow Town Farmhouse Roof Chest": LocationData(99, "Septemburg Farm House Roof", CanBurrow() & CanCarry()),

@@ -170,6 +170,8 @@ class Trinkets(ItemTypeEnum):
     POLYP_LAMP = ("Polyp Lamp", 191, ItemClassification.progression)
     THERMAL_PACK = ("Thermal Pack", 192, ItemClassification.progression)
     COUNTER_VIAL = ("Counter Vial", 193, ItemClassification.progression)
+
+class FilledJug(ItemTypeEnum):
     PLASMA_JUG = ("Plasma Jug", 194, ItemClassification.progression)
 
 
