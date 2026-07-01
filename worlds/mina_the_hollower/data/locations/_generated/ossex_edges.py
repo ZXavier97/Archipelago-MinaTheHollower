@@ -108,7 +108,7 @@ connections: dict[str, RegionConnection] = {
     'Ossex High Street SE Garden_Ossex High Street SE Garden Sewer': RegionConnection('Ossex High Street SE Garden', 'Ossex High Street SE Garden Sewer', CanSwim()),
     'Ossex Station Underside Burrow_Ossex Station Underside Main': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Main', CanClimb()),
     'Ossex Station Underside Burrow_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Upper', CanClimb() & HasVialsCount(count=4)),
-    'Ossex Station Underside Main_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Main', 'Ossex Station Underside Upper', (CanJumpTiles(distance=4, has_wall=True) | HasBurrow()) & HasVialsCount(count=4) & CanClimb()),
+    'Ossex Station Underside Main_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Main', 'Ossex Station Underside Upper', (CanJumpTiles(distance=4, has_wall=True) | CanBurrow()) & HasVialsCount(count=4) & CanClimb()),
     'Ossex Station Underside Upper_Ossex Station Underside Main': RegionConnection('Ossex Station Underside Upper', 'Ossex Station Underside Main', True_()),
 }
 
