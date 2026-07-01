@@ -21,6 +21,8 @@ The randomizer is currently believed to be completable. Below is an ever-changin
 Use [Universal Tracker](https://github.com/FarisTheAncient/Archipelago/releases?q=Tracker) to keep track of what you can access. There is also an in-progress map tracker built into UT that is actively being worked on.
 The map tracker is currently complete for Train, Ossex, Loner's Landing, Southern Outskirts, and Eastern Hearth. Please limit map tracker feedback to these areas for now.
 
+You can use ```/explain Max Jump``` To see what AP thinks your best trinket combo is at the moment
+
 We would also appreciate feedback on how the map tracker is organized and whether you find it useful as development continues.
 
 ## Installing
