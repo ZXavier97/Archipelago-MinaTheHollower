@@ -10,6 +10,8 @@ class Goal(Choice):
     """
     display_name = "Goal"
     option_radientManorGenerator = 0
+    option_fixGenerators = 1
+    option_killBosses = 2
     default = 0
 
 class BoneUpCap(Choice):
@@ -23,12 +25,21 @@ class BoneUpCap(Choice):
 
 class NumberOfGenerators(Range):
     """
-    The number of generators required to go to radiant manor
+    The number of generators required to goal.
     """
     display_name = "Generators Required"
     range_start = 1
     range_end = 6
     default = 6
+
+class NumberOfBosses(Range):
+    """
+    The number of bosses required to goal.
+    """
+    display_name = "Bosses Required"
+    range_start = 1
+    range_end = 26
+    default = 26
 
 class MaximumStatLevel(Range):
     """
@@ -148,6 +159,8 @@ mina_the_hollower_option_groups= [
 @dataclass
 class MinaTheHollowerOptions(PerGameCommonOptions):
     goal: Goal
+    goal_generators: NumberOfGenerators
+    goal_bosses: NumberOfBosses
     ossex_start: OssexStart
     kear_rando: KearRandomization
     # excluded_areas : ExcludedAreas

@@ -145,7 +145,9 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
         ability_rando = self.options.ability_rando.value
         return {
             "sem_ver": self.manifest["mod_version"],
-            "goal": self.options.goal.value,
+            "goal_config": self.options.goal.value,
+            "goal_generators": self.options.goal_generators.value,
+            "goal_bosses": self.options.goal_bosses.value,
             "ossex_start": self.options.ossex_start.value,
             "kear_rando": self.options.kear_rando.value,
             "max_stat_level": self.options.max_stat_level.value,
