@@ -248,7 +248,14 @@ bayou_boat: dict[int, int] = {
     24:0,
     36:0,
     10:0,
-    23:0
+    23:1,
+    34:1,
+    31:1,
+    25:1,
+    32:1,
+    28:2,
+    27:2,
+    26:7
 }
 bayou_start: dict[int, int] = {
     24:0,
@@ -258,7 +265,77 @@ bayou_fen: dict[int, int] = {
     33:0,
     29:0,
 }
+bayou_lagoon: dict[int, int] = {
+    8:0,
+    20:0,
+    29:0,
+    21:5
+}
+bayou_moonlit: dict[int, int] = {
+    4:0,
+    5:0,
+    6:0,
+}
+bayou_thicket: dict[int, int] = {
+    11:0,
+    14:0,
+    12:0,
+    2:0,
+    1:0,
+    13:0,
+    15:0,
+    3:3,
+    35:3,
+}
+bayou_tainted: dict[int, int] = {
+    16:0,
+    17:0,
+    18:0,
+    19:0,
+    39:1,
+    0:1
+}
+bayou_lair: dict[int, int] = {
+    0:0,
+}
+bayou_shack: dict[int, int] = {
+    38:0,
+}
+mourners_mile: dict[int, int] = {
+    2:0,
+    3:0,
+    16:0,
+    1:1,
+    5:1,
+    14:1,
+}
+mm_tomb: dict[int, int] = {
+    13:0,
+}
+mm_cave: dict[int, int] = {
+    6:0,
+}
 
+mm_spike: dict[int, int] = {
+    7:0,
+    8:0,
+}
+mm_generator: dict[int, int] = {
+    0:0,
+}
+mm_mina_grave: dict[int, int] = {
+    0:0,
+}
+mm_deprived_path: dict[int, int] = {
+    1:0,
+    4:0,
+    2:0,
+    3:0,
+}
+mm_stairs: dict[int, int] = {
+    12:0,
+    3:0,
+}
 @dataclasses.dataclass
 class MapData:
     lookup: dict[int, int]
@@ -313,7 +390,20 @@ area_id_to_map: dict[int, MapData] = {
     1: MapData(bayou_boat, 30),
     8: MapData(bayou_fen, 30),
     2: MapData(bayou_start, 30),
-
+    3: MapData(bayou_lagoon, 32),
+    4: MapData(bayou_moonlit, 33),
+    6: MapData(bayou_thicket, 34),
+    7: MapData(bayou_tainted, 35),
+    11: MapData(bayou_lair, 36),
+    10: MapData(bayou_shack, 37),
+    85: MapData(mourners_mile, 38),
+    88: MapData(mm_tomb, 40),
+    89: MapData(mm_spike, 40),
+    87: MapData(mm_cave, 40),
+    21: MapData(mm_generator, 41),
+    90: MapData(mm_mina_grave, 42),
+    91: MapData(mm_deprived_path, 42),
+    86: MapData(mm_stairs, 43),
 }
 
 

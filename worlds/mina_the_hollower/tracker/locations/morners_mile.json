@@ -1,0 +1,158 @@
+[
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Knight's Rest Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Entrance",
+                "x": 528,
+                "y": 44
+            }
+        ]
+    },
+    {
+        "name": "Burrow",
+        "sections": [
+            {"name": "MM Statue Room Bonestone"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Entrance",
+                "x": 463,
+                "y": 301
+            }
+        ]
+    },
+    {
+        "name": "Kear",
+        "sections": [
+            {"name": "MM Shallow Tomb Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 688,
+                "y": 1134
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "MM Ring Tomb Spike Spurs"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 465,
+                "y": 1006
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Spike Vault Vial Pouch"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 665,
+                "y": 687
+            }
+        ]
+    },
+    {
+        "name": "Kear",
+        "sections": [
+            {"name": "MM Spike Vault Hidden Room Kear"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 128,
+                "y": 768
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Tower Tunnel Chest #1"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 46,
+                "y": 495
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Tower Tunnel Chest #2"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Shallow Tomb",
+                "x": 430,
+                "y": 45
+            }
+        ]
+    },
+    {
+        "name": "Burrow",
+        "sections": [
+            {"name": "MM Knight's Stand Bonestone"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Knights Rest",
+                "x": 114,
+                "y": 352
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Mina's Grave Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Deprived Path",
+                "x": 880,
+                "y": 145
+            }
+        ]
+    },
+    {
+        "name": "Trinket",
+        "sections": [
+            {"name": "MM Mina's Grave Starving Beastium"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Deprived Path",
+                "x": 976,
+                "y": 145
+            }
+        ]
+    },
+    {
+        "name": "Chest",
+        "sections": [
+            {"name": "MM Spike Hell Chest"}
+        ],
+        "map_locations": [
+            {
+                "map": "Mourner's Mile Stairs",
+                "x": 462,
+                "y": 462
+            }
+        ]
+    }
+]

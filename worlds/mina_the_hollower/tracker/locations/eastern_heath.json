@@ -121,7 +121,7 @@
         "name": "TEMP Frozen Pass",
         "sections": [
             {"name": "EH Frozen Pass Chest"},
-            {"name": "EH Frozen Pass IceBlock"}
+            {"name": "EH Frozen Pass IceBlock Smelling Salts"}
         ],
         "map_locations": [
             {

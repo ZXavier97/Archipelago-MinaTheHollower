@@ -54,26 +54,13 @@
     {
         "name": "Fish",
         "sections": [
-            {"name": "WW Occupied Bridge Cuddlepus Shell"}
+            {"name": "WW Fish Cuddlepus Shell"}
         ],
         "map_locations": [
             {
                 "map": "Western Wilds",
                 "x": 945,
                 "y": 622
-            }
-        ]
-    },
-    {
-        "name": "Fish",
-        "sections": [
-            {"name": "WW Occupied Bridge Cuddlepus Shell"}
-        ],
-        "map_locations": [
-            {
-                "map": "Western Wilds",
-                "x": 881,
-                "y": 370
             }
         ]
     },

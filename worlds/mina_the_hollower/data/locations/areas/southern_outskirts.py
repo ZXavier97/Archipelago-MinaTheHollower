@@ -10,7 +10,7 @@ collectable_locations: dict[str, LocationData] = {
     "SO Commons Ossex Entry Left Chest" : LocationData(270, "Ossex Entry Western Wall Chest", CanJumpTiles(distance=5, has_wall=True)),
     "SO Commons Ossex Entry Right Chest" : LocationData(266, "Ossex Entry Eastern Wall Chest"),
     "SO Commons Chest" : LocationData(264, "Southern Outskirts Commons Main", CanBurrow() & CanBounce()),
-    "SO Commons Crumblefin Head" : LocationData(274, "Southern Outskirts Commons Cliff", HasFishingRod() & CanCarry()),
+    "SO Fish Crumblefin Head" : LocationData(274, "Southern Outskirts Commons Cliff", HasFishingRod() & CanCarry()),
     "SO Cave Network Chest" : LocationData(265, "Southern Outskirts Cave Network Deep Exit"),
     "SO Cave Network Side Room Chest" : LocationData(268, "Southern Outskirts Cave Deep Arena"),
     "SO Poppit Keri" : LocationData(272, "Southern Outskirts Poppit"),

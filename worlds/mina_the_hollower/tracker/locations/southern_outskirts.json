@@ -54,7 +54,7 @@
     {
         "name": "Fish",
         "sections": [
-            {"name": "SO Commons Crumblefin Head"}
+            {"name": "SO Fish Crumblefin Head"}
         ],
         "map_locations": [
             {
@@ -133,7 +133,7 @@
     {
         "name": "Trinket",
         "sections": [
-            {"name": "SO Residence Trinket"}
+            {"name": "SO Residence Primed Vial Pouch"}
         ],
         "map_locations": [
             {

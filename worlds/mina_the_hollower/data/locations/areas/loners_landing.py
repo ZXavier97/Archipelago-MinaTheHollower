@@ -17,7 +17,7 @@ collectable_locations: dict[str, LocationData] = {
     "LL Boardwalk Fire Bounce Chest": LocationData(27, "Loner's Landing Boardwalk Fire Bounce", CanBounce()),
     "LL Boardwalk Sandfalls Ledge Chest": LocationData(324, "Loner's Landing Boardwalk Sandfalls Ledge"),
     # needs bounce,
-    "LL Shipwreck Beach Trigger Antennae": LocationData(32, "Loner's Landing Boat Side", HasFishingRod() & CanBurrow()),
+    "LL Fish Trigger Antennae": LocationData(32, "Loner's Landing Boat Side", HasFishingRod() & CanBurrow()),
     "LL Belowdecks Unchosen Weapon #1": LocationData(17, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_LEFT_WEAPON_KEAR.value)),
     "LL Belowdecks Unchosen Weapon #2": LocationData(18, "Loner's Landing Belowdecks", HasKear(kear=SingleKears.LONERS_LANDING_BELOWDECKS_RIGHT_WEAPON_KEAR.value)),
     "LL Belowdecks Chest": LocationData(30, "Loner's Landing Belowdecks", CanJumpTiles(distance=2)),

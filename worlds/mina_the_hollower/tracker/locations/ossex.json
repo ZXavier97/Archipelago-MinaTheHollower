@@ -196,7 +196,7 @@
     {
         "name": "Generosity",
         "sections": [
-            {"name": "Ossex Bowery Residence Kear"}
+            {"name": "OS Bowery Residence Kear"}
         ],
         "map_locations": [
             {
@@ -416,7 +416,7 @@
     {
         "name": "Fish",
         "sections": [
-            {"name": "OS City Center Triple Flagellum"}
+            {"name": "OS Fish Triple Flagellum"}
 
         ],
         "map_locations": [

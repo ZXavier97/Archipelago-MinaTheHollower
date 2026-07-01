@@ -43,5 +43,12 @@
   {"name": "Bayou Thicket", "img": "area_images/bayou/thicket.png", "location_size": 32, "location_border_thickness": 2},
   {"name": "Bayou Tainted", "img": "area_images/bayou/tainted.png", "location_size": 32, "location_border_thickness": 2},
   {"name": "Bayou Lair", "img": "area_images/bayou/lair.png", "location_size": 32, "location_border_thickness": 2},
-  {"name": "Bayou Interiors", "img": "area_images/bayou/interiors.png", "location_size": 32, "location_border_thickness": 2}
+  {"name": "Bayou Interiors", "img": "area_images/bayou/interiors.png", "location_size": 32, "location_border_thickness": 2},
+
+  {"name": "Mourner's Mile Entrance", "img": "area_images/mourners_mile/start.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Mourner's Mile Knights Rest", "img": "area_images/mourners_mile/knights_rest.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Mourner's Mile Shallow Tomb", "img": "area_images/mourners_mile/shallow_tomb.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Mourner's Mile Generator", "img": "area_images/mourners_mile/generator.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Mourner's Mile Deprived Path", "img": "area_images/mourners_mile/deprived_path.png", "location_size": 32, "location_border_thickness": 2},
+  {"name": "Mourner's Mile Stairs", "img": "area_images/mourners_mile/stairs.png", "location_size": 32, "location_border_thickness": 2}
 ]

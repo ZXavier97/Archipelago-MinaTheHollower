@@ -9,7 +9,7 @@ boss_locations: dict[str, LocationData] = {
 
 collectable_locations: dict[str, LocationData] = {
     "MM Knight's Rest Chest": LocationData(311, "Mourner's Mile Knight's Rest Chest"),
-    "MM Statue Room Bonestone": LocationData(315, "Mourner's Mile Statue Room Rope"),
+    "MM Statue Room Bonestone": LocationData(315, "Mourner's Mile Statue Room Rope", CanBurrow()),
     "MM Shallow Tomb Kear": LocationData(305, "Mourner's Mile Dark Shallow Tomb Dark"),
     "MM Ring Tomb Spike Spurs": LocationData(316, "Mourner's Mile Shallow Tomb"),
     "MM Spike Vault Vial Pouch": LocationData(312, "Mourner's Mile Spike Vault Upper"),
