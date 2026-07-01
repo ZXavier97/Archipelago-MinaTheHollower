@@ -7,7 +7,7 @@ If you are reading this, you have either been invited to or are interested in he
 
 ## Current State
 
-The randomizer is currently believed to be completable. Below is an ever-changing list of implemented features and their current state. Please let us know how your experience goes!
+The randomizer is currently believed to be completable. Below is an ever-changing list of implemented features we want tested, and known bugs. Please let us know how your experience goes!
 
 
 - Known issues:
