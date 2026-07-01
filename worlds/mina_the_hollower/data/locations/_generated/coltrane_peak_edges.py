@@ -7,7 +7,10 @@ from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
     CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
-    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, 
+    HasVialsCount, HasReachingSideArm, HasFishingRod, CanSpring, 
+)
+from ...rules.movement_rules import (
+    CanJumpTiles, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, 
@@ -47,6 +50,7 @@ regions: set[str] = {
     'Coltrane Peak Frozen Horror Arena',
     'Coltrane Peak Frozen Mirror Room',
     'Coltrane Peak Frozen Pass',
+    'Coltrane Peak Frozen Pass Bottom',
     'Coltrane Peak Frozen Pass Top',
     'Coltrane Peak Frozen Pipe',
     'Coltrane Peak Frozen River',
@@ -102,6 +106,7 @@ connections: dict[str, RegionConnection] = {
     'Coltrane Peak Frostbite Woods Rope_Coltrane Peak Frostbite Woods': RegionConnection('Coltrane Peak Frostbite Woods Rope', 'Coltrane Peak Frostbite Woods', True_()),
     'Coltrane Peak Frostbite Woods_Coltrane Peak Frostbite Woods Rope': RegionConnection('Coltrane Peak Frostbite Woods', 'Coltrane Peak Frostbite Woods Rope', CanJumpTiles(distance=2)),
     'Coltrane Peak Frozen Pass Top_Coltrane Peak Frozen Pass': RegionConnection('Coltrane Peak Frozen Pass Top', 'Coltrane Peak Frozen Pass', True_()),
+    'Coltrane Peak Frozen Pass_Coltrane Peak Frozen Pass Bottom': RegionConnection('Coltrane Peak Frozen Pass', 'Coltrane Peak Frozen Pass Bottom', True_()),
     'Coltrane Peak Frozen Pass_Coltrane Peak Frozen Pass Top': RegionConnection('Coltrane Peak Frozen Pass', 'Coltrane Peak Frozen Pass Top', HasKear(kear=SingleKears.FROZEN_PASS_KEAR.value) & CanBurrow()),
     'Coltrane Peak Gorge Engine Front_Coltrane Peak Gorge Engine Side': RegionConnection('Coltrane Peak Gorge Engine Front', 'Coltrane Peak Gorge Engine Side', CanJumpTiles(distance=3)),
     'Coltrane Peak Gorge Engine Side_Coltrane Peak Gorge Engine Front': RegionConnection('Coltrane Peak Gorge Engine Side', 'Coltrane Peak Gorge Engine Front', CanBurrow() | CanJumpTiles(distance=3)),
@@ -154,7 +159,7 @@ transitions: dict[str, Transition] = {
     'Coltrane Peak Frozen Horror Arena South Transition': Transition('Coltrane Peak Frozen Horror Arena', 'Coltrane Peak Icebound Cavern Pit Upper', DirectionType.SOUTH, TransitionType.SCREENS, PowerLevelThreshold(power=30)),
     'Coltrane Peak Frozen Mirror Room Mirrors': Transition('Coltrane Peak Frozen Mirror Room', 'Astral Orrery Coltrane Peak Mirror', DirectionType.OVERWORLD, TransitionType.MIRRORS, True_()),
     'Coltrane Peak Frozen Mirror Room West Burrow': Transition('Coltrane Peak Frozen Mirror Room', 'Coltrane Peak Frozen Pipe', DirectionType.WEST, TransitionType.BURROW, CanBurrow()),
-    'Coltrane Peak Frozen Pass South Area Transition': Transition('Coltrane Peak Frozen Pass', 'Eastern Heath Frozen Pass Top', DirectionType.SOUTH, TransitionType.AREA_SCREENS, True_()),
+    'Coltrane Peak Frozen Pass Bottom South Area Transition': Transition('Coltrane Peak Frozen Pass Bottom', 'Eastern Heath Frozen Pass', DirectionType.SOUTH, TransitionType.AREA_SCREENS, True_()),
     'Coltrane Peak Frozen Pass Top North Transition': Transition('Coltrane Peak Frozen Pass Top', 'Coltrane Peak Station', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Coltrane Peak Frozen Pipe Doors': Transition('Coltrane Peak Frozen Pipe', 'Coltrane Peak Spiral Summit Underlab', DirectionType.NORTH, TransitionType.DOORS, True_()),
     'Coltrane Peak Frozen Pipe East Burrow': Transition('Coltrane Peak Frozen Pipe', 'Coltrane Peak Frozen Mirror Room', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
@@ -212,9 +217,9 @@ transitions: dict[str, Transition] = {
     'Coltrane Peak Spiral Wolf Stairs North Transition': Transition('Coltrane Peak Spiral Wolf Stairs', 'Coltrane Peak Spiral Summit Climb', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Coltrane Peak Station Do_Not_Randomize_Entrance': Transition('Coltrane Peak Station', 'Ossex Train Caboose', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, Has(PermanentUpgrades.TRAIN_PASS.value) & Has(PermanentUpgrades.COLTRANE_PEAK_TICKET.value)),
     'Coltrane Peak Station East Transition': Transition('Coltrane Peak Station', 'Coltrane Peak Gorge Engine', DirectionType.EAST, TransitionType.SCREENS, True_()),
-    'Coltrane Peak Station East Transition': Transition('Coltrane Peak Station', 'Coltrane Peak Station Tracks', DirectionType.WEST, TransitionType.SCREENS, HasRepairedFrozenGenerator()),
     'Coltrane Peak Station South Area Transition': Transition('Coltrane Peak Station', 'Coltrane Peak Frozen Pass Top', DirectionType.SOUTH, TransitionType.AREA_SCREENS, True_()),
     'Coltrane Peak Station Tracks West Transition': Transition('Coltrane Peak Station Tracks', 'Coltrane Peak Station', DirectionType.EAST, TransitionType.SCREENS, HasRepairedFrozenGenerator()),
+    'Coltrane Peak Station West Transition': Transition('Coltrane Peak Station', 'Coltrane Peak Station Tracks', DirectionType.WEST, TransitionType.SCREENS, HasRepairedFrozenGenerator()),
     'Coltrane Peak Thorne Arena South Exit': Transition('Coltrane Peak Thorne Arena', 'Coltrane Peak Thorne Bridge', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Coltrane Peak Thorne Bridge South Drop': Transition('Coltrane Peak Thorne Bridge', 'Coltrane Peak Station', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Coltrane Peak Train Tracks East Transition': Transition('Coltrane Peak Train Tracks', 'Coltrane Peak Train Tracks End', DirectionType.EAST, TransitionType.SCREENS, True_()),

@@ -5,7 +5,7 @@ from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Rule, Has, True_
-from ..items import Abilities, PlayerUpgrades, additive_movement_items, base_movement_items, all_movement_items, \
+from ..items import Abilities, PlayerUpgrades, all_movement_items, \
     all_power_items, upgrade_powers, trinket_powers, Trinkets, Sidearms, PermanentUpgrades, FishingUpgrades
 
 from ...constants import MINA_THE_HOLLOWER
@@ -84,85 +84,6 @@ def HasBeastiumTransform():
 
 def HasFishingRod():
     return Has(FishingUpgrades.FISHING_ROD.value)
-
-@dataclasses.dataclass(kw_only=True)
-class CanJumpTiles(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
-    distance: int
-    @override
-    def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
-        # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
-        return self.Resolved(distance=self.distance, player=world.player, caching_enabled=False)
-
-    class Resolved(Rule.Resolved):
-        distance: int
-        ability_rando = False
-
-        @override
-        def _evaluate(self, state: CollectionState) -> bool:
-            # Always have basic jump
-            best_distance = 1
-            trinket_slots = state.count(PlayerUpgrades.TRINKET_BAG.value, self.player)
-            # Check each owned base movement type
-            base_needs_trinket = False
-            base_needs_sidearm = False
-            for movement_item in base_movement_items:
-                if state.has(movement_item.type.value, self.player):
-                    if movement_item.type in Sidearms and not state.has(PlayerUpgrades.JOULE_BOX.value, self.player):
-                        continue
-                    needs_trinket = False
-                    if movement_item.type in Trinkets:
-                        if trinket_slots <= 0:
-                            continue
-                        else:
-                            needs_trinket = True
-                    if best_distance == movement_item.distance and base_needs_trinket is True and needs_trinket is False:
-                        base_needs_trinket = False
-                    if best_distance < movement_item.distance:
-                        best_distance = movement_item.distance
-                        base_needs_trinket = needs_trinket
-                        base_needs_sidearm = movement_item.type in Sidearms
-            if base_needs_trinket:
-                trinket_slots -= 1
-
-            if (state.has(Trinkets.BRIDGE_WEAVER.value, self.player) and
-                    state.has(Sidearms.DEFLECTOR_PARASOL.value, self.player) and
-                    state.has(PlayerUpgrades.JOULE_BOX.value, self.player)):
-                best_distance = 5
-
-            additive_bonus = 0
-
-            for movement_item in additive_movement_items:
-                if not state.has(movement_item.type.value, self.player):
-                    continue
-
-                if movement_item.type in Sidearms and (not state.has(PlayerUpgrades.JOULE_BOX.value, self.player) or
-                                                       (base_needs_sidearm and not state.has(PermanentUpgrades.DOUBLE_SIDEARM_PERMIT.value, self.player))):
-                    continue
-
-                if movement_item.type in Trinkets and trinket_slots == 0:
-                    continue
-
-                trinket_slots -= 1
-                additive_bonus += movement_item.distance
-
-            best_distance += additive_bonus
-
-
-            return best_distance >= self.distance
-
-        @override
-        def item_dependencies(self) -> dict[str, set[int]]:
-            return  {item.type.value : {item.type.item_id} for item in all_movement_items}
-
-        @override
-        def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
-            # this method can be overridden to display custom explanations
-            return [
-                {"type": "color", "color": "green" if state and self(state) else "salmon", "text": str(self)},
-            ]
-        @override
-        def __str__(self) -> str:
-            return "Jump x tiles"
 
 
 @dataclasses.dataclass(kw_only=True)

@@ -2,8 +2,9 @@ from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, CanSwim
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, CanSwim
 from ...rules.state_rules import HasKear
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "RM Foyer Library Chest" : LocationData(275, "Radiant Manor Foyer Library", CanJumpTiles(distance=2) & CanClimb()),

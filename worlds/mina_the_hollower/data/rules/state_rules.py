@@ -5,7 +5,8 @@ from BaseClasses import CollectionState
 from NetUtils import JSONMessagePart
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Rule, Has, True_, False_
-from .ability_rules import CanJumpTiles, CanSwim, CanCarry, CanBurrow, CanClimb
+from .ability_rules import CanSwim, CanCarry, CanBurrow, CanClimb
+from .movement_rules import CanJumpTiles
 from .. import ShortCutItem
 from ..items import Kear, SingleKears, AreaKears, Trinkets, AstralPlatforms, Sidearms, PlayerUpgrades, PermanentUpgrades
 from ..items.kears import kear_area_lookup
@@ -172,13 +173,51 @@ def AnyThreeAstralPlatforms():
     )
 
 def HasRepairedAllGenerators():
-    return HasRepairedSolemnGenerator() & HasRepairedSwampyGenerator() & HasRepairedWindyGenerator() & HasRepairedShorelineGenerator() & HasRepairedFrozenGenerator() & HasRepairedStarryGenerator()
+    HasRepairedGeneratorCount(count=6)
 
 def HasRepairedOneGenerator():
     return HasRepairedSolemnGenerator() | HasRepairedSwampyGenerator() | HasRepairedWindyGenerator() | HasRepairedShorelineGenerator() | HasRepairedFrozenGenerator() | HasRepairedStarryGenerator()
 
-def HasRepairedGeneratorCount(count):
-    return HasRepairedSolemnGenerator() | HasRepairedSwampyGenerator() | HasRepairedWindyGenerator() | HasRepairedShorelineGenerator() | HasRepairedFrozenGenerator() | HasRepairedStarryGenerator()
+
+@dataclasses.dataclass(kw_only=True)
+class HasRepairedGeneratorCount(Rule[MinaTheHollowerBase], game=MINA_THE_HOLLOWER):
+    count: int
+
+    @override
+    def _instantiate(self, world: MinaTheHollowerBase) -> Rule.Resolved:
+        # caching_enabled only needs to be passed in when your world inherits from CachedRuleBuilderWorld
+        return self.Resolved(count=self.count, player=world.player, caching_enabled=False)
+
+    class Resolved(Rule.Resolved):
+        count: int
+
+        @override
+        def _evaluate(self, state: CollectionState) -> bool:
+            gen_count = sum([
+                state.has("Repair Solemn Generator", self.player),
+                state.has("Repair Swampy Generator", self.player),
+                state.has("Repair Windy Generator", self.player),
+                state.has("Repair Shoreline Generator", self.player),
+                state.has("Repair Frozen Generator", self.player),
+                state.has("Repair Starry Generator", self.player),
+            ])
+
+            return gen_count >= self.count
+
+        @override
+        def item_dependencies(self) -> dict[str, set[int]]:
+            return {item: {id(self)} for item in ["Repair Solemn Generator", "Repair Swampy Generator", "Repair Windy Generator",
+                                                        "Repair Shoreline Generator", "Repair Frozen Generator", "Repair Starry Generator"]}
+
+        @override
+        def explain_json(self, state: CollectionState | None = None) -> list[JSONMessagePart]:
+            # this method can be overridden to display custom explanations
+            return [
+                {"type": "color", "color": "green" if state and self(state) else "salmon", "text": str(self)},
+            ]
+        @override
+        def __str__(self) -> str:
+            return f"Completed X Generators"
 
 
 #figure out when screen rando exists
@@ -197,9 +236,12 @@ sidearm_rules: list[ShortCutItem] = [
     ShortCutItem(Sidearms.FOG_THROWER, CanBurrow()),
     ShortCutItem(Sidearms.DEFLECTOR_PARASOL, True_()),
     ShortCutItem(Sidearms.MIST_JAR, CanBurrow()),
-    ShortCutItem(Sidearms.DRIVER_DRILL, CanBurrow() & (CanClimb() | Has(SingleKears.EASTERN_HEATH_WATERFALL_KEAR.value))),
+    ShortCutItem(Sidearms.DRIVER_DRILL, CanBurrow()),
     ShortCutItem(Sidearms.RECALL_DISC, True_()),
     ShortCutItem(Sidearms.BOUNDING_BOMBS, True_()),
     ShortCutItem(Sidearms.BECKONING_COLLAR, True_()),
     ShortCutItem(Sidearms.GNAWING_GHOSTS, True_()),
 ]
+
+def CanFishAllFish():
+    return HasRepairedAllGenerators()

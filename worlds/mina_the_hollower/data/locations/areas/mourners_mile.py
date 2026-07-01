@@ -1,8 +1,8 @@
 from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry
-
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry
+from ...rules.movement_rules import CanJumpTiles
 
 boss_locations: dict[str, LocationData] = {
 }

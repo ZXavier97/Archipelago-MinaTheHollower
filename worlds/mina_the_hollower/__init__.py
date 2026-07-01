@@ -3,12 +3,13 @@ from importlib.resources import files
 from typing import Any, ClassVar
 
 from BaseClasses import ItemClassification, Location, Tutorial
+from Options import OptionError
 from entrance_rando import bake_target_group_lookup, randomize_entrances
 
 from Utils import visualize_regions
 from rule_builder.rules import Has
 from .data.rules.ability_rules import PowerLevelThreshold
-from .data.rules.state_rules import HasRepairedAllGenerators
+from .data.rules.state_rules import HasRepairedAllGenerators, HasRepairedGeneratorCount
 
 from ..AutoWorld import WebWorld
 from . import items, locations, tracker
@@ -17,7 +18,7 @@ from .data import get_target_groups
 from .data.items import all_filler_items, all_items
 from .data.locations import all_locations
 from .items import MinaTheHollowerItem
-from .options import ABILITY_RANDO_SLOT_KEYS, mina_the_hollower_option_groups
+from .options import ABILITY_RANDO_SLOT_KEYS, mina_the_hollower_option_groups, Goal
 from .world_base import MinaTheHollowerBase
 
 
@@ -128,7 +129,11 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
             self.push_precollected(item)
 
     def set_rules(self):
-        self.set_completion_rule(Has("Victory") & PowerLevelThreshold(power=60))
+        if self.options.goal.value == Goal.option_radientManorGenerator:
+            self.set_completion_rule(Has("Victory") & PowerLevelThreshold(power=60))
+        if self.options.goal.value == Goal.option_fixGenerators:
+            self.set_completion_rule(HasRepairedGeneratorCount(count=self.options.goal_generators.value))
+
 
     def generate_output(self, output_directory: str):
         print("Generating Output")
@@ -145,7 +150,9 @@ class MinaTheHollowerWorld(MinaTheHollowerBase):
         ability_rando = self.options.ability_rando.value
         return {
             "sem_ver": self.manifest["mod_version"],
-            "goal": self.options.goal.value,
+            "goal_config": self.options.goal.value,
+            "goal_generators": self.options.goal_generators.value,
+            "goal_bosses": 0, #self.options.goal_bosses.value,
             "ossex_start": self.options.ossex_start.value,
             "kear_rando": self.options.kear_rando.value,
             "max_stat_level": self.options.max_stat_level.value,
