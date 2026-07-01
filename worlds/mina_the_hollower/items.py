@@ -5,8 +5,8 @@ from .constants import MINA_THE_HOLLOWER
 from .data import ItemData, ItemTypeEnum, ItemFiller
 from .data.items import Kear, SingleKears, AreaKears, base_items, Abilities, BoneUps, GenericBoneUp, all_filler_items, \
     PermanentUpgrades, Sidearms, PlayerUpgrades, AstralPlatforms, upgrade_items, Trinkets, BASE_ITEM_TOTAL, \
-    trinket_powers, upgrade_powers, valid_power_types
-from .data.rules.ability_rules import CanJumpTiles
+    trinket_powers, upgrade_powers, valid_power_types, FilledJug
+
 from .data.rules.state_rules import sidearm_rules
 from .options import BoneUpCap, KearRandomization
 
@@ -189,6 +189,9 @@ def create_event(world: "MinaTheHollowerWorld", region_name: str, item_name: str
 
 
 def create_events(world: "MinaTheHollowerWorld"):
+
+    plasma_jug_loc = world.get_location("Plasma Jug")
+    plasma_jug_loc.place_locked_item(MinaTheHollowerItem(FilledJug.PLASMA_JUG.value, ItemClassification.useful, FilledJug.PLASMA_JUG.item_id, world.player))
 
     region_gen = {
         "Astral Orrery": "Starry",

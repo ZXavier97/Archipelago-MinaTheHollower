@@ -1,8 +1,9 @@
 from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, CanSwim, \
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, CanSwim, \
     HasFishingRod
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "BB Sandwater Junction Goremaw Fang": LocationData(88, "Bone Beach Aquatic", HasFishingRod() & CanSwim()),

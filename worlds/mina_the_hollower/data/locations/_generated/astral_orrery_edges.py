@@ -7,7 +7,10 @@ from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, DirectionType, TransitionType
 from ...rules.ability_rules import (
     CanBurrow, CanCarry, CanClimb, CanSwim, CanBounce, PowerLevelThreshold,
-    HasVialsCount, CanJumpTiles, HasReachingSideArm, HasFishingRod, CanSpring, 
+    HasVialsCount, HasReachingSideArm, HasFishingRod, CanSpring, 
+)
+from ...rules.movement_rules import (
+    CanJumpTiles, 
 )
 from ...rules.state_rules import (
    HasLadder, HasRepairedShorelineGenerator, HasAccessToTorch, StartedInOssex, 
@@ -102,7 +105,7 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Hall Of Scholars Fight': Transition('Astral Orrery Hall Of Scholars', 'Astral Orrery Hall Of Scholars End', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
     "Astral Orrery Mirror's End Blue Chest South Transition": Transition("Astral Orrery Mirror's End Blue Chest", "Astral Orrery Mirror's End Blue Stairs", DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     "Astral Orrery Mirror's End Blue Stairs North Transition": Transition("Astral Orrery Mirror's End Blue Stairs", "Astral Orrery Mirror's End Blue Chest", DirectionType.NORTH, TransitionType.SCREENS, True_()),
-    "Astral Orrery Mirror's End East Purple Burrow": Transition("Astral Orrery Mirror's End", 'Astral Orrery Under Coltrane Peak Mirror', DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
+    "Astral Orrery Mirror's End East Purple Burrow": Transition('Astral Orrery Coltrane Peak Mirror', 'Astral Orrery Under Coltrane Peak Mirror', DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.PURPLE_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5) & CanBurrow()),
     "Astral Orrery Mirror's End East Red Burrow": Transition("Astral Orrery Mirror's End", "Astral Orrery Mirror's End Under Red Switch", DirectionType.EAST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) & CanBurrow()),
     "Astral Orrery Mirror's End Large Mirror": Transition("Astral Orrery Mirror's End", 'Radiant Manor Foyer', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
     "Astral Orrery Mirror's End Moving Platforms South Burrow": Transition("Astral Orrery Mirror's End Moving Platforms", "Astral Orrery Mirror's End Top", DirectionType.SOUTH, TransitionType.BURROW, True_()),
@@ -143,5 +146,5 @@ transitions: dict[str, Transition] = {
     'Astral Orrery Stellarium Scholars Pipe': Transition('Astral Orrery Stellarium Scholars Pipe', 'Astral Orrery Hall Of Scholars', DirectionType.ASTRAL, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, True_()),
     'Astral Orrery Stellarium Scholars Switch Mirror': Transition('Astral Orrery Stellarium Scholars Switch', 'Astral Orrery Hall Of Scholars End', DirectionType.ASTRAL, TransitionType.MIRRORS, True_()),
     'Astral Orrery Stellarium Stairs': Transition('Astral Orrery Stellarium', "Astral Orrery Mirror's End Moving Stairs", DirectionType.NORTH, TransitionType.STAIRS, True_()),
-    'Astral Orrery Under Coltrane Peak Mirror West Burrow': Transition('Astral Orrery Under Coltrane Peak Mirror', 'Astral Orrery Coltrane Peak Mirror', DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.RED_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5)),
+    'Astral Orrery Under Coltrane Peak Mirror West Burrow': Transition('Astral Orrery Under Coltrane Peak Mirror', 'Astral Orrery Coltrane Peak Mirror', DirectionType.WEST, TransitionType.BURROW, Has(AstralPlatforms.PURPLE_ASTRAL_PLATFORMS.value) | CanJumpTiles(distance=5) & CanBurrow()),
 }

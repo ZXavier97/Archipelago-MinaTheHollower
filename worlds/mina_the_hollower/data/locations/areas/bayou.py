@@ -3,9 +3,10 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears
-from ...rules.ability_rules import CanBurrow, CanJumpTiles, CanBounce, CanSwim, CanCarry, CanClimb, \
+from ...rules.ability_rules import CanBurrow, CanBounce, CanSwim, CanCarry, CanClimb, \
     HasFishingRod
 from ...rules.state_rules import HasKear
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "NB Boat Takeoff Shrimpter Tail" : LocationData(50, "Nox's Bayou Boat Station", HasFishingRod()), #needs fishing rod,

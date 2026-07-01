@@ -10,7 +10,17 @@ class Goal(Choice):
     """
     display_name = "Goal"
     option_radientManorGenerator = 0
+    option_RepairGenerators = 1
     default = 0
+
+class GeneratorGoalCount(Range):
+    """
+    The number of generators required to go to goal on repair generators goal
+    """
+    display_name = "Generator Goal Count"
+    range_start = 1
+    range_end = 6
+    default = 6
 
 class BoneUpCap(Choice):
     """
@@ -20,15 +30,6 @@ class BoneUpCap(Choice):
     option_perUpgrade = 0
     option_allUpgrade = 1
     default = 0
-
-class NumberOfGenerators(Range):
-    """
-    The number of generators required to go to radiant manor
-    """
-    display_name = "Generators Required"
-    range_start = 1
-    range_end = 6
-    default = 6
 
 class OssexStart(DefaultOnToggle):
     """
@@ -124,6 +125,7 @@ class ShuffledSidearms(Toggle):
 mina_the_hollower_option_groups= [
     OptionGroup("AP Options", [
         Goal,
+        # GeneratorGoalCount,
         BoneUpCap,
         OssexStart,
         KearRandomization,
@@ -138,6 +140,7 @@ mina_the_hollower_option_groups= [
 @dataclass
 class MinaTheHollowerOptions(PerGameCommonOptions):
     goal: Goal
+    # generator_goal_count: GeneratorGoalCount
     ossex_start: OssexStart
     kear_rando: KearRandomization
     # excluded_areas : ExcludedAreas

@@ -1,9 +1,10 @@
 from rule_builder.rules import True_, Has
 from .abilities import Abilities
 from .blockers import AstralPlatforms
-from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller, CosmeticUpgrades
+from .game_items import Sidearms, PermanentUpgrades, PlayerUpgrades, Trinkets, BoneFiller, JunkFiller, CosmeticUpgrades, \
+    FilledJug
 from .kears import Kear, AreaKears, SingleKears
-from .progressives import Weapons, BoneUps, GenericBoneUp, FishingUpgrades
+from .progressives import Weapons, BoneUps, GenericBoneUp, FishingUpgrades, MapUpgrades
 from .. import ItemData, ItemTypeEnum, ItemFiller, ItemMovement, ItemPower
 
 all_items: list[ItemTypeEnum] = [
@@ -22,7 +23,9 @@ all_items: list[ItemTypeEnum] = [
     *BoneUps,
     *GenericBoneUp,
     *FishingUpgrades,
-    *CosmeticUpgrades
+    *CosmeticUpgrades,
+    *MapUpgrades,
+    *FilledJug
 ]
 
 item_name_to_type = {
@@ -80,29 +83,25 @@ upgrade_items: list[ItemData] = [
     ItemData(Weapons.GUARDIAN_CASKET, 3),
     ItemData(Weapons.BLASTSTRIKE_MAUL, 3),
     ItemData(Weapons.WHISPER_AND_VESPER, 3),
-    ItemData(FishingUpgrades.FISHING_ROD, 3)
-
+    ItemData(FishingUpgrades.FISHING_ROD, 3),
+    ItemData(MapUpgrades.PROGRESSIVE_MAP, 2)
 ]
 
-additive_movement_items: list[ItemMovement] = [
-    ItemMovement(Trinkets.KERI_THE_WISP, 1),
-    ItemMovement(Trinkets.PIT_PRESERVER, 1),
-    ItemMovement(Trinkets.BELLOWS_BUSTLE, 2),
-]
-
-base_movement_items: list[ItemMovement] = [
-    ItemMovement(Trinkets.SPRING_HEELS, 3),
-    ItemMovement(Abilities.BURROW, 2),
-    ItemMovement(Trinkets.BRIDGE_WEAVER, 2),
-    ItemMovement(Sidearms.DEFLECTOR_PARASOL, 3),
-    ItemMovement(Sidearms.DRIVER_DRILL, 4),
-    ItemMovement(Sidearms.IRON_STEED, 4),
-    ItemMovement(Sidearms.MIST_JAR, 2),
-]
-
-all_movement_items: list[ItemMovement] = [
-    *additive_movement_items,
-    *base_movement_items,
+#Raft?
+all_movement_items: list[ItemTypeEnum] = [
+    Trinkets.SPRING_HEELS,
+    Abilities.BURROW,
+    Trinkets.BRIDGE_WEAVER,
+    Sidearms.DEFLECTOR_PARASOL,
+    Sidearms.DRIVER_DRILL,
+    Sidearms.IRON_STEED,
+    Sidearms.MIST_JAR,
+    Trinkets.KERI_THE_WISP,
+    Trinkets.PIT_PRESERVER,
+    Trinkets.BELLOWS_BUSTLE,
+    Trinkets.BRISK_BREW,
+    Weapons.GUARDIAN_CASKET,
+    Trinkets.WALLOWERS_GAUNTLETS
 ]
 
 item_powers_dependencies: list[ItemPower] = [
@@ -127,7 +126,7 @@ trinket_powers: list[ItemPower] = [
     ItemPower(Trinkets.JOULE_SYRINGE, 2),
     ItemPower(Trinkets.TUNNELING_CODEX, 1),
     ItemPower(Trinkets.EVASION_POWER, 2),
-    ItemPower(Trinkets.PLASMA_JUG, 2, PermanentUpgrades.HEALING_VIAL_POUCH),
+    ItemPower(FilledJug.PLASMA_JUG, 2, PermanentUpgrades.HEALING_VIAL_POUCH),
     ItemPower(Trinkets.VASCULAR_SYRUP, 1),
     ItemPower(Trinkets.TWILL_WEAVE, 1),
     ItemPower(Trinkets.PNEUMATIC_ARMLET, 2),

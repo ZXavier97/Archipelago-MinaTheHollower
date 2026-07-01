@@ -2,9 +2,10 @@ from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
 from ...items import Trinkets, SingleKears
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, \
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, \
     HasReachingSideArm
 from ...rules.state_rules import HasKear
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "KW Overgrowth Bonfire Chest": LocationData(340, "Kindlewood Overgrowth Bonfire Main"),

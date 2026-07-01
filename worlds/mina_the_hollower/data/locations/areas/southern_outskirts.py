@@ -2,8 +2,9 @@ from BaseClasses import LocationProgressType
 from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 from ... import RegionConnection, Transition, LocationData, TransitionType, DirectionType
-from ...rules.ability_rules import CanBurrow, CanJumpTiles, CanBounce, HasVialsCount, CanClimb, CanCarry, HasFishingRod
-from ...rules.state_rules import HasRepairedOneGenerator
+from ...rules.ability_rules import CanBurrow, CanBounce, HasVialsCount, CanClimb, CanCarry, HasFishingRod
+from ...rules.state_rules import HasRepairedOneGenerator, HasRepairedGeneratorCount
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "SO Commons Ossex Entry Left Chest" : LocationData(270, "Ossex Entry Western Wall Chest"),
@@ -18,7 +19,7 @@ collectable_locations: dict[str, LocationData] = {
     "SO Western Pit Room Chest" : LocationData(267, "Southern Outskirts Commons Western Pit Room Main"),
     "SO Residence Trinket" : LocationData(269, "Southern Outskirts Residence Basement"),
     "SO Mining Passage Chest" : LocationData(331, "Southern Outskirts Mining Passage Secret"),
-    "SO Moonbath Lace Glove" : LocationData(263, "Southern Outskirts Moonbath", HasRepairedOneGenerator()),
+    "SO Moonbath Lace Glove" : LocationData(263, "Southern Outskirts Moonbath", HasRepairedGeneratorCount(count=2)),
     "SO Four Flowers Chest" : LocationData(271, "Southern Outskirts Four Flowers Shortcut", CanBounce()),
 }
 

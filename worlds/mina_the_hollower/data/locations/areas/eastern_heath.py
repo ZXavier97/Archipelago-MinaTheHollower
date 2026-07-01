@@ -3,12 +3,13 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_, CanReachLocation
 from ... import RegionConnection, Transition, LocationData, TransitionType, DirectionType
 from ...items import Trinkets, SingleKears
-from ...rules.ability_rules import CanBurrow, CanJumpTiles, CanBounce, HasReachingSideArm, CanClimb, \
+from ...rules.ability_rules import CanBurrow, CanBounce, HasReachingSideArm, CanClimb, \
     CanSwim, HasFishingRod
-from ...rules.state_rules import HasRepairedSolemnGenerator, HasKear, HasRepairedOneGenerator
+from ...rules.state_rules import HasRepairedSolemnGenerator, HasKear, HasRepairedOneGenerator, HasRepairedGeneratorCount
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
-    "EH Grassland Trinket Bag" : LocationData(221, "Eastern Heath Grassland", HasRepairedOneGenerator()),
+    "EH Grassland Trinket Bag" : LocationData(221, "Eastern Heath Grassland", HasRepairedGeneratorCount(count=1)),
     "EH Grassland Dork Eyes" : LocationData(241, "Eastern Heath Grassland Bridge Left", HasFishingRod()), #needs fishing rod,
     "EH Grassland Ossex Patio Chest" : LocationData(231, "Eastern Heath I Screen", CanBurrow()),
     "EH Grassland Bush Room Bonestone" : LocationData(236, "Eastern Heath Bush Room", HasKear(kear=SingleKears.EASTERN_HEATH_GRASSLAND_BUSHROOM_KEAR.value)), #needs kear,
@@ -19,7 +20,7 @@ collectable_locations: dict[str, LocationData] = {
     "EH Grassland Waterfall Windfall Charm" : LocationData(223, "Eastern Heath Grassland Waterfall Second Level", HasReachingSideArm() | Has(Trinkets.SPRING_HEELS.value)),
     "EH Grassland Vertical Spinner Room Chest" : LocationData(238, "Eastern Heath East Corner", HasRepairedSolemnGenerator()),
     "EH Under the Bridge Chest" : LocationData(230, "Eastern Heath Under Bridge West"),
-    "EH Buckler's Bluff Joule Box" : LocationData(229, "Eastern Heath Buckler's Bluff Cliff"),
+    "EH Buckler's Bluff Joule Box" : LocationData(229, "Eastern Heath Buckler's Bluff Cliff", CanClimb()),
     "EH Grassland Poppit Cave Chest" : LocationData(235, "Eastern Heath Grassland Poppit Cave"),
     "EH Grassland Poppit Cave Willow" : LocationData(239, "Eastern Heath Poppit"),
     "EH Grassland Poppit Cave Kear" : LocationData(240, "Eastern Heath Poppit"),
@@ -28,5 +29,5 @@ collectable_locations: dict[str, LocationData] = {
 }
 
 boss_locations: dict[str, LocationData] = {
-    "EH Grassland Maxi": LocationData(1018, "Eastern Heath Grassland", HasRepairedOneGenerator()),
+    "EH Grassland Maxi": LocationData(1018, "Eastern Heath Grassland", HasRepairedGeneratorCount(count=1)),
 }

@@ -2,9 +2,10 @@ from BaseClasses import LocationProgressType
 from rule_builder.rules import Has, CanReachLocation
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears, PermanentUpgrades
-from ...rules.ability_rules import CanBurrow, CanBounce, CanJumpTiles, CanClimb, CanCarry, \
+from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, \
     HasFishingRod, CanSwim
 from ...rules.state_rules import HasRepairedShorelineGenerator, HasKear
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "SF Hobo Holdout Puffer Beak" : LocationData(82, "Sandfalls Mining Outlook", HasFishingRod()),

@@ -1,7 +1,7 @@
 {
     "game": "Mina The Hollower",
-    "world_version": "0.4.6",
-    "mod_version": "0.6.0",
+    "world_version": "0.4.7",
+    "mod_version": "0.6.1",
     "minimum_ap_version": "0.6.7",
     "authors": [
         "FyreDay, Axertin"

@@ -3,8 +3,9 @@ from rule_builder.options import OptionFilter
 from rule_builder.rules import Has, True_
 from ... import RegionConnection, Transition, LocationData
 from ...items import SingleKears, Trinkets
-from ...rules.ability_rules import CanBurrow, CanJumpTiles, CanBounce, CanCarry, HasFishingRod, CanClimb
+from ...rules.ability_rules import CanBurrow, CanBounce, CanCarry, HasFishingRod, CanClimb
 from ...rules.state_rules import HasKear
+from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
     "WW Secret Passage Chest" : LocationData(251, "Western Wilds Secret Passageway East", CanJumpTiles(distance=3)),
