@@ -68,7 +68,7 @@ collectable_locations: dict[str, LocationData] = {
         "OS Strategy Center Ophidio Bonestone" : LocationData(153, "Ossex Strategy Center", Has(Weapons.WHISPER_AND_VESPER.value, count=3) & CanBurrow()),
         "OS Ossex Telescope Kear" : LocationData(155, "Ossex Balcony East"),
         "OS Attic Chest" : LocationData(166, "Ossex High Street Residence Upper Puzzle"),
-        "OS Atelier Chest" : LocationData(169, "Ossex Atelier", CanJumpTiles(distance=3) & CanBurrow()),
+        "OS Atelier Chest" : LocationData(169, "Ossex Atelier", CanJumpTiles(distance=3, has_wall=True) & CanBurrow()),
         "OS Atelier Vitality Vest" : LocationData(208, "Ossex Atelier"),
         "OS Atelier Custom Fit" : LocationData(209, "Ossex Atelier", Has(PermanentUpgrades.VITALITY_VEST.value) & Has(PermanentUpgrades.SAFETY_SHROUD.value)),
         "OS Bowery Double Sidearm Permit" : LocationData(219, "Ossex Bowery Main", Has(BoneUps.SIDEARM_BONE_UP_CAP.value, count=5) | Has(GenericBoneUp.ALL_BONE_UP_CAP.value, count=5)),

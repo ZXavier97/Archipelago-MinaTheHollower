@@ -85,7 +85,7 @@ connections: dict[str, RegionConnection] = {
 }
 
 transitions: dict[str, Transition] = {
-    "Eastern Heath Buckler's Bluff Bucklers West Transition": Transition("Eastern Heath Buckler's Bluff Bucklers", 'Eastern Heath Grassland Waterfall Second Level', DirectionType.WEST, TransitionType.SCREENS, CanJumpTiles(distance=2)),
+    "Eastern Heath Buckler's Bluff Bucklers West Transition": Transition("Eastern Heath Buckler's Bluff Bucklers", 'Eastern Heath Grassland Waterfall Second Level', DirectionType.WEST, TransitionType.SCREENS, True_()),
     "Eastern Heath Buckler's Bluff Start South Kear Burrow": Transition("Eastern Heath Buckler's Bluff Start", 'Eastern Heath Mourners Gate', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow() & HasKear(kear=SingleKears.EASTERN_HEATH_BUCKLERS_BLUFF_KEAR.value)),
     "Eastern Heath Buckler's Bluff Start South Transition": Transition("Eastern Heath Buckler's Bluff Start", 'Eastern Heath Mourners Gate', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Bush Room North Transition': Transition('Eastern Heath Bush Room', 'Eastern Heath I Screen', DirectionType.NORTH, TransitionType.SCREENS, True_()),
@@ -103,7 +103,7 @@ transitions: dict[str, Transition] = {
     'Eastern Heath Grassland Bridge Left West Transition': Transition('Eastern Heath Grassland Bridge Left', 'Eastern Heath Grassland', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Bridge Right East Transition': Transition('Eastern Heath Grassland Bridge Right', 'Eastern Heath East Corner', DirectionType.EAST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Bridge River North Swim': Transition('Eastern Heath Grassland Bridge River', 'Eastern Heath Under the Bridge', DirectionType.NORTH, TransitionType.BURROW, CanSwim()),
-    'Eastern Heath Grassland Bridge River South Swim': Transition('Eastern Heath Grassland Bridge River', 'Eastern Heath Grassland Riverbed Bottom', DirectionType.SOUTH, TransitionType.BURROW, CanSwim() & CanJumpTiles(distance=6)),
+    'Eastern Heath Grassland Bridge River South Swim': Transition('Eastern Heath Grassland Bridge River', 'Eastern Heath Grassland Riverbed Bottom', DirectionType.SOUTH, TransitionType.BURROW, CanSwim()),
     'Eastern Heath Grassland East Transition': Transition('Eastern Heath Grassland', 'Eastern Heath Grassland Bridge Left', DirectionType.EAST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland North Transition': Transition('Eastern Heath Grassland', 'Eastern Heath Choppe Shoppe Entry', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Pit East Transition': Transition('Eastern Heath Grassland Pit', 'Eastern Heath Poppet Entry', DirectionType.EAST, TransitionType.SCREENS, True_()),
@@ -123,7 +123,7 @@ transitions: dict[str, Transition] = {
     'Eastern Heath Grassland Waterfall First Level West Transition': Transition('Eastern Heath Grassland Waterfall First Level', 'Eastern Heath Choppe Shoppe Entry Cliff', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Waterfall Second Level Dive South': Transition('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Under the Bridge', DirectionType.SOUTH, TransitionType.SCREENS, CanSwim()),
     'Eastern Heath Grassland Waterfall Second Level Door': Transition('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Grotto Right', DirectionType.NORTH, TransitionType.DOORS, True_()),
-    'Eastern Heath Grassland Waterfall Second Level East Transition': Transition('Eastern Heath Grassland Waterfall Second Level', "Eastern Heath Buckler's Bluff Bucklers", DirectionType.EAST, TransitionType.SCREENS, CanJumpTiles(distance=2)),
+    'Eastern Heath Grassland Waterfall Second Level East Transition': Transition('Eastern Heath Grassland Waterfall Second Level', "Eastern Heath Buckler's Bluff Bucklers", DirectionType.EAST, TransitionType.SCREENS, True_()),
     'Eastern Heath Grassland Waterfall Second Level Rope': Transition('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Grassland Bridge Right', DirectionType.SOUTH, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanClimb()),
     'Eastern Heath Grassland West Area Transition': Transition('Eastern Heath Grassland', 'Ossex High Street Main', DirectionType.WEST, TransitionType.AREA_SCREENS, True_()),
     'Eastern Heath Grotto Left East Transition': Transition('Eastern Heath Grotto Left', 'Eastern Heath Grotto Right', DirectionType.EAST, TransitionType.BURROW, CanBurrow()),
@@ -140,7 +140,7 @@ transitions: dict[str, Transition] = {
     'Eastern Heath Mourners Gate South Transition': Transition('Eastern Heath Mourners Gate', 'Eastern Heath East Corner', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Poppet Entry North Transition': Transition('Eastern Heath Poppet Entry Top', 'Eastern Heath East Corner', DirectionType.NORTH, TransitionType.SCREENS, True_()),
     'Eastern Heath Poppet Entry South Burrow': Transition('Eastern Heath Poppet Entry', 'Eastern Heath Grassland Poppit Cave', DirectionType.SOUTH, TransitionType.BURROW, CanBurrow()),
-    'Eastern Heath Poppet Entry West Transition North': Transition('Eastern Heath Poppet Entry Top', 'Eastern Heath Grassland Riverbed Dive', DirectionType.WEST, TransitionType.SCREENS, CanJumpTiles(distance=2)),
+    'Eastern Heath Poppet Entry West Transition North': Transition('Eastern Heath Poppet Entry Top', 'Eastern Heath Grassland Riverbed Dive', DirectionType.WEST, TransitionType.SCREENS, CanJumpTiles(distance=2, has_wall=True)),
     'Eastern Heath Poppet Entry West Transition South': Transition('Eastern Heath Poppet Entry', 'Eastern Heath Grassland Pit', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Eastern Heath Poppit West Transition': Transition('Eastern Heath Poppit', 'Eastern Heath Grassland Poppit Cave', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Eastern Heath Under Bridge East West Transition': Transition('Eastern Heath Under Bridge East', 'Eastern Heath Under the Bridge', DirectionType.WEST, TransitionType.SCREENS, True_()),

@@ -62,7 +62,7 @@ connections: dict[str, RegionConnection] = {
     'Western Wilds Balcony Path_Western Wilds Main': RegionConnection('Western Wilds Balcony Path', 'Western Wilds Main', CanBurrow()),
     'Western Wilds Brutes_Western Wilds Lava': RegionConnection('Western Wilds Brutes', 'Western Wilds Lava', True_()),
     'Western Wilds End_Western Wilds Lava': RegionConnection('Western Wilds End', 'Western Wilds Lava', CanBurrow()),
-    'Western Wilds Foundry Path_Western Wilds Foundry Path Door': RegionConnection('Western Wilds Foundry Path', 'Western Wilds Foundry Path Door', CanJumpTiles(distance=2)),
+    'Western Wilds Foundry Path_Western Wilds Foundry Path Door': RegionConnection('Western Wilds Foundry Path', 'Western Wilds Foundry Path Door', CanJumpTiles(distance=2, has_wall=True)),
     'Western Wilds Foundry Path_Western Wilds Main': RegionConnection('Western Wilds Foundry Path', 'Western Wilds Main', CanBurrow()),
     'Western Wilds Lava_Western Wilds End': RegionConnection('Western Wilds Lava', 'Western Wilds End', CanBurrow()),
     'Western Wilds Lava_Western Wilds Main': RegionConnection('Western Wilds Lava', 'Western Wilds Main', CanBurrow()),
@@ -80,8 +80,8 @@ connections: dict[str, RegionConnection] = {
     'Western Wilds Occupied Bridge_Western Wilds Ossex Bridge': RegionConnection('Western Wilds Occupied Bridge', 'Western Wilds Ossex Bridge', CanBurrow()),
     'Western Wilds Ossex Bridge_Western Wilds Main': RegionConnection('Western Wilds Ossex Bridge', 'Western Wilds Main', True_()),
     'Western Wilds Ossex Bridge_Western Wilds Occupied Bridge': RegionConnection('Western Wilds Ossex Bridge', 'Western Wilds Occupied Bridge', CanBurrow()),
-    'Western Wilds Secret Passageway East_Western Wilds Secret Passageway West': RegionConnection('Western Wilds Secret Passageway East', 'Western Wilds Secret Passageway West', CanJumpTiles(distance=3)),
-    'Western Wilds Secret Passageway West_Western Wilds Secret Passageway East': RegionConnection('Western Wilds Secret Passageway West', 'Western Wilds Secret Passageway East', CanJumpTiles(distance=3)),
+    'Western Wilds Secret Passageway East_Western Wilds Secret Passageway West': RegionConnection('Western Wilds Secret Passageway East', 'Western Wilds Secret Passageway West', CanJumpTiles(distance=3, has_wall=True)),
+    'Western Wilds Secret Passageway West_Western Wilds Secret Passageway East': RegionConnection('Western Wilds Secret Passageway West', 'Western Wilds Secret Passageway East', CanJumpTiles(distance=3, has_wall=True)),
     'Western Wilds Western Pond_Western Wilds End': RegionConnection('Western Wilds Western Pond', 'Western Wilds End', True_()),
 }
 

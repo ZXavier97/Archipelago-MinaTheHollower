@@ -125,7 +125,7 @@ connections: dict[str, RegionConnection] = {
     "Nox's Bayou Big Lagoon South Wall_Nox's Bayou Big Lagoon South Wall Roof": RegionConnection("Nox's Bayou Big Lagoon South Wall", "Nox's Bayou Big Lagoon South Wall Roof", CanSwim() | CanJumpTiles(distance=4)),
     "Nox's Bayou Boardwalk Grass_Nox's Bayou Boardwalk": RegionConnection("Nox's Bayou Boardwalk Grass", "Nox's Bayou Boardwalk", CanSwim() | CanJumpTiles(distance=2)),
     "Nox's Bayou Boardwalk_Nox's Bayou Boardwalk Grass": RegionConnection("Nox's Bayou Boardwalk", "Nox's Bayou Boardwalk Grass", CanSwim() | CanJumpTiles(distance=2)),
-    "Nox's Bayou Boardwalk_Nox's Bayou Dock": RegionConnection("Nox's Bayou Boardwalk", "Nox's Bayou Dock", CanSwim() | CanJumpTiles(distance=4)),
+    "Nox's Bayou Boardwalk_Nox's Bayou Dock": RegionConnection("Nox's Bayou Boardwalk", "Nox's Bayou Dock", CanSwim() | CanJumpTiles(distance=4, has_wall=True)),
     "Nox's Bayou Boat Bog End_Nox's Bayou Boat Bog": RegionConnection("Nox's Bayou Boat Bog End", "Nox's Bayou Boat Bog", CanSwim()),
     "Nox's Bayou Boat Bog_Nox's Bayou Boat Bog End": RegionConnection("Nox's Bayou Boat Bog", "Nox's Bayou Boat Bog End", CanSwim()),
     "Nox's Bayou Boat Falls Bottom_Nox's Bayou Boat Falls Dock": RegionConnection("Nox's Bayou Boat Falls Bottom", "Nox's Bayou Boat Falls Dock", CanSwim() | CanJumpTiles(distance=3)),

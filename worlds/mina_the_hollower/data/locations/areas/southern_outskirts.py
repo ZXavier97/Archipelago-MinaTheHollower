@@ -7,7 +7,7 @@ from ...rules.state_rules import HasRepairedOneGenerator, HasRepairedGeneratorCo
 from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
-    "SO Commons Ossex Entry Left Chest" : LocationData(270, "Ossex Entry Western Wall Chest"),
+    "SO Commons Ossex Entry Left Chest" : LocationData(270, "Ossex Entry Western Wall Chest", CanJumpTiles(distance=5, has_wall=True)),
     "SO Commons Ossex Entry Right Chest" : LocationData(266, "Ossex Entry Eastern Wall Chest"),
     "SO Commons Chest" : LocationData(264, "Southern Outskirts Commons Main", CanBurrow() & CanBounce()),
     "SO Commons Crumblefin Head" : LocationData(274, "Southern Outskirts Commons Cliff", HasFishingRod() & CanCarry()),
@@ -15,7 +15,7 @@ collectable_locations: dict[str, LocationData] = {
     "SO Cave Network Side Room Chest" : LocationData(268, "Southern Outskirts Cave Deep Arena"),
     "SO Poppit Keri" : LocationData(272, "Southern Outskirts Poppit"),
     "SO Poppit Kear" : LocationData(273, "Southern Outskirts Poppit"),
-    "SO Southern Pit Room Bonestone" : LocationData(261, "Southern Outskirts Commons Southern Pit Room Main", CanJumpTiles(distance=5) & CanBurrow()),
+    "SO Southern Pit Room Bonestone" : LocationData(261, "Southern Outskirts Commons Southern Pit Room Main", CanJumpTiles(distance=5, has_wall=True) & CanBurrow()),
     "SO Western Pit Room Chest" : LocationData(267, "Southern Outskirts Commons Western Pit Room Main"),
     "SO Residence Primed Vial Pouch" : LocationData(269, "Southern Outskirts Residence Basement"),
     "SO Mining Passage Chest" : LocationData(331, "Southern Outskirts Mining Passage Secret"),

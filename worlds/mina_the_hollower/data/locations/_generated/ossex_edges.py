@@ -95,10 +95,10 @@ connections: dict[str, RegionConnection] = {
     'Ossex City Center Bike_Ossex City Center Main': RegionConnection('Ossex City Center Bike', 'Ossex City Center Main', True_()),
     'Ossex City Center Exchange_Ossex City Center Main': RegionConnection('Ossex City Center Exchange', 'Ossex City Center Main', True_()),
     'Ossex City Center Upper_Ossex City Center Main': RegionConnection('Ossex City Center Upper', 'Ossex City Center Main', True_()),
-    'Ossex Courtyard East Gap_Ossex Courtyard East': RegionConnection('Ossex Courtyard East Gap', 'Ossex Courtyard East', CanJumpTiles(distance=8) | CanBurrow()),
+    'Ossex Courtyard East Gap_Ossex Courtyard East': RegionConnection('Ossex Courtyard East Gap', 'Ossex Courtyard East', CanJumpTiles(distance=8, has_wall=True) | CanBurrow()),
     'Ossex Courtyard East Manor Side Garden_Ossex Courtyard East Manor Side': RegionConnection('Ossex Courtyard East Manor Side Garden', 'Ossex Courtyard East Manor Side', HasVialsCount(count=3) & HasKear(kear=SingleKears.OSSEX_EAST_GARDEN_KEAR.value)),
     'Ossex Courtyard East Manor Side_Ossex Courtyard East Manor Side Garden': RegionConnection('Ossex Courtyard East Manor Side', 'Ossex Courtyard East Manor Side Garden', HasVialsCount(count=3) & HasKear(kear=SingleKears.OSSEX_EAST_GARDEN_KEAR.value)),
-    'Ossex Courtyard East_Ossex Courtyard East Gap': RegionConnection('Ossex Courtyard East', 'Ossex Courtyard East Gap', CanJumpTiles(distance=8)),
+    'Ossex Courtyard East_Ossex Courtyard East Gap': RegionConnection('Ossex Courtyard East', 'Ossex Courtyard East Gap', CanJumpTiles(distance=8, has_wall=True)),
     'Ossex Courtyard West Chest Breakable': RegionConnection('Ossex Courtyard West Chest', 'Ossex Courtyard West', True_()),
     'Ossex High Street Balcony_Ossex High Street Main': RegionConnection('Ossex High Street Balcony', 'Ossex High Street Main', HasKear(kear=SingleKears.OSSEX_HIGHSTREET_BALCONY_KEAR.value)),
     'Ossex High Street Main_Ossex High Street Balcony': RegionConnection('Ossex High Street Main', 'Ossex High Street Balcony', HasKear(kear=SingleKears.OSSEX_HIGHSTREET_BALCONY_KEAR.value)),
@@ -108,7 +108,7 @@ connections: dict[str, RegionConnection] = {
     'Ossex High Street SE Garden_Ossex High Street SE Garden Sewer': RegionConnection('Ossex High Street SE Garden', 'Ossex High Street SE Garden Sewer', CanSwim()),
     'Ossex Station Underside Burrow_Ossex Station Underside Main': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Main', CanClimb()),
     'Ossex Station Underside Burrow_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Burrow', 'Ossex Station Underside Upper', CanClimb() & HasVialsCount(count=4)),
-    'Ossex Station Underside Main_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Main', 'Ossex Station Underside Upper', CanJumpTiles(distance=4) & HasVialsCount(count=4) & CanClimb()),
+    'Ossex Station Underside Main_Ossex Station Underside Upper': RegionConnection('Ossex Station Underside Main', 'Ossex Station Underside Upper', (CanJumpTiles(distance=4, has_wall=True) | HasBurrow()) & HasVialsCount(count=4) & CanClimb()),
     'Ossex Station Underside Upper_Ossex Station Underside Main': RegionConnection('Ossex Station Underside Upper', 'Ossex Station Underside Main', True_()),
 }
 
