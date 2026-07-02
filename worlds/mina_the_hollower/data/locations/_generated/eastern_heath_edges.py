@@ -53,6 +53,7 @@ regions: set[str] = {
     'Eastern Heath Grassland Riverbed Top',
     'Eastern Heath Grassland Waterfall Bottom',
     'Eastern Heath Grassland Waterfall First Level',
+    'Eastern Heath Grassland Waterfall Pipe',
     'Eastern Heath Grassland Waterfall Second Level',
     'Eastern Heath Grotto Left',
     'Eastern Heath Grotto Right',
@@ -70,7 +71,7 @@ regions: set[str] = {
 }
 
 connections: dict[str, RegionConnection] = {
-    "Eastern Heath Buckler's Bluff Cliff_Eastern Heath Buckler's Bluff Bucklers": RegionConnection("Eastern Heath Buckler's Bluff Cliff", "Eastern Heath Buckler's Bluff Bucklers", True_()),
+    "Eastern Heath Buckler's Bluff Cliff_Eastern Heath Buckler's Bluff Bucklers": RegionConnection("Eastern Heath Buckler's Bluff Cliff", "Eastern Heath Buckler's Bluff Bucklers", CanJumpTiles(distance=4)),
     "Eastern Heath Buckler's Bluff Cliff_Eastern Heath Buckler's Bluff Start": RegionConnection("Eastern Heath Buckler's Bluff Cliff", "Eastern Heath Buckler's Bluff Start", CanJumpTiles(distance=4)),
     "Eastern Heath Buckler's Bluff Start_Eastern Heath Buckler's Bluff Cliff": RegionConnection("Eastern Heath Buckler's Bluff Start", "Eastern Heath Buckler's Bluff Cliff", CanJumpTiles(distance=4)),
     'Eastern Heath Choppe Shoppe Entry Cliff_Eastern Heath Cliff Secret': RegionConnection('Eastern Heath Choppe Shoppe Entry Cliff', 'Eastern Heath Cliff Secret', HasKear(kear=SingleKears.EASTERN_HEATH_WATERFALL_KEAR.value)),
@@ -79,6 +80,7 @@ connections: dict[str, RegionConnection] = {
     'Eastern Heath East Corner Cliff_Eastern Heath East Corner': RegionConnection('Eastern Heath East Corner Cliff', 'Eastern Heath East Corner', True_()),
     'Eastern Heath Frozen Pass_Eastern Heath Grassland Waterfall Second Level': RegionConnection('Eastern Heath Frozen Pass', 'Eastern Heath Grassland Waterfall Second Level', True_()),
     'Eastern Heath Grassland Bridge Right_Eastern Heath Grassland Bridge Left': RegionConnection('Eastern Heath Grassland Bridge Right', 'Eastern Heath Grassland Bridge Left', True_()),
+    'Eastern Heath Grassland Waterfall Pipe_Eastern Heath Grassland Waterfall Second Level': RegionConnection('Eastern Heath Grassland Waterfall Pipe', 'Eastern Heath Grassland Waterfall Second Level', CanClimb()),
     'Eastern Heath Grassland Waterfall Second Level_Eastern Heath Frozen Pass': RegionConnection('Eastern Heath Grassland Waterfall Second Level', 'Eastern Heath Frozen Pass', CanSwim()),
     'Eastern Heath Poppet Entry Top_Eastern Heath Poppet Entry': RegionConnection('Eastern Heath Poppet Entry Top', 'Eastern Heath Poppet Entry', CanBurrow()),
     'Eastern Heath Poppet Entry_Eastern Heath Poppet Entry Top': RegionConnection('Eastern Heath Poppet Entry', 'Eastern Heath Poppet Entry Top', CanBurrow()),

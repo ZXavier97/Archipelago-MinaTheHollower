@@ -174,7 +174,7 @@ transitions: dict[str, Transition] = {
     'Queensbury Crypt Old Graveyard Main South Transition': Transition('Queensbury Crypt Old Graveyard Main', 'Queensbury Crypt Old Button', DirectionType.SOUTH, TransitionType.SCREENS, True_()),
     'Queensbury Crypt Ophidio Stair Left Stairs': Transition('Queensbury Crypt Ophidio Stair', 'Queensbury Crypt Statue Gate Stair', DirectionType.NORTH, TransitionType.STAIRS, True_()),
     'Queensbury Crypt Ophidio Stair Right Stairs': Transition('Queensbury Crypt Ophidio Stair', 'Queensbury Crypt Statue Head Hall Entrance', DirectionType.NORTH, TransitionType.STAIRS, True_()),
-    'Queensbury Crypt Pipe Room Eastern Heath Pipe': Transition('Queensbury Crypt Pipe Room', 'Eastern Heath Grassland Waterfall Second Level', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
+    'Queensbury Crypt Pipe Room Eastern Heath Pipe': Transition('Queensbury Crypt Pipe Room', 'Eastern Heath Grassland Waterfall Pipe', DirectionType.OVERWORLD, TransitionType.DO_NOT_RANDOMIZE_ENTRANCE, CanBurrow()),
     'Queensbury Crypt Pipe Room West Transition': Transition('Queensbury Crypt Pipe Room', 'Queensbury Crypt Castle Outside Main', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Queensbury Crypt Putrid Place West Transition': Transition('Queensbury Crypt Putrid Place', 'Queensbury Crypt Statue Head Hall Entrance Putrid', DirectionType.WEST, TransitionType.SCREENS, True_()),
     'Queensbury Crypt Rancid Room West Transition': Transition('Queensbury Crypt Rancid Room', 'Queensbury Crypt Ancestral Chamber Entrance', DirectionType.WEST, TransitionType.SCREENS, HasVialsCount(count=2)),

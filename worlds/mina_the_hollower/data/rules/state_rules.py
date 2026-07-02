@@ -173,7 +173,7 @@ def AnyThreeAstralPlatforms():
     )
 
 def HasRepairedAllGenerators():
-    HasRepairedGeneratorCount(count=6)
+    return HasRepairedGeneratorCount(count=6)
 
 def HasRepairedOneGenerator():
     return HasRepairedSolemnGenerator() | HasRepairedSwampyGenerator() | HasRepairedWindyGenerator() | HasRepairedShorelineGenerator() | HasRepairedFrozenGenerator() | HasRepairedStarryGenerator()

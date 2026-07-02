@@ -34,10 +34,9 @@ class SingleKears(ItemTypeEnum):
     ASTRAL_ORREY_MIRROR_ROOM_RIGHT_SIDE_KEAR = ("Astral Orrery Mirror Room Right Side Lock", ITEMS_OFFSET_KEARS + 277, ItemClassification.progression)
     ASTRAL_ORREY_MIRROR_ROOM_LEFT_SIDE_KEAR = ("Astral Orrery Mirror Room Left Side Lock", ITEMS_OFFSET_KEARS + 278, ItemClassification.progression)
     CHOPPE_SHOPPE_KEAR = ("Choppe Shoppe Lock", ITEMS_OFFSET_KEARS + 225, ItemClassification.progression)
-    EASTERN_HEATH_MOUNTAIN_PATH = ("Eastern Heath Mountain Path Lock", ITEMS_OFFSET_KEARS + 222, ItemClassification.progression) #missing kear
+    EASTERN_HEATH_WATERFALL_KEAR = ("Eastern Heath Waterfall Lock", ITEMS_OFFSET_KEARS + 222, ItemClassification.progression) #missing kear
     EASTERN_HEATH_BUCKLERS_BLUFF_KEAR = ("Eastern Heath Bucklers Bluff Lock", ITEMS_OFFSET_KEARS + 224, ItemClassification.progression)
     MOURNERS_MILES_BIKE_KEAR = ("Mourner's Mile Bike Lock", ITEMS_OFFSET_KEARS + 307, ItemClassification.progression)
-    EASTERN_HEATH_WATERFALL_KEAR = ("Eastern Heath Waterfall Lock", ITEMS_OFFSET_KEARS + 1, ItemClassification.progression)
     EASTERN_HEATH_GRASSLAND_BUSHROOM_KEAR = ("Eastern Heath Grassland Bushroom Lock", ITEMS_OFFSET_KEARS + 227, ItemClassification.progression)
     MOURNERS_MILE_AFTER_GENERATOR_KEAR = ("Mourner's Mile After Generator Lock", ITEMS_OFFSET_KEARS + 304, ItemClassification.progression)
     QUEENSBURY_CRYPT_BONNET_TOMB_KEAR = ("Queensbury Crypt Bonnet Tomb Lock", ITEMS_OFFSET_KEARS + 55, ItemClassification.progression)
@@ -77,10 +76,9 @@ kear_area_lookup = {
     SingleKears.ASTRAL_ORREY_MIRROR_ROOM_RIGHT_SIDE_KEAR.value : AreaKears.ASTRAL_ORRERY_KEARS,
     SingleKears.ASTRAL_ORREY_MIRROR_ROOM_LEFT_SIDE_KEAR.value : AreaKears.ASTRAL_ORRERY_KEARS,
     SingleKears.CHOPPE_SHOPPE_KEAR.value : AreaKears.EASTERN_HEATH_KEARS,
-    SingleKears.EASTERN_HEATH_MOUNTAIN_PATH.value : AreaKears.EASTERN_HEATH_KEARS,
+    SingleKears.EASTERN_HEATH_WATERFALL_KEAR.value : AreaKears.EASTERN_HEATH_KEARS,
     SingleKears.EASTERN_HEATH_BUCKLERS_BLUFF_KEAR.value : AreaKears.EASTERN_HEATH_KEARS,
     SingleKears.MOURNERS_MILES_BIKE_KEAR.value : AreaKears.MOURNERS_MILE_KEARS,
-    SingleKears.EASTERN_HEATH_WATERFALL_KEAR.value : AreaKears.EASTERN_HEATH_KEARS,
     SingleKears.EASTERN_HEATH_GRASSLAND_BUSHROOM_KEAR.value : AreaKears.EASTERN_HEATH_KEARS,
     SingleKears.MOURNERS_MILE_AFTER_GENERATOR_KEAR.value : AreaKears.MOURNERS_MILE_KEARS,
     SingleKears.QUEENSBURY_CRYPT_BONNET_TOMB_KEAR.value : AreaKears.QUEENSBURY_KEARS,
