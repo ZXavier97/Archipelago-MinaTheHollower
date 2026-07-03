@@ -23,4 +23,4 @@ class FishingUpgrades(ItemTypeEnum):
     #fishing rod->raft=>gold rod
 
 class MapUpgrades(ItemTypeEnum):
-    PROGRESSIVE_MAP = ("World Map", ITEMS_OFFSET_PROGRESSIVES+10, ItemClassification.useful)
+    PROGRESSIVE_MAP = ("Progressive World Map", ITEMS_OFFSET_PROGRESSIVES+10, ItemClassification.useful)
