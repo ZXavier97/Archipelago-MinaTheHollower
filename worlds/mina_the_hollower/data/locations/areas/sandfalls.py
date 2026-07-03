@@ -8,7 +8,7 @@ from ...rules.state_rules import HasRepairedShorelineGenerator, HasKear
 from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
-    "SF Hobo Holdout Puffer Beak" : LocationData(82, "Sandfalls Mining Outlook", HasFishingRod()),
+    "SF Fish Puffer Beak" : LocationData(82, "Sandfalls Mining Outlook", HasFishingRod()),
     "SF Sifted Sands Snake Bomb Chest" : LocationData(326, "Sandfalls Sifted Sands", CanBurrow() & CanCarry()), #needs burrow, carry,
     "SF Sifted Sands Kear" : LocationData(319, "Sandfalls Sifted Sands", HasRepairedShorelineGenerator()),
     "SF Guiding Grains Niter Belt" : LocationData(330, "Sandfalls Pachinko"),
