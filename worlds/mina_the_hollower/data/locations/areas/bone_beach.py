@@ -6,7 +6,7 @@ from ...rules.ability_rules import CanBurrow, CanBounce, CanClimb, CanCarry, Can
 from ...rules.movement_rules import CanJumpTiles
 
 collectable_locations: dict[str, LocationData] = {
-    "BB Goremaw Fang": LocationData(88, "Bone Beach Aquatic", HasFishingRod() & CanSwim()),
+    "BB Fish Goremaw Fang": LocationData(88, "Bone Beach Aquatic", HasFishingRod() & CanSwim()),
     "BB Bone Rush Trail Furgus Tunnel Chest": LocationData(354, "Bone Beach Bone Rush Mine"),
     "BB Gold Grasp Bonestone": LocationData(71, "Bone Beach Bone Rush Drop"),
     "BB Large Conveyor Bonestone": LocationData(70, "Bone Beach Bone Rush Conveyor Top", CanBounce()),
